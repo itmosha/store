@@ -36,7 +36,8 @@ const ContactsPage = () => {
                     <div className="delivery-calculate">
                         <h3>Рассчитать стоимость доставки</h3>
 
-                        <form onSubmit={ submitIndex }>
+                        <form onSubmit={submitIndex}>
+                            <label htmlFor="index">Index</label>
                             <input
                                 id="index"
                                 name="index"
@@ -49,6 +50,7 @@ const ContactsPage = () => {
                                 Submit
                             </button>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -59,15 +61,21 @@ const ContactsPage = () => {
 const submitIndex = async (event) => {
     event.preventDefault();
     const index = event.target.index.value;
+    const url = `https://postprice.ru/engine/russia/api.php?from=198207&to=${index}&mass=400`;
 
-    try {
-        const res = await fetch(`https://postprice.ru/engine/russia/api.php?from=198207&to=${index}&mass=500&valuation=1000`);
-        const result = await res.json();
+    const res = await fetch(
+        url, {
+            method: 'GET',
+            mode: 'no-cors',
+        }
+    )
+        .then((res) => res.json())
+        .then((data) => { alert(data); })
+        .catch((error) => { alert(error); });
 
-        alert(`Index is ${res}`);
-    } catch(err) {
-        alert(err);
-    }
-}
+    //const result = await res.json();
+
+    //alert(`Hi ${index} your age is most likely: ${result.pkg}`);
+};
 
 export default ContactsPage
