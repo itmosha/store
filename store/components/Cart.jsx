@@ -64,7 +64,7 @@ const Cart = () => {
                             <h3>₽ { totalPrice }</h3>
                         </div>
                         <div className="btn-container">
-                            <Link href="/payment">
+                            <Link href="/cart">
                                 <button type="button" className="btn" onClick={ () => setShowCart(false) }>
                                     Оформить заказ
                                 </button>

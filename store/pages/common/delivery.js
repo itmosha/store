@@ -2,8 +2,21 @@ import React from 'react';
 import Link from 'next/link';
 import { MdAttachMoney } from "react-icons/md";
 import { AiOutlineFieldTime } from "react-icons/ai";
+import {error} from "next/dist/build/output/log";
 
 const ContactsPage = () => {
+
+    const submitIndex = async (event) => {
+        event.preventDefault();
+        const index = event.target.index.value;
+
+        // const url =
+        const result = await fetch(url);
+        const res = await result.json();
+
+        //alert(res);
+    };
+
     return (
         <div className="common-page">
             <div className="common-page-info-container">
@@ -36,13 +49,13 @@ const ContactsPage = () => {
                     <div className="delivery-calculate">
                         <h3>Рассчитать стоимость доставки</h3>
 
-                        <form onSubmit={submitIndex}>
+                        <form onSubmit={ submitIndex }>
                             <label htmlFor="index">Index</label>
                             <input
                                 id="index"
                                 name="index"
                                 type="text"
-                                minLength="6"
+                                minLength="1"
                                 maxLength="6"
                                 required
                             />
@@ -58,24 +71,6 @@ const ContactsPage = () => {
     )
 }
 
-const submitIndex = async (event) => {
-    event.preventDefault();
-    const index = event.target.index.value;
-    const url = `https://postprice.ru/engine/russia/api.php?from=198207&to=${index}&mass=400`;
-
-    const res = await fetch(
-        url, {
-            method: 'GET',
-            mode: 'no-cors',
-        }
-    )
-        .then((res) => res.json())
-        .then((data) => { alert(data); })
-        .catch((error) => { alert(error); });
-
-    //const result = await res.json();
-
-    //alert(`Hi ${index} your age is most likely: ${result.pkg}`);
-};
 
 export default ContactsPage
+
