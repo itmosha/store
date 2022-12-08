@@ -10,9 +10,29 @@ export const StateContext = ({ children }) => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalQuantities, setTotalQuantities] = useState(0);
     const [qty, setQty] = useState(1);
+    const [deliveryRussia, setDeliveryRussia] = useState(false);
+    const [deliverySPb, setDeliverySPb] = useState(false);
 
     let foundProduct;
     let index;
+
+    const toggleDeliveryRussia = () => {
+        if (deliveryRussia) {
+            setDeliveryRussia(!deliveryRussia);
+        } else {
+            setDeliverySPb((deliverySPb) => { deliverySPb = false; });
+            setDeliveryRussia(!deliveryRussia);
+        }
+    }
+
+    const toggleDeliverySPb = () => {
+        if (deliverySPb) {
+            setDeliverySPb(!deliverySPb);
+        } else {
+            setDeliveryRussia((deliveryRussia) => {deliveryRussia = false; });
+            setDeliverySPb(!deliverySPb);
+        }
+    }
 
     const onAdd = (product, quantity) => {
         const checkProductInCart = cartItems.find((item) => item._id === product._id);
@@ -102,7 +122,13 @@ export const StateContext = ({ children }) => {
                 decQty,
                 onAdd,
                 toggleCartItemQuantity,
-                onRemove
+                onRemove,
+                deliverySPb,
+                deliveryRussia,
+                setDeliverySPb,
+                setDeliveryRussia,
+                toggleDeliverySPb,
+                toggleDeliveryRussia
             }}
         >
             { children }
