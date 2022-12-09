@@ -6,13 +6,14 @@ import { TiDeleteOutline } from "react-icons/ti";
 import Link from 'next/link';
 
 const CartPage = () => {
-    const { totalPrice, cartItems, toggleCartItemQuantity, onRemove, deliveryRussia, toggleDeliveryRussia, deliverySPb, toggleDeliverySPb } = useStateContext();
+    const { totalPrice, totalQuantity, cartItems, toggleCartItemQuantity, onRemove, deliveryRussia, toggleDeliveryRussia, deliverySPb, toggleDeliverySPb } = useStateContext();
 
     return (
         <div className="cart-page">
             <div className="cart-product-container">
                 <h1>Оформление заказа</h1>
                 <div className="cart-product-items">
+                    <h2>Список товаров</h2>
                 { cartItems.length >= 1 && cartItems.map((item) => (
                     <div className="product" key={item._id}>
                         <img src={ urlFor(item?.image[0]) } className="cart-product-image" />
@@ -95,28 +96,45 @@ const CartPage = () => {
                         {/*        <h3>₽ { totalPrice }</h3>*/}
                         {/*    </div>*/}
                         {/*) }*/}
-
-                        { deliverySPb && (
-                            <div>
-                                <h3>Сумма заказа:</h3>
-                                <h3>₽ { totalPrice }</h3>
-                                <h3>Стоимость доставки:</h3>
-                                <h3>₽ 150</h3>
-                                <h2>Итого:</h2>
-                                { totalPrice + 150 }
-                            </div>
-                        ) }
-                        { deliveryRussia && (
-                            <div>
-                                <h3>Сумма заказа:</h3>
-                                <h3>₽ { totalPrice }</h3>
-                                <h3>Стоимость доставки:</h3>
-
-                                <h2>Итого:</h2>
-                                { totalPrice }
-                            </div>
-                        ) }
                     </div>
+
+                    { (deliverySPb || deliveryRussia) && (
+                        <div className="cart-product-cost">
+                            <h2>Ваш заказ</h2>
+                            {deliverySPb && (
+                                <div>
+                                    <div className="price-tag">
+                                        <span>Сумма заказа:</span>
+                                        <span>{totalPrice} ₽</span>
+                                    </div>
+                                    <div className="price-tag">
+                                        <span>Стоимость доставки:</span>
+                                        <span>150 ₽</span>
+                                    </div>
+                                    <div className="summary-price">
+                                        <span>Итого:</span>
+                                        <span>{totalPrice + 150} ₽</span>
+                                    </div>
+                                </div>
+                            )}
+                            {deliveryRussia && (
+                                <div>
+                                    <div className="price-tag">
+                                        <span>Сумма заказа:</span>
+                                        <span>{totalPrice} ₽</span>
+                                    </div>
+                                    <div className="price-tag">
+                                        <span>Стоимость доставки:</span>
+                                        <span>0 ₽</span>
+                                    </div>
+                                    <div className="summary-price">
+                                        <span>Итого:</span>
+                                        <span>{totalPrice} ₽ </span>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    ) }
                 </div>
             </div>
         </div>
