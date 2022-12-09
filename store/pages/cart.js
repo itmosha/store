@@ -41,7 +41,7 @@ const CartPage = () => {
                 <div className="cart-product-info">
                     <div className="cart-product-delivery">
 
-                        <h3>Способ доставки:</h3>
+                        <h2>Способ доставки:</h2>
 
                         <div className="checkbox-wrapper">
                             <label>
@@ -50,7 +50,19 @@ const CartPage = () => {
                                     checked={ deliveryRussia }
                                     onChange={ () => toggleDeliveryRussia() }
                                 />
-                                <span>Доставка Почтой России</span>
+                                <svg
+                                    className={ `checkbox ${ deliveryRussia ? "checkbox--active": "" }` }
+                                    aria-hidden="true"
+                                    viewBox="0 0 15 11"
+                                    fill="none"
+                                >
+                                    <path
+                                        d="M1 4.5L5 9L14 1"
+                                        strokeWidth="2"
+                                        stroke={ deliveryRussia ? "#fff" : "none" }
+                                    />
+                                </svg>
+                                Доставка Почтой России
                             </label>
                         </div>
 
@@ -61,7 +73,19 @@ const CartPage = () => {
                                     checked={ deliverySPb }
                                     onChange={ () => toggleDeliverySPb() }
                                 />
-                                <span>Доставка по Санкт-Петербургу</span>
+                                <svg
+                                    className={ `checkbox ${ deliverySPb ? "checkbox--active" : "" }` }
+                                    aria-hidden="true"
+                                    viewBox="0 0 15 11"
+                                    fill="none"
+                                >
+                                    <path
+                                        d="M1 4.5L5 9L14 1"
+                                        strokeWidth="2"
+                                        stroke={ deliverySPb ? "#fff" : "none"}
+                                    />
+                                </svg>
+                                Доставка курьером по Санкт-Петербургу
                             </label>
                         </div>
 
@@ -74,16 +98,22 @@ const CartPage = () => {
 
                         { deliverySPb && (
                             <div>
-                                <h1>Доставка по Санкт-Петербургу</h1>
                                 <h3>Сумма заказа:</h3>
                                 <h3>₽ { totalPrice }</h3>
+                                <h3>Стоимость доставки:</h3>
+                                <h3>₽ 150</h3>
+                                <h2>Итого:</h2>
+                                { totalPrice + 150 }
                             </div>
                         ) }
                         { deliveryRussia && (
                             <div>
-                                <h1>Доставка Почтой России</h1>
                                 <h3>Сумма заказа:</h3>
                                 <h3>₽ { totalPrice }</h3>
+                                <h3>Стоимость доставки:</h3>
+
+                                <h2>Итого:</h2>
+                                { totalPrice }
                             </div>
                         ) }
                     </div>

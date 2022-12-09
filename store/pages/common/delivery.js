@@ -32,7 +32,7 @@ const ContactsPage = () => {
 
                     <div className="delivery-param">
                         <MdAttachMoney size={22} />
-                        <p>Стоимость доставки - 200 рублей</p>
+                        <p>Стоимость доставки - 150 рублей</p>
                     </div>
 
                     <div className="delivery-param">
