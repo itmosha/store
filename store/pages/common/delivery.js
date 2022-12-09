@@ -45,26 +45,6 @@ const ContactsPage = () => {
                         <p>Доставка осуществляется Почтой России по всей территории РФ.</p>
                         <p>Стоимость доставки рассчитывается исходя из тарифов Почты России.</p>
                     </div>
-
-                    <div className="delivery-calculate">
-                        <h3>Рассчитать стоимость доставки</h3>
-
-                        <form onSubmit={ submitIndex }>
-                            <label htmlFor="index">Index</label>
-                            <input
-                                id="index"
-                                name="index"
-                                type="text"
-                                minLength="1"
-                                maxLength="6"
-                                required
-                            />
-                            <button type="submit">
-                                Submit
-                            </button>
-                        </form>
-
-                    </div>
                 </div>
             </div>
         </div>
