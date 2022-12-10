@@ -14,7 +14,7 @@ const CartPage = () => {
                 <h1>Оформление заказа</h1>
                 <div className="cart-product-items">
                     <h2>Список товаров</h2>
-                { cartItems.length >= 1 && cartItems.map((item) => (
+                { cartItems.length >= 1 ? cartItems.map((item) => (
                     <div className="product" key={item._id}>
                         <img src={ urlFor(item?.image[0]) } className="cart-product-image" />
                         <div className="item-desc">
@@ -36,9 +36,19 @@ const CartPage = () => {
                             </div>
                         </div>
                     </div>
-                ))}
+                )) :
+                    <div className="cart-empty">
+                        <span>Список товаров пуст. Перейдите в каталог чтобы добавить товары</span>
+                        <Link href="/">
+                            <button className="go-to-items">
+                                Перейти в каталог
+                            </button>
+                        </Link>
+                    </div>
+                }
                 </div>
 
+                { cartItems.length >= 1 && (
                 <div className="cart-product-info">
                     <div className="cart-product-delivery">
 
@@ -136,6 +146,7 @@ const CartPage = () => {
                         </div>
                     ) }
                 </div>
+                )}
             </div>
         </div>
     )

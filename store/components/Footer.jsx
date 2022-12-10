@@ -13,22 +13,24 @@ const Footer = () => {
                 <h4>
                     <Link href="/common/delivery">Доставка</Link>
                 </h4>
-
-                <p>
-                    ИНН: ------------
-                </p>
             </div>
 
-            <p>2022 Block Store</p>
-            <p>Все права защищены</p>
-            <p className="icons">
-                <Link href="/">
-                    <SlSocialVkontakte />
-                </Link>
-                <Link href="/">
-                    <FaTelegramPlane />
-                </Link>
-            </p>
+            <div className="footer-center">
+                <p>2022 Block Store</p>
+                <p>Все права защищены</p>
+            </div>
+                <p className="icons">
+                    <Link href="/">
+                        <SlSocialVkontakte />
+                    </Link>
+                    <Link href="/">
+                        <FaTelegramPlane />
+                    </Link>
+                </p>
+            <span className="INN">
+
+                    ИНН: 600402090145
+            </span>
         </div>
     )
 }
