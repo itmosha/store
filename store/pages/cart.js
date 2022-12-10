@@ -4,9 +4,27 @@ import { urlFor } from "../lib/client";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
 import Link from 'next/link';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 const CartPage = () => {
     const { totalPrice, totalQuantity, cartItems, toggleCartItemQuantity, onRemove, deliveryRussia, toggleDeliveryRussia, deliverySPb, toggleDeliverySPb } = useStateContext();
+
+    const [email, setEmail] = useState("");
+    const { register, handleSubmit, formState: {isSubmitting} } = useForm();
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        await saveFormData({ "email": email });
+    }
+
+    async function saveFormData(data) {
+        return await fetch("/api/delivery-SPb", {
+            body: JSON.stringify(data),
+            headers: {"Content-Type": "application/json"},
+            method: "POST"
+        });
+    }
 
     return (
         <div className="cart-page">
@@ -99,13 +117,6 @@ const CartPage = () => {
                                 Доставка курьером по Санкт-Петербургу
                             </label>
                         </div>
-
-                        {/*{ cartItems.length >= 1 && (*/}
-                        {/*    <div>*/}
-                        {/*        <h3>Сумма заказа:</h3>*/}
-                        {/*        <h3>₽ { totalPrice }</h3>*/}
-                        {/*    </div>*/}
-                        {/*) }*/}
                     </div>
 
                     { (deliverySPb || deliveryRussia) && (
@@ -143,6 +154,65 @@ const CartPage = () => {
                                     </div>
                                 </div>
                             )}
+                        </div>
+                    ) }
+                    { deliverySPb && (
+                        <div className="client-info">
+                            <h2>Данные для доставки</h2>
+
+                           <form onSubmit={handleSubmit(saveFormData)}>
+                               <div className="client-info-field">
+                                   <label htmlFor="l_name">Фамилия</label>
+                                   <input
+                                       type="text"
+                                       autoComplete="text"
+                                       {...register("l_name", {required: true})}
+                                   />
+                               </div>
+                               <div className="client-info-field">
+                                   <label htmlFor="f_name">Имя</label>
+                                   <input
+                                       type="text"
+                                       autoComplete="text"
+                                       {...register("f_name", {required: true})}
+                                   />
+                               </div>
+                               <div className="client-info-field">
+                                   <label htmlFor="m_name">Отчество</label>
+                                   <input
+                                       type="text"
+                                       autoComplete="text"
+                                       {...register("m_name", {required: false})}
+                                   />
+                               </div>
+                               <div className="client-info-field">
+                                   <label htmlFor="email">Email</label>
+                                   <input
+                                       type="email"
+                                       autoComplete="email"
+                                       {...register("email", {required: false})}
+                                   />
+                               </div>
+                               <div className="client-info-field">
+                                   <label htmlFor="phone">Телефон</label>
+                                   <input
+                                       type="text"
+                                       autoComplete="text"
+                                       {...register("phone", {required: true})}
+                                   />
+                               </div>
+                               <div className="client-info-field">
+                                   <label htmlFor="address">Адрес</label>
+                                   <input
+                                       type="text"
+                                       autoComplete="text"
+                                       {...register("address", {required: true})}
+                                   />
+                               </div>
+                               <button disabled={isSubmitting}>
+                                   {isSubmitting ? "Подождите..." : "Оплатить"}
+                               </button>
+                           </form>
                         </div>
                     ) }
                 </div>
