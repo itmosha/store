@@ -27,10 +27,8 @@ const Footer = () => {
                         <FaTelegramPlane />
                     </Link>
                 </p>
-            <span className="INN">
-
-                    ИНН: 600402090145
-            </span>
+            <span className="footer-bottom-info">ИНН: 600402090145</span>
+            <span className="footer-bottom-info">ИП Балкунов С.И.</span>
         </div>
     )
 }
