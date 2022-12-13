@@ -13,13 +13,16 @@ const CartPage = () => {
     const [email, setEmail] = useState("");
     const { register, handleSubmit, formState: {isSubmitting} } = useForm();
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        await saveFormData({ "email": email });
+    async function saveFormDataSPb(data) {
+        return await fetch("/api/delivery-SPb", {
+            body: JSON.stringify(data),
+            headers: {"Content-Type": "application/json"},
+            method: "POST"
+        });
     }
 
-    async function saveFormData(data) {
-        return await fetch("/api/delivery-SPb", {
+    async function saveFormDataRussia(data) {
+        return await fetch("/api/delivery-Russia", {
             body: JSON.stringify(data),
             headers: {"Content-Type": "application/json"},
             method: "POST"
@@ -160,7 +163,7 @@ const CartPage = () => {
                         <div className="client-info">
                             <h2>Данные для доставки</h2>
 
-                           <form onSubmit={handleSubmit(saveFormData)}>
+                           <form onSubmit={handleSubmit(saveFormDataSPb)}>
                                <div className="client-info-field">
                                    <label htmlFor="l_name">Фамилия</label>
                                    <input
@@ -194,7 +197,7 @@ const CartPage = () => {
                                    />
                                </div>
                                <div className="client-info-field">
-                                   <label htmlFor="phone">Телефон</label>
+                                   <label htmlFor="phone">Номер телефона</label>
                                    <input
                                        type="text"
                                        autoComplete="text"
@@ -202,7 +205,7 @@ const CartPage = () => {
                                    />
                                </div>
                                <div className="client-info-field">
-                                   <label htmlFor="address">Адрес</label>
+                                   <label htmlFor="address">Почтовый адрес</label>
                                    <input
                                        type="text"
                                        autoComplete="text"
@@ -214,6 +217,74 @@ const CartPage = () => {
                                </button>
                            </form>
                         </div>
+                    ) }
+                    { deliveryRussia && (
+                        <div className="client-info">
+                            <h2>Данные для доставки</h2>
+
+                            <form onSubmit={handleSubmit(saveFormDataRussia)}>
+                                <div className="client-info-field">
+                                    <label htmlFor="l_name">Фамилия</label>
+                                    <input
+                                        type="text"
+                                        autoComplete="text"
+                                        {...register("l_name", {required: true})}
+                                    />
+                                </div>
+                                <div className="client-info-field">
+                                    <label htmlFor="f_name">Имя</label>
+                                    <input
+                                        type="text"
+                                        autoComplete="text"
+                                        {...register("f_name", {required: true})}
+                                    />
+                                </div>
+                                <div className="client-info-field">
+                                    <label htmlFor="m_name">Отчество</label>
+                                    <input
+                                        type="text"
+                                        autoComplete="text"
+                                        {...register("m_name", {required: false})}
+                                    />
+                                </div>
+                                <div className="client-info-field">
+                                    <label htmlFor="email">Email</label>
+                                    <input
+                                        type="text"
+                                        autoComplete="text"
+                                        {...register("email", {required: false})}
+                                    />
+                                </div>
+                                <div className="client-info-field">
+                                    <label htmlFor="phone">Номер телефона</label>
+                                    <input
+                                        type="text"
+                                        autoComplete="text"
+                                        {...register("phone", {required: true})}
+                                    />
+                                </div>
+                                <div className="client-info-field">
+                                    <label htmlFor="index">Почтовый индекс</label>
+                                    <input
+                                        type="text"
+                                        autoComplete="text"
+                                        {...register("index", {required: true})}
+                                    />
+                                </div>
+                                <div className="client-info-field">
+                                    <label htmlFor="address">Почтовый адрес</label>
+                                    <input
+                                        type="text"
+                                        autoComplete="text"
+                                        {...register("address", {required: true})}
+                                    />
+                                </div>
+                                <button disabled={isSubmitting} className="client-info-submit">
+                                    {isSubmitting ? "Подождите..." : "Оплатить"}
+                                </button>
+                            </form>
+                        </div>
+
                     ) }
                 </div>
                 )}
