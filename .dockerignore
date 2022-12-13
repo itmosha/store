@@ -1,6 +1,6 @@
 **/.idea/
 **/.vscode/
 **/.DS_Store
-.env
+store_backend/virtualenv/
 
 logs/
