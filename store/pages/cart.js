@@ -188,8 +188,8 @@ const CartPage = () => {
                                <div className="client-info-field">
                                    <label htmlFor="email">Email</label>
                                    <input
-                                       type="email"
-                                       autoComplete="email"
+                                       type="text"
+                                       autoComplete="text"
                                        {...register("email", {required: false})}
                                    />
                                </div>
@@ -209,7 +209,7 @@ const CartPage = () => {
                                        {...register("address", {required: true})}
                                    />
                                </div>
-                               <button disabled={isSubmitting}>
+                               <button disabled={isSubmitting} className="client-info-submit">
                                    {isSubmitting ? "Подождите..." : "Оплатить"}
                                </button>
                            </form>
