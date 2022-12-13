@@ -34,8 +34,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-sanity_store/yarn.lock
-sanity_store/package-lock.json
-sanity_store/node_modules
-sanity_store/config

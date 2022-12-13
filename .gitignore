@@ -2,3 +2,7 @@
 .vscode/
 **/.DS_Store
 
+store/sanity_store/yarn.lock
+store/sanity_store/package-lock.json
+store/sanity_store/node_modules
+store/sanity_store/config
