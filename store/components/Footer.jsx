@@ -13,6 +13,9 @@ const Footer = () => {
                 <h4>
                     <Link href="/common/delivery">Доставка</Link>
                 </h4>
+                <h4>
+                    <Link href="/common/return">Возврат</Link>
+                </h4>
             </div>
 
             <div className="footer-center">
