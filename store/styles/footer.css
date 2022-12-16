@@ -1,4 +1,5 @@
 .footer-container {
+    min-width: 100vw;
     margin-top: 60px;
     padding: 15px 10px;
     gap: 5px;

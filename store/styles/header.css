@@ -1,8 +1,7 @@
 .header {
     min-height: 3rem;
-    min-width: 102vw;
+    min-width: 100vw;
     padding: 0.65rem 2.5vw 0.65rem 2.5vw;
-    left: -1vw;
     top: 0;
 
     display: block;

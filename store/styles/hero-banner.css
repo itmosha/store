@@ -23,8 +23,6 @@
     position: absolute;
 }
 
-
-
 .hero-banner-container button {
     min-width: 250px;
     min-height: 50px;
@@ -72,13 +70,14 @@
 }
 
 .hero-banner-mid-text {
-    margin-top: 5px;
+    margin-top: 10px;
     font-size: 26px;
 }
 
 .hero-banner-large-text {
     color: white;
     font-size: 64px;
+    margin-top: 10px;
     margin-left: -5px;
     margin-right: 350px;
 
