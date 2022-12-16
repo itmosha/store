@@ -8,6 +8,9 @@
 }
 
 .product-card{
+    padding: 7px;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
     margin: 20px 7px 15px;
     cursor: pointer;
     transform: scale(1, 1);
