@@ -1,0 +1,21 @@
+.footer-banner-container {
+    padding: 50px 40px;
+    border-radius: 15px;
+    height: 400px;
+    line-height: 1;
+    width: 100%;
+    margin-top: 120px;
+
+    background-color: #f02d34;
+    color: white;
+    position: relative;
+}
+
+.footer-banner-image {
+    top: -10%;
+    left: 26%;
+
+    object-fit: cover;
+    position: absolute;
+}
+
