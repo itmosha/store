@@ -494,6 +494,7 @@ margin-top: 160px;
 }
 
 .cart-product-items {
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
   background-color: #d1d1d1;
   border-radius: 15px;
   margin-right: 40px;
@@ -519,6 +520,7 @@ margin-top: 160px;
 }
 
 .cart-product-delivery {
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
   padding-top: 20px;
   padding-bottom: 15px;
   background-color: #d1d1d1;
@@ -565,6 +567,7 @@ input[type="checkbox"] {
 }
 
 .cart-product-cost {
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
   background-color: #d1d1d1;
   border-radius: 15px;
   padding-top: 20px;
@@ -617,6 +620,7 @@ input[type="checkbox"] {
 }
 
 .client-info {
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
   background-color: #d1d1d1;
   border-radius: 15px;
   padding-top: 20px;
