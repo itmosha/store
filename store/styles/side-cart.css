@@ -1,4 +1,5 @@
 .cart-wrapper {
+    max-width: 100vw;
     width: 100vw;
     right: 0;
     top: 0;
@@ -12,6 +13,7 @@
 .cart-container {
     height: 100vh;
     width: 600px;
+    max-width: 100vw;
     float: right;
     padding: 40px 10px;
 

@@ -17,6 +17,10 @@ export const StateContext = ({ children }) => {
     let foundProduct;
     let index;
 
+    const checkForRefresh = () => {
+
+    }
+
     const toggleDeliveryRussia = () => {
         if (deliveryRussia) {
             setDeliveryRussia(!deliveryRussia);
@@ -30,12 +34,13 @@ export const StateContext = ({ children }) => {
         if (deliverySPb) {
             setDeliverySPb(!deliverySPb);
         } else {
-            setDeliveryRussia((deliveryRussia) => {deliveryRussia = false; });
+            setDeliveryRussia((deliveryRussia) => { deliveryRussia = false; });
             setDeliverySPb(!deliverySPb);
         }
     }
 
     const onAdd = (product, quantity) => {
+
         const checkProductInCart = cartItems.find((item) => item._id === product._id);
         setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
         setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
@@ -156,7 +161,8 @@ export const StateContext = ({ children }) => {
                 setDeliverySPb,
                 setDeliveryRussia,
                 toggleDeliverySPb,
-                toggleDeliveryRussia
+                toggleDeliveryRussia,
+                checkForRefresh
             }}
         >
             { children }
