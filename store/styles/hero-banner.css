@@ -1,9 +1,9 @@
 .hero-banner-container {
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.4);
     margin-top: 40px;
+    min-height: 50vh;
     padding: 70px 40px;
     border-radius: 15px;
-    height: 53vh;
     line-height: 0.9;
     width: 100%;
 
@@ -17,10 +17,11 @@
 .hero-banner-image {
     z-index: 5;
     object-fit: cover;
-    top: -5vh;
+    top: 2vh;
     right: 21%;
-    min-height: 40vh;
-    max-height: 66vh;
+    max-height: 50vh;
+    align-items: center;
+
     position: absolute;
 }
 
@@ -68,19 +69,22 @@
 
 .hero-banner-small-text {
     font-size: 18px;
+    padding: 2px 0 2px 0;
 }
 
 .hero-banner-mid-text {
-    margin-top: 10px;
+    margin-top: 2px;
     font-size: 26px;
+    padding: 3px 0 3px 0;
 }
 
 .hero-banner-large-text {
     color: white;
     font-size: 64px;
-    margin-top: 10px;
+    margin-top: 2px;
     margin-left: -5px;
     margin-right: 350px;
+    padding: 5px 0 5px 0;
 
     text-transform: uppercase;
 }
@@ -98,15 +102,16 @@
         margin-top: 5px;
         font-size: 30px;
         line-height: 1.05;
+        padding: 3px 0 3px 7px;
     }
 
     .hero-banner-image {
         display: block;
         width: 38vh;
-        height: 30vh;
+        height: 38vh;
 
-        top: -2vh;
-        right: 5vw;
+        top: 3vh;
+        right: 2vw;
         rotate: -35deg;
     }
     .hero-banner-container button {
