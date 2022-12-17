@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import cart from "../components/Cart";
+import {setCookie, getCookie } from "cookies-next";
 
 const Context = createContext();
 
@@ -52,14 +53,16 @@ export const StateContext = ({ children }) => {
 
             setCartItems(updatedCartItems);
 
-            alert(`Cart: ${JSON.stringify(updatedCartItems)}`);
+            setCookie('cookieCartItems', updatedCartItems);
+            // alert(`Cookie: ${ getCookie('cookieCartItems') }`);
         } else {
             product.quantity = quantity;
             setCartItems([...cartItems, { ...product }]);
 
-            alert(`Cart: ${JSON.stringify([...cartItems, { ...product }])}`);
+            setCookie('cookieCartItems', [...cartItems, { ...product }]);
+            // alert(`Cookie: ${ getCookie('cookieCartItems') }`);
         }
-        // toast.success(`Добавлено в корзину: ${qty} ${product.name}`);
+        toast.success(`Добавлено в корзину: ${qty} ${product.name}`);
     }
 
     const onRemove = (product) => {
@@ -69,38 +72,56 @@ export const StateContext = ({ children }) => {
         setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price * foundProduct.quantity);
         setTotalQuantities(prevTotalQuantities => prevTotalQuantities - foundProduct.quantity);
         setCartItems(newCartItems);
+
+        setCookie('cookieCartItems', newCartItems);
     }
 
     const toggleCartItemQuantity = (id, value) => {
         foundProduct = cartItems.find((item) => item._id === id);
         index = cartItems.findIndex((product) => product._id === id);
-        const newCartItems = cartItems.filter((item) => item._id !== id);
 
         if (value === 'inc') {
-            setCartItems( prevCartItems =>
-                prevCartItems.map( item => {
-                    if (item._id === id){
-                        return {...item, quantity: foundProduct.quantity + 1}
-                    }
-                    return item
-                })
-            );
+            // setCartItems( prevCartItems =>
+            //     prevCartItems.map( item => {
+            //         if (item._id === id){
+            //             return {...item, quantity: foundProduct.quantity + 1}
+            //         }
+            //         return item
+            //     })
+            //);
+
+            const newCartItems = cartItems.map(item => {
+                if (item._id === id) {
+                    return {...item, quantity: foundProduct.quantity + 1}
+                } return item
+            });
+            setCartItems(newCartItems);
 
             setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
             setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1);
+            setCookie('cookieCartItems', newCartItems);
+
         } else if (value === 'dec') {
             if (foundProduct.quantity > 1) {
-                setCartItems( prevCartItems =>
-                    prevCartItems.map( item => {
-                        if (item._id === id){
-                            return {...item, quantity: foundProduct.quantity - 1}
-                        }
-                        return item
-                    })
-                );
+                // setCartItems( prevCartItems =>
+                //     prevCartItems.map( item => {
+                //         if (item._id === id){
+                //             return {...item, quantity: foundProduct.quantity - 1}
+                //         }
+                //         return item
+                //     })
+                // );
+
+                const newCartItems = cartItems.map(item => {
+                    if (item._id === id) {
+                        return {...item, quantity: foundProduct.quantity - 1}
+                    } return item
+                });
+                setCartItems(newCartItems)
 
                 setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
                 setTotalQuantities(prevTotalQuantities => prevTotalQuantities - 1);
+                setCookie('cookieCartItems', newCartItems);
             }
         }
     }
