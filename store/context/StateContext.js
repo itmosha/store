@@ -44,15 +44,22 @@ export const StateContext = ({ children }) => {
                 if (cartProduct._id === product._id) return {
                     ...cartProduct,
                     quantity: cartProduct.quantity + quantity
-                }
+                };
+                else return {
+                    ...cartProduct
+                };
             })
 
             setCartItems(updatedCartItems);
+
+            alert(`Cart: ${JSON.stringify(updatedCartItems)}`);
         } else {
             product.quantity = quantity;
             setCartItems([...cartItems, { ...product }]);
+
+            alert(`Cart: ${JSON.stringify([...cartItems, { ...product }])}`);
         }
-        toast.success(`Добавлено в корзину: ${qty} ${product.name}`);
+        // toast.success(`Добавлено в корзину: ${qty} ${product.name}`);
     }
 
     const onRemove = (product) => {
