@@ -10,7 +10,8 @@
     background-color: #d1d1d1;
     color: #1b2b3a;
 
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     position: relative;
 }
 
@@ -19,7 +20,7 @@
     object-fit: cover;
     top: 2vh;
     right: 21%;
-    max-height: 50vh;
+    max-height: 48vh;
     align-items: center;
 
     position: absolute;
@@ -80,7 +81,7 @@
 
 .hero-banner-large-text {
     color: white;
-    font-size: 64px;
+    font-size: 62px;
     margin-top: 2px;
     margin-left: -5px;
     margin-right: 350px;
