@@ -25,7 +25,6 @@ const Navbar = () => {
                     </button>
                 </div>
             </div>
-
         </header>
             { showCart && <Cart /> }
         </div>

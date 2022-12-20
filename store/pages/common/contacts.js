@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import { AiFillMail, AiFillPhone } from "react-icons/ai";
 
 const ContactsPage = () => {

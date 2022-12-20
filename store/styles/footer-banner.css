@@ -1,0 +1,109 @@
+.footer-banner-container {
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+    padding: 50px 40px;
+    border-radius: 15px;
+    line-height: 1;
+    width: 100%;
+    margin-top: 120px;
+    display: inline-block;
+
+    background-color: #f02d34;
+    color: white;
+    position: relative;
+}
+
+.footer-banner-image {
+    z-index: 5;
+    object-fit: cover;
+    top: -5vh;
+    right: 40vw;
+    min-height: 40vh;
+    max-height: 56vh;
+    position: absolute;
+}
+
+.banner-desc {
+    display: flex ;
+    justify-content: space-between;
+}
+
+.banner-desc button {
+    min-width: 250px;
+    min-height: 50px;
+    border-radius: 8px;
+    padding: 10px 16px;
+    background-color: white;
+    color: red;
+    border: none;
+    margin-top: 40px;
+    font-size: 25px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.banner-desc .left h3 {
+    font-weight: 900;
+    font-size: 58px;
+    margin-right: 65px;
+}
+
+.banner-desc .left p {
+    margin: 20px 5px 10px;
+    font-size: 18px;
+    color: white;
+}
+
+.banner-desc .right {
+    line-height: 1;
+}
+.banner-desc .right h3 {
+    font-weight: 800;
+    font-size: 52px;
+}
+.banner-desc .right p {
+    font-size: 20px;
+    margin-left: 6px;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 800px) {
+    .footer-banner-container {
+        margin-top: 80px;
+    }
+    .footer-banner-image {
+        display: block;
+        width: 38vh;
+        top: -2vh;
+        right: 5vw;
+        rotate: -30deg;
+    }
+    .banner-desc .left h3 {
+        font-weight: 900;
+        font-size: 50px;
+        line-height: .85;
+    }
+    .banner-desc .left p {
+        margin-right: 130px;
+        color: white;
+    }
+    .banner-desc .right h3 {
+        font-size: 45px;
+        line-height: .85;
+        margin-bottom: 10px;
+    }
+    .banner-desc .right p {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+    .banner-desc .right .company-desc {
+        font-size: 14px;
+    }
+    .banner-desc {
+        margin-left: -3vw;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .desc {
+        bottom: 60px;
+    }
+}

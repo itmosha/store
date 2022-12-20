@@ -6,17 +6,6 @@ import {error} from "next/dist/build/output/log";
 
 const ContactsPage = () => {
 
-    const submitIndex = async (event) => {
-        event.preventDefault();
-        const index = event.target.index.value;
-
-        // const url =
-        const result = await fetch(url);
-        const res = await result.json();
-
-        //alert(res);
-    };
-
     return (
         <div className="common-page">
             <div className="common-page-info-container">

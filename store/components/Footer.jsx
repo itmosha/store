@@ -13,6 +13,9 @@ const Footer = () => {
                 <h4>
                     <Link href="/common/delivery">Доставка</Link>
                 </h4>
+                <h4>
+                    <Link href="/common/return">Возврат</Link>
+                </h4>
             </div>
 
             <div className="footer-center">
@@ -27,10 +30,8 @@ const Footer = () => {
                         <FaTelegramPlane />
                     </Link>
                 </p>
-            <span className="INN">
-
-                    ИНН: 600402090145
-            </span>
+            <span className="footer-bottom-info">ИНН: 600402090145</span>
+            <span className="footer-bottom-info">ИП Балкунов С.И.</span>
         </div>
     )
 }

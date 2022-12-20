@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { client, urlFor } from "../../lib/client";
-import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { Product } from "../../components";
 import { useStateContext } from '../../context/StateContext';
 
@@ -28,18 +28,7 @@ const ProductDetails = ({ product, products }) => {
                 </div>
                 <div className="product-detail-desc">
                     <h1>{ name }</h1>
-                    {/*<div className="reviews">*/}
-                    {/*    <div>*/}
-                    {/*        <AiFillStar />*/}
-                    {/*        <AiFillStar />*/}
-                    {/*        <AiFillStar />*/}
-                    {/*        <AiFillStar />*/}
-                    {/*        <AiOutlineStar />*/}
-                    {/*    </div>*/}
-                    {/*    <p>*/}
-                    {/*        (123)*/}
-                    {/*    </p>*/}
-                    {/*</div>*/}
+
                     <h4>Описание: </h4>
                     <p>{ details }</p>
                     <p className="price">₽ {price}</p>
