@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import cart from "../components/Cart";
-import {setCookie, getCookie } from "cookies-next";
+import { setCookie, getCookie } from "cookies-next";
 
 const Context = createContext();
 
@@ -17,9 +17,6 @@ export const StateContext = ({ children }) => {
     let foundProduct;
     let index;
 
-    const checkForRefresh = () => {
-
-    }
 
     const toggleDeliveryRussia = () => {
         if (deliveryRussia) {
@@ -162,7 +159,6 @@ export const StateContext = ({ children }) => {
                 setDeliveryRussia,
                 toggleDeliverySPb,
                 toggleDeliveryRussia,
-                checkForRefresh
             }}
         >
             { children }

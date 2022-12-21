@@ -558,10 +558,8 @@ input[type="checkbox"] {
 }
 
 .checkbox-wrapper {
-  margin-top: 5px;
-  margin-bottom: 5px;
   align-items: center;
-  margin-left: 20px;
+  margin: 5px 20px;
   font-size: 14px;
 }
 

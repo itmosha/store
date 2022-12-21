@@ -6,6 +6,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import AutosuggestRussia from "../components/AutosuggestRussia";
 
 const CartPage = () => {
     const { totalPrice, totalQuantity, cartItems, toggleCartItemQuantity, onRemove, deliveryRussia, toggleDeliveryRussia, deliverySPb, toggleDeliverySPb } = useStateContext();
@@ -271,14 +272,8 @@ const CartPage = () => {
                                         {...register("index", {required: true})}
                                     />
                                 </div>
-                                <div className="client-info-field">
-                                    <label htmlFor="address">Почтовый адрес</label>
-                                    <input
-                                        type="text"
-                                        autoComplete="text"
-                                        {...register("address", {required: true})}
-                                    />
-                                </div>
+
+                                <AutosuggestRussia placeholder="Адрес" />
                                 <button disabled={isSubmitting} className="client-info-submit">
                                     {isSubmitting ? "Подождите..." : "Оплатить"}
                                 </button>
