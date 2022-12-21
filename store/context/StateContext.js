@@ -78,8 +78,6 @@ export const StateContext = ({ children }) => {
     }
 
     const toggleCartItemQuantity = (id, value) => {
-        alert(cartItems.map((item) => (item.slug)));
-        alert(`id: ${id}`);
         foundProduct = cartItems.find((item) => item.slug === id);
         index = cartItems.findIndex((product) => product.slug === id);
 
