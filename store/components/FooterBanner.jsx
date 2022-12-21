@@ -1,26 +1,25 @@
 import React from 'react';
 import Link from 'next/link';
-import { urlFor } from '../lib/client';
 
-const FooterBanner = ({ footerBanner: {discount, largeText1, largeText2, saleTime, smallText, midText, desc, product, buttonText, image} }) => {
+const FooterBanner = () => {
     return (
         <div className="footer-banner-container">
             <div className="banner-desc">
                 <div className="left">
-                    <p>{ discount }</p>
-                    <h3>{ largeText1 }</h3>
-                    <p>{ saleTime }</p>
+                    <p>Маленький текст</p>
+                    <h3>Большой текст</h3>
+                    <p>Ещё маленький текст</p>
                 </div>
                 <div className="right">
-                    <p>{ smallText }</p>
-                    <h3>{ midText }</h3>
-                    <p>{ desc }</p>
-                    <Link href="/product/item-1">
-                        <button type="button">{ buttonText }</button>
+                    <p>Маленький текст</p>
+                    <h3>Средний текст</h3>
+                    <p>Описание</p>
+                    <Link href="/product/socks-1">
+                        <button type="button">Текст для кнопки</button>
                     </Link>
                 </div>
                 <img
-                    src={ urlFor(image) }
+                    src={ 'http://127.0.0.1:8000/media/images/Socks.png'}
                     className="footer-banner-image"
                 />
             </div>
