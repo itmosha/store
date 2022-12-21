@@ -16,6 +16,7 @@ def about(request):
 
 class ItemsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Item.objects.all()
+    queryset = queryset.filter(is_active=True)
     serializer_class = ItemsSerializer
     lookup_field = 'slug'
     permission_classes = [permissions.BasePermission]

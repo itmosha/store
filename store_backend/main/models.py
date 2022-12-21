@@ -8,7 +8,8 @@ class Item(models.Model):
     price = models.IntegerField()
     description = models.TextField()
     quantity_in_stock = models.IntegerField()
-    quantity_sold = models.IntegerField()
+    quantity_sold = models.IntegerField(default=0)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
