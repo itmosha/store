@@ -2,6 +2,20 @@ FROM python:3.11-alpine
 
 WORKDIR /app
 
+RUN apk --no-cache add \
+    build-base \
+    freetype-dev \
+    fribidi-dev \
+    harfbuzz-dev \
+    jpeg-dev \
+    lcms2-dev \
+    libimagequant-dev \
+    openjpeg-dev \
+    tcl-dev \
+    tiff-dev \
+    tk-dev \
+    zlib-dev
+
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV INSIDE_A_DOCKER Yes
