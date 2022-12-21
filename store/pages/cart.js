@@ -132,11 +132,11 @@ const CartPage = () => {
                                     </div>
                                     <div className="price-tag">
                                         <span>Стоимость доставки:</span>
-                                        <span>150 ₽</span>
+                                        <span>100 ₽</span>
                                     </div>
                                     <div className="summary-price">
                                         <span>Итого:</span>
-                                        <span>{totalPrice + 150} ₽</span>
+                                        <span>{totalPrice + 100} ₽</span>
                                     </div>
                                 </div>
                             )}
@@ -148,11 +148,11 @@ const CartPage = () => {
                                     </div>
                                     <div className="price-tag">
                                         <span>Стоимость доставки:</span>
-                                        <span>0 ₽</span>
+                                        <span>200 ₽</span>
                                     </div>
                                     <div className="summary-price">
                                         <span>Итого:</span>
-                                        <span>{totalPrice} ₽ </span>
+                                        <span>{totalPrice + 200} ₽ </span>
                                     </div>
                                 </div>
                             )}
