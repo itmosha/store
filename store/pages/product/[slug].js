@@ -32,7 +32,7 @@ const ProductDetails = ({ product, products }) => {
 
                     <h4>Описание: </h4>
                     <p>{ description }</p>
-                    <p className="price">₽ {price}</p>
+                    <p className="price">₽ { price }</p>
                     <div className="quantity">
                         <h3>Количество: </h3>
                         <p className="quantity-desc">
@@ -63,7 +63,7 @@ const ProductDetails = ({ product, products }) => {
                     <div className="maylike-products-container track">
                         { products.map((item) => (
                             <Product
-                                key={item._id}
+                                key={item.slug}
                                 product={item}
                             />
                         ))}

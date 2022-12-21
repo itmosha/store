@@ -37,13 +37,13 @@ export const StateContext = ({ children }) => {
 
     const onAdd = (product, quantity) => {
 
-        const checkProductInCart = cartItems.find((item) => item._id === product._id);
+        const checkProductInCart = cartItems.find((item) => item.slug === product.slug);
         setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
         setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
 
         if (checkProductInCart) {
             const updatedCartItems = cartItems.map((cartProduct) => {
-                if (cartProduct._id === product._id) return {
+                if (cartProduct.slug === product.slug) return {
                     ...cartProduct,
                     quantity: cartProduct.quantity + quantity
                 };
@@ -67,24 +67,26 @@ export const StateContext = ({ children }) => {
     }
 
     const onRemove = (product) => {
-        foundProduct = cartItems.find((item) => item._id === product._id);
-        const newCartItems = cartItems.filter((item) => item._id !== product._id);
+        foundProduct = cartItems.find((item) => item.slug === product.slug);
+        const newCartItems = cartItems.filter((item) => item.slug !== product.slug);
 
         setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price * foundProduct.quantity);
         setTotalQuantities(prevTotalQuantities => prevTotalQuantities - foundProduct.quantity);
         setCartItems(newCartItems);
 
-        setCookie('cookieCartItems', newCartItems);
+        // setCookie('cookieCartItems', newCartItems);
     }
 
     const toggleCartItemQuantity = (id, value) => {
-        foundProduct = cartItems.find((item) => item._id === id);
-        index = cartItems.findIndex((product) => product._id === id);
+        alert(cartItems.map((item) => (item.slug)));
+        alert(`id: ${id}`);
+        foundProduct = cartItems.find((item) => item.slug === id);
+        index = cartItems.findIndex((product) => product.slug === id);
 
         if (value === 'inc') {
 
             const newCartItems = cartItems.map(item => {
-                if (item._id === id) {
+                if (item.slug === id) {
                     return {...item, quantity: foundProduct.quantity + 1}
                 } return item
             });
@@ -106,7 +108,7 @@ export const StateContext = ({ children }) => {
                 // );
 
                 const newCartItems = cartItems.map(item => {
-                    if (item._id === id) {
+                    if (item.slug === id) {
                         return {...item, quantity: foundProduct.quantity - 1}
                     } return item
                 });
