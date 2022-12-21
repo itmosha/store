@@ -59,7 +59,7 @@ const CartPage = () => {
                     </div>
                 )) :
                     <div className="cart-empty">
-                        <span>Список товаров пуст. Перейдите в каталог чтобы добавить товары</span>
+                        <p>Список товаров пуст. Перейдите в каталог чтобы добавить товары</p>
                         <Link href="/">
                             <button className="go-to-items">
                                 Перейти в каталог

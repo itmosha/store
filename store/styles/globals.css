@@ -598,6 +598,7 @@ input[type="checkbox"] {
 }
 
 .cart-empty {
+  margin-right: 20px;
   margin-top: 15px;
   margin-left: 20px;
   font-size: 18px;
