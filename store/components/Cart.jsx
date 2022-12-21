@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineLeft, AiOutlineShopping } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
 import { useStateContext } from "../context/StateContext";
-import { urlFor } from '../lib/client';
 
 
 const Cart = () => {
@@ -34,7 +33,7 @@ const Cart = () => {
                 <div className="product-container">
                     { cartItems.length >= 1 && cartItems.map((item) => (
                         <div className="product" key={item._id}>
-                            <img src={ urlFor(item?.image[0]) } className="cart-product-image" />
+                            <img src={ item.image } className="cart-product-image" />
                             <div className="item-desc">
                                 <div className="flex top">
                                     <h5>{ item.name }</h5>

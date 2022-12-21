@@ -18,8 +18,11 @@ const Home = ({ products, bannerData }) => {
 }
 
 export const getServerSideProps = async () => {
-    const query = '*[_type == "product"]';
-    const products = await client.fetch(query);
+    // const query = '*[_type == "product"]';
+    // const products = await client.fetch(query);
+
+    const resQuery = await fetch("http://127.0.0.1:8000/api/items");
+    const products = await resQuery.json();
 
     const bannerQuery = '*[_type == "banner"]';
     const bannerData = await client.fetch(bannerQuery);

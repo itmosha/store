@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
-import cart from "../components/Cart";
 import { setCookie, getCookie } from "cookies-next";
 
 const Context = createContext();
@@ -55,16 +54,16 @@ export const StateContext = ({ children }) => {
 
             setCartItems(updatedCartItems);
 
-            setCookie('cookieCartItems', updatedCartItems);
+            // setCookie('cookieCartItems', updatedCartItems);
             // alert(`Cookie: ${ getCookie('cookieCartItems') }`);
         } else {
             product.quantity = quantity;
             setCartItems([...cartItems, { ...product }]);
 
-            setCookie('cookieCartItems', [...cartItems, { ...product }]);
+            // setCookie('cookieCartItems', [...cartItems, { ...product }]);
             // alert(`Cookie: ${ getCookie('cookieCartItems') }`);
         }
-        toast.success(`Добавлено в корзину: ${qty} ${product.name}`);
+        toast.success(`Добавлено в корзину: ${qty} ${product.title}`);
     }
 
     const onRemove = (product) => {
@@ -83,14 +82,6 @@ export const StateContext = ({ children }) => {
         index = cartItems.findIndex((product) => product._id === id);
 
         if (value === 'inc') {
-            // setCartItems( prevCartItems =>
-            //     prevCartItems.map( item => {
-            //         if (item._id === id){
-            //             return {...item, quantity: foundProduct.quantity + 1}
-            //         }
-            //         return item
-            //     })
-            //);
 
             const newCartItems = cartItems.map(item => {
                 if (item._id === id) {
@@ -101,7 +92,7 @@ export const StateContext = ({ children }) => {
 
             setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
             setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1);
-            setCookie('cookieCartItems', newCartItems);
+            // setCookie('cookieCartItems', newCartItems);
 
         } else if (value === 'dec') {
             if (foundProduct.quantity > 1) {
@@ -123,7 +114,7 @@ export const StateContext = ({ children }) => {
 
                 setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
                 setTotalQuantities(prevTotalQuantities => prevTotalQuantities - 1);
-                setCookie('cookieCartItems', newCartItems);
+                // setCookie('cookieCartItems', newCartItems);
             }
         }
     }

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { client, urlFor } from "../../lib/client";
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { Product } from "../../components";
 import { useStateContext } from '../../context/StateContext';
 
 const ProductDetails = ({ product, products }) => {
-    const { image, name, details, price } = product;
-    const [index, setIndex] = useState(0);
+    const { image, title, price, description } = product;
+    const [ index, setIndex ] = useState(0);
     const { decQty, incQty, qty, onAdd } = useStateContext();
 
     return (
@@ -14,23 +13,25 @@ const ProductDetails = ({ product, products }) => {
             <div className="product-detail-container">
                 <div>
                     <div className="image-container">
-                        <img src={urlFor(image && image[index])} className="product-detail-image" />
+                        <img src={image} className="product-detail-image" />
                     </div>
-                    <div className="small-images-container">
-                        {image?.map((item, i) => (
-                            <img
-                                src={ urlFor(item) }
-                                className={ i === index ? 'small-image selected-image' : 'small-image' }
-                                onMouseEnter={() => setIndex(i)}
-                            />
-                        ))}
-                    </div>
+
+                    {/*<div className="small-images-container">*/}
+                    {/*    {image?.map((item, i) => (*/}
+                    {/*        <img*/}
+                    {/*            src={ urlFor(item) }*/}
+                    {/*            className={ i === index ? 'small-image selected-image' : 'small-image' }*/}
+                    {/*            onMouseEnter={() => setIndex(i)}*/}
+                    {/*        />*/}
+                    {/*    ))}*/}
+                    {/*</div>*/}
+
                 </div>
                 <div className="product-detail-desc">
-                    <h1>{ name }</h1>
+                    <h1>{ title }</h1>
 
                     <h4>Описание: </h4>
-                    <p>{ details }</p>
+                    <p>{ description }</p>
                     <p className="price">₽ {price}</p>
                     <div className="quantity">
                         <h3>Количество: </h3>
@@ -74,16 +75,12 @@ const ProductDetails = ({ product, products }) => {
 }
 
 export const getStaticPaths = async () => {
-    const query = `*[_type == "product"] {
-        slug {
-            current
-        }
-    }
-    `
-    const products = await client.fetch(query);
+    const productsQuery = await fetch("http://127.0.0.1:8000/api/items");
+    const products = await productsQuery.json();
+
     const paths = products.map((product) => ({
         params: {
-            slug: product.slug.current
+            slug: product.slug
         }
     }));
     return {
@@ -93,11 +90,12 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params: { slug } }) => {
-    const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
-    const productsQuery = '*[_type == "product"]';
 
-    const product = await client.fetch(query);
-    const products = await client.fetch(productsQuery);
+    const productQuery = await fetch(`http://127.0.0.1:8000/api/items/${slug}`);
+    const product = await productQuery.json();
+
+    const productsQuery = await fetch(`http://127.0.0.1:8000/api/items`);
+    const products = await productsQuery.json();
 
     return {
         props: { products, product }
