@@ -1,8 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
 import { MdAttachMoney } from "react-icons/md";
 import { AiOutlineFieldTime } from "react-icons/ai";
-import {error} from "next/dist/build/output/log";
 
 const ContactsPage = () => {
 
