@@ -71,7 +71,6 @@ pre_save.connect(pre_save_create_order_id, sender=Order)
 
 
 class OrderItem(models.Model):
-    # TODO: хранить цену товара в момент заказа или всегда брать из модели товара?
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     price = models.IntegerField(default=0)
