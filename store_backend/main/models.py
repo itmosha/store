@@ -21,6 +21,7 @@ class Item(models.Model):
     quantity_in_stock = models.IntegerField()
     quantity_sold = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
@@ -73,6 +74,7 @@ class OrderItem(models.Model):
     # TODO: хранить цену товара в момент заказа или всегда брать из модели товара?
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    price = models.IntegerField(default=0)
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
