@@ -1,8 +1,16 @@
 from rest_framework import serializers
-from .models import Item
+from .models import *
+
+
+class ItemImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ItemImage
+        fields = ['ordering', 'image']
 
 
 class ItemsSerializer(serializers.HyperlinkedModelSerializer):
+    images = ItemImageSerializer(many=True, read_only=True)
+
     class Meta:
         model = Item
         exclude = ['quantity_sold', 'is_active']
