@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
     const { checkForRefresh } = useStateContext();
 
     return (
-        <div className="layout" onLoad={checkForRefresh()}>
+        <div className="layout">
             <Head>
                 <title>Block Store</title>
                 <link rel="shortcut icon" href="/favicon.ico"/>

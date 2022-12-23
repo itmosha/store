@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
-import cart from "../components/Cart";
-import {setCookie, getCookie } from "cookies-next";
+import { setCookie, getCookie } from "cookies-next";
 
 const Context = createContext();
 
@@ -17,9 +16,6 @@ export const StateContext = ({ children }) => {
     let foundProduct;
     let index;
 
-    const checkForRefresh = () => {
-
-    }
 
     const toggleDeliveryRussia = () => {
         if (deliveryRussia) {
@@ -41,13 +37,13 @@ export const StateContext = ({ children }) => {
 
     const onAdd = (product, quantity) => {
 
-        const checkProductInCart = cartItems.find((item) => item._id === product._id);
+        const checkProductInCart = cartItems.find((item) => item.slug === product.slug);
         setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
         setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
 
         if (checkProductInCart) {
             const updatedCartItems = cartItems.map((cartProduct) => {
-                if (cartProduct._id === product._id) return {
+                if (cartProduct.slug === product.slug) return {
                     ...cartProduct,
                     quantity: cartProduct.quantity + quantity
                 };
@@ -58,45 +54,37 @@ export const StateContext = ({ children }) => {
 
             setCartItems(updatedCartItems);
 
-            setCookie('cookieCartItems', updatedCartItems);
+            // setCookie('cookieCartItems', updatedCartItems);
             // alert(`Cookie: ${ getCookie('cookieCartItems') }`);
         } else {
             product.quantity = quantity;
             setCartItems([...cartItems, { ...product }]);
 
-            setCookie('cookieCartItems', [...cartItems, { ...product }]);
+            // setCookie('cookieCartItems', [...cartItems, { ...product }]);
             // alert(`Cookie: ${ getCookie('cookieCartItems') }`);
         }
-        toast.success(`Добавлено в корзину: ${qty} ${product.name}`);
+        toast.success(`Добавлено в корзину: ${qty} ${product.title}`);
     }
 
     const onRemove = (product) => {
-        foundProduct = cartItems.find((item) => item._id === product._id);
-        const newCartItems = cartItems.filter((item) => item._id !== product._id);
+        foundProduct = cartItems.find((item) => item.slug === product.slug);
+        const newCartItems = cartItems.filter((item) => item.slug !== product.slug);
 
         setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price * foundProduct.quantity);
         setTotalQuantities(prevTotalQuantities => prevTotalQuantities - foundProduct.quantity);
         setCartItems(newCartItems);
 
-        setCookie('cookieCartItems', newCartItems);
+        // setCookie('cookieCartItems', newCartItems);
     }
 
     const toggleCartItemQuantity = (id, value) => {
-        foundProduct = cartItems.find((item) => item._id === id);
-        index = cartItems.findIndex((product) => product._id === id);
+        foundProduct = cartItems.find((item) => item.slug === id);
+        index = cartItems.findIndex((product) => product.slug === id);
 
         if (value === 'inc') {
-            // setCartItems( prevCartItems =>
-            //     prevCartItems.map( item => {
-            //         if (item._id === id){
-            //             return {...item, quantity: foundProduct.quantity + 1}
-            //         }
-            //         return item
-            //     })
-            //);
 
             const newCartItems = cartItems.map(item => {
-                if (item._id === id) {
+                if (item.slug === id) {
                     return {...item, quantity: foundProduct.quantity + 1}
                 } return item
             });
@@ -104,7 +92,7 @@ export const StateContext = ({ children }) => {
 
             setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
             setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1);
-            setCookie('cookieCartItems', newCartItems);
+            // setCookie('cookieCartItems', newCartItems);
 
         } else if (value === 'dec') {
             if (foundProduct.quantity > 1) {
@@ -118,7 +106,7 @@ export const StateContext = ({ children }) => {
                 // );
 
                 const newCartItems = cartItems.map(item => {
-                    if (item._id === id) {
+                    if (item.slug === id) {
                         return {...item, quantity: foundProduct.quantity - 1}
                     } return item
                 });
@@ -126,7 +114,7 @@ export const StateContext = ({ children }) => {
 
                 setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
                 setTotalQuantities(prevTotalQuantities => prevTotalQuantities - 1);
-                setCookie('cookieCartItems', newCartItems);
+                // setCookie('cookieCartItems', newCartItems);
             }
         }
     }
@@ -162,7 +150,6 @@ export const StateContext = ({ children }) => {
                 setDeliveryRussia,
                 toggleDeliverySPb,
                 toggleDeliveryRussia,
-                checkForRefresh
             }}
         >
             { children }

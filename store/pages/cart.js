@@ -1,6 +1,5 @@
 import React from 'react';
 import { useStateContext } from "../context/StateContext";
-import { urlFor } from "../lib/client";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
 import Link from 'next/link';
@@ -36,19 +35,19 @@ const CartPage = () => {
                 <div className="cart-product-items">
                     <h2>Список товаров</h2>
                 { cartItems.length >= 1 ? cartItems.map((item) => (
-                    <div className="product" key={item._id}>
-                        <img src={ urlFor(item?.image[0]) } className="cart-product-image" />
+                    <div className="product" key={item.slug}>
+                        <img src={ item.image } className="cart-product-image" />
                         <div className="item-desc">
                             <div className="flex top">
-                                <h5>{ item.name }</h5>
-                                <h4>₽       { item.price }</h4>
+                                <h5>{ item.title }</h5>
+                                <h4>₽ { item.price }</h4>
                             </div>
                             <div className="flex bottom">
                                 <div>
                                     <p className="quantity-desc">
-                                        <span className="minus" onClick={ () => toggleCartItemQuantity(item._id, 'dec') }><AiOutlineMinus /></span>
+                                        <span className="minus" onClick={ () => toggleCartItemQuantity(item.slug, 'dec') }><AiOutlineMinus /></span>
                                         <span className="num">{ item.quantity }</span>
-                                        <span className="plus" onClick={ () => toggleCartItemQuantity(item._id, 'inc') }><AiOutlinePlus /></span>
+                                        <span className="plus" onClick={ () => toggleCartItemQuantity(item.slug, 'inc') }><AiOutlinePlus /></span>
                                     </p>
                                 </div>
                                 <button type="button" className="remove-item" onClick={ () => onRemove(item) }>
@@ -59,7 +58,7 @@ const CartPage = () => {
                     </div>
                 )) :
                     <div className="cart-empty">
-                        <span>Список товаров пуст. Перейдите в каталог чтобы добавить товары</span>
+                        <p>Список товаров пуст. Перейдите в каталог чтобы добавить товары</p>
                         <Link href="/">
                             <button className="go-to-items">
                                 Перейти в каталог
@@ -133,11 +132,11 @@ const CartPage = () => {
                                     </div>
                                     <div className="price-tag">
                                         <span>Стоимость доставки:</span>
-                                        <span>150 ₽</span>
+                                        <span>100 ₽</span>
                                     </div>
                                     <div className="summary-price">
                                         <span>Итого:</span>
-                                        <span>{totalPrice + 150} ₽</span>
+                                        <span>{totalPrice + 100} ₽</span>
                                     </div>
                                 </div>
                             )}
@@ -149,11 +148,11 @@ const CartPage = () => {
                                     </div>
                                     <div className="price-tag">
                                         <span>Стоимость доставки:</span>
-                                        <span>0 ₽</span>
+                                        <span>200 ₽</span>
                                     </div>
                                     <div className="summary-price">
                                         <span>Итого:</span>
-                                        <span>{totalPrice} ₽ </span>
+                                        <span>{totalPrice + 200} ₽ </span>
                                     </div>
                                 </div>
                             )}
@@ -165,50 +164,42 @@ const CartPage = () => {
 
                            <form onSubmit={handleSubmit(saveFormDataSPb)}>
                                <div className="client-info-field">
-                                   <label htmlFor="l_name">Фамилия</label>
                                    <input
-                                       type="text"
-                                       autoComplete="text"
-                                       {...register("l_name", {required: true})}
+                                       placeholder={'Фамилия'}
+                                       required={true}
+                                       {...register("familiya", {required: true})}
                                    />
                                </div>
                                <div className="client-info-field">
-                                   <label htmlFor="f_name">Имя</label>
                                    <input
-                                       type="text"
-                                       autoComplete="text"
-                                       {...register("f_name", {required: true})}
+                                       placeholder={'Имя'}
+                                       required={true}
+                                       {...register("name", {required: true})}
                                    />
                                </div>
                                <div className="client-info-field">
-                                   <label htmlFor="m_name">Отчество</label>
                                    <input
-                                       type="text"
-                                       autoComplete="text"
-                                       {...register("m_name", {required: false})}
+                                       placeholder={'Отчество'}
+                                       {...register("otchestvo", {required: false})}
                                    />
                                </div>
                                <div className="client-info-field">
-                                   <label htmlFor="email">Email</label>
                                    <input
-                                       type="text"
-                                       autoComplete="text"
+                                       placeholder={'Email'}
                                        {...register("email", {required: false})}
                                    />
                                </div>
                                <div className="client-info-field">
-                                   <label htmlFor="phone">Номер телефона</label>
                                    <input
-                                       type="text"
-                                       autoComplete="text"
+                                       placeholder={'Номер телефона'}
+                                       required={true}
                                        {...register("phone", {required: true})}
                                    />
                                </div>
                                <div className="client-info-field">
-                                   <label htmlFor="address">Почтовый адрес</label>
                                    <input
-                                       type="text"
-                                       autoComplete="text"
+                                       placeholder={'Адрес доставки'}
+                                       required={true}
                                        {...register("address", {required: true})}
                                    />
                                </div>
@@ -224,61 +215,54 @@ const CartPage = () => {
 
                             <form onSubmit={handleSubmit(saveFormDataRussia)}>
                                 <div className="client-info-field">
-                                    <label htmlFor="l_name">Фамилия</label>
                                     <input
-                                        type="text"
-                                        autoComplete="text"
-                                        {...register("l_name", {required: true})}
+                                        placeholder={'Фамилия'}
+                                        required={true}
+                                        {...register("familiya", {required: true})}
                                     />
                                 </div>
                                 <div className="client-info-field">
-                                    <label htmlFor="f_name">Имя</label>
                                     <input
-                                        type="text"
-                                        autoComplete="text"
-                                        {...register("f_name", {required: true})}
+                                        placeholder={'Имя'}
+                                        required={true}
+                                        {...register("name", {required: true})}
                                     />
                                 </div>
                                 <div className="client-info-field">
-                                    <label htmlFor="m_name">Отчество</label>
                                     <input
-                                        type="text"
-                                        autoComplete="text"
-                                        {...register("m_name", {required: false})}
+                                        placeholder={'Отчество'}
+                                        {...register("otchestvo", {required: false})}
                                     />
                                 </div>
                                 <div className="client-info-field">
-                                    <label htmlFor="email">Email</label>
                                     <input
-                                        type="text"
-                                        autoComplete="text"
+                                        placeholder={'Email'}
                                         {...register("email", {required: false})}
                                     />
                                 </div>
                                 <div className="client-info-field">
-                                    <label htmlFor="phone">Номер телефона</label>
                                     <input
-                                        type="text"
-                                        autoComplete="text"
+                                        placeholder={'Номер телефона'}
+                                        required={true}
                                         {...register("phone", {required: true})}
                                     />
                                 </div>
                                 <div className="client-info-field">
-                                    <label htmlFor="index">Почтовый индекс</label>
                                     <input
-                                        type="text"
-                                        autoComplete="text"
+                                        placeholder={'Почтовый индекс'}
+                                        required={true}
                                         {...register("index", {required: true})}
                                     />
                                 </div>
+
                                 <div className="client-info-field">
-                                    <label htmlFor="address">Почтовый адрес</label>
                                     <input
-                                        type="text"
-                                        autoComplete="text"
+                                        placeholder={'Почтовый адрес'}
+                                        required={true}
                                         {...register("address", {required: true})}
                                     />
                                 </div>
+
                                 <button disabled={isSubmitting} className="client-info-submit">
                                     {isSubmitting ? "Подождите..." : "Оплатить"}
                                 </button>

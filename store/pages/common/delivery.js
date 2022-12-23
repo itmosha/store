@@ -1,8 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
 import { MdAttachMoney } from "react-icons/md";
 import { AiOutlineFieldTime } from "react-icons/ai";
-import {error} from "next/dist/build/output/log";
 
 const ContactsPage = () => {
 
@@ -21,7 +19,7 @@ const ContactsPage = () => {
 
                     <div className="delivery-param">
                         <MdAttachMoney size={22} />
-                        <p>Стоимость доставки - 150 рублей</p>
+                        <p>Стоимость доставки - 100 рублей</p>
                     </div>
 
                     <div className="delivery-param">
@@ -32,7 +30,11 @@ const ContactsPage = () => {
                     <div className="delivery-info-element">
                         <h3>Доставка Почтой России</h3>
                         <p>Доставка осуществляется Почтой России по всей территории РФ.</p>
-                        <p>Стоимость доставки рассчитывается исходя из тарифов Почты России.</p>
+                    </div>
+
+                    <div className="delivery-param">
+                        <MdAttachMoney size={22} />
+                        <p>Стоимость доставки - 200 рублей</p>
                     </div>
                 </div>
             </div>
