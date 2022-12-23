@@ -22,14 +22,14 @@ const Footer = () => {
                 <p>2022 Block Store</p>
                 <p>Все права защищены</p>
             </div>
-                <p className="icons">
-                    <Link href="/">
-                        <SlSocialVkontakte />
-                    </Link>
-                    <Link href="/">
-                        <FaTelegramPlane />
-                    </Link>
-                </p>
+                {/*<p className="icons">*/}
+                {/*    <Link href="/">*/}
+                {/*        <SlSocialVkontakte />*/}
+                {/*    </Link>*/}
+                {/*    <Link href="/">*/}
+                {/*        <FaTelegramPlane />*/}
+                {/*    </Link>*/}
+                {/*</p>*/}
             <span className="footer-bottom-info">ИНН: 600402090145</span>
             <span className="footer-bottom-info">ИП Балкунов С.И.</span>
         </div>

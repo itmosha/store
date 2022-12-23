@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import footerBannerImage from '../public/footer-banner-image.png';
 
 const FooterBanner = () => {
     return (
@@ -19,8 +20,9 @@ const FooterBanner = () => {
                     </Link>
                 </div>
                 <img
-                    src={ 'http://127.0.0.1:8000/media/images/Socks.png'}
+                    src={ footerBannerImage.src }
                     className="footer-banner-image"
+                    alt="footer-banner-image"
                 />
             </div>
         </div>

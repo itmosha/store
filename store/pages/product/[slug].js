@@ -3,6 +3,7 @@ import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { Product } from "../../components";
 import { useStateContext } from '../../context/StateContext';
 
+
 const ProductDetails = ({ product, products }) => {
     const { images, title, price, description } = product;
     const [ index, setIndex ] = useState(0);
@@ -75,7 +76,10 @@ const ProductDetails = ({ product, products }) => {
 }
 
 export const getStaticPaths = async () => {
-    const productsQuery = await fetch("http://127.0.0.1:8000/api/items");
+
+    // const productsQuery = await fetch(`http://${process.env.BACKEND_IP}:${process.env.BACKEND_PORT}/api/items`);
+    const productsQuery = await fetch(`http://127.0.0.1:8000/api/items`);
+
     const products = await productsQuery.json();
 
     const paths = products.map((product) => ({
