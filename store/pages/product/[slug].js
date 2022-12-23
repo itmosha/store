@@ -4,7 +4,7 @@ import { Product } from "../../components";
 import { useStateContext } from '../../context/StateContext';
 
 const ProductDetails = ({ product, products }) => {
-    const { image, title, price, description } = product;
+    const { images, title, price, description } = product;
     const [ index, setIndex ] = useState(0);
     const { decQty, incQty, qty, onAdd } = useStateContext();
 
@@ -13,18 +13,18 @@ const ProductDetails = ({ product, products }) => {
             <div className="product-detail-container">
                 <div>
                     <div className="image-container">
-                        <img src={image} className="product-detail-image" />
+                        <img src={ images[index]?.image ? images[index].image : images[0].image } className="product-detail-image" />
                     </div>
 
-                    {/*<div className="small-images-container">*/}
-                    {/*    {image?.map((item, i) => (*/}
-                    {/*        <img*/}
-                    {/*            src={ urlFor(item) }*/}
-                    {/*            className={ i === index ? 'small-image selected-image' : 'small-image' }*/}
-                    {/*            onMouseEnter={() => setIndex(i)}*/}
-                    {/*        />*/}
-                    {/*    ))}*/}
-                    {/*</div>*/}
+                    <div className="small-images-container">
+                        {images?.map((item, i) => (
+                            <img
+                                src={ images[i].image }
+                                className={ i === index ? 'small-image selected-image' : 'small-image' }
+                                onMouseEnter={() => setIndex(i)}
+                            />
+                        ))}
+                    </div>
 
                 </div>
                 <div className="product-detail-desc">

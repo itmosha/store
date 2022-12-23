@@ -2,13 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 
 
-const Product = ({ product: { image, title, slug, price } }) => {
+const Product = ({ product: { images, title, slug, price } }) => {
     return (
         <div>
             <Link href={`/product/${slug}`}>
                 <div className="product-card">
                     <img
-                        src={image}
+                        src={images[0].image}
                         width={250}
                         height={250}
                         className="product-image"
