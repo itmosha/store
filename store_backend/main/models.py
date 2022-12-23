@@ -13,7 +13,8 @@ def pre_save_create_order_id(sender, instance, *args, **kwargs):
 
 
 class Item(models.Model):
-    image = models.ImageField(upload_to='images/')
+    def images(self):
+        return ItemImage.objects.filter(item=self)
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
     price = models.IntegerField()
@@ -21,6 +22,7 @@ class Item(models.Model):
     quantity_in_stock = models.IntegerField()
     quantity_sold = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
@@ -28,6 +30,21 @@ class Item(models.Model):
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
+
+
+class ItemImage(models.Model):
+    image = models.ImageField(upload_to='images/')
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    ordering = models.IntegerField()
+
+    def __str__(self):
+        return self.item.slug + ' image'
+
+    class Meta:
+        unique_together = ('item', 'ordering')
+        ordering = ['ordering']
+        verbose_name = 'Изображение товара'
+        verbose_name_plural = 'Изображения товаров'
 
 
 class Order(models.Model):
@@ -70,9 +87,9 @@ pre_save.connect(pre_save_create_order_id, sender=Order)
 
 
 class OrderItem(models.Model):
-    # TODO: хранить цену товара в момент заказа или всегда брать из модели товара?
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    price = models.IntegerField(default=0)
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
