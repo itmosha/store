@@ -108,12 +108,11 @@
 
     .hero-banner-image {
         display: block;
-        width: 38vh;
-        height: 38vh;
+        width: 33vh;
 
-        top: 3vh;
-        right: 2vw;
-        rotate: -35deg;
+        top: 0;
+        right: -10vw;
+        rotate: -30deg;
     }
     .hero-banner-container button {
         margin-top: 90px;

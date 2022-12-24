@@ -54,14 +54,14 @@ export const StateContext = ({ children }) => {
 
             setCartItems(updatedCartItems);
 
-            // setCookie('cookieCartItems', updatedCartItems);
-            // alert(`Cookie: ${ getCookie('cookieCartItems') }`);
+            setCookie('cookieCartItems', updatedCartItems);
+            //alert(`Cookie: ${ getCookie('cookieCartItems') }`);
         } else {
             product.quantity = quantity;
             setCartItems([...cartItems, { ...product }]);
 
-            // setCookie('cookieCartItems', [...cartItems, { ...product }]);
-            // alert(`Cookie: ${ getCookie('cookieCartItems') }`);
+            setCookie('cookieCartItems', [...cartItems, { ...product }]);
+            //alert(`Cookie: ${ getCookie('cookieCartItems') }`);
         }
         toast.success(`Добавлено в корзину: ${qty} ${product.title}`);
     }
@@ -74,7 +74,7 @@ export const StateContext = ({ children }) => {
         setTotalQuantities(prevTotalQuantities => prevTotalQuantities - foundProduct.quantity);
         setCartItems(newCartItems);
 
-        // setCookie('cookieCartItems', newCartItems);
+        setCookie('cookieCartItems', newCartItems);
     }
 
     const toggleCartItemQuantity = (id, value) => {
@@ -92,7 +92,7 @@ export const StateContext = ({ children }) => {
 
             setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
             setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1);
-            // setCookie('cookieCartItems', newCartItems);
+            setCookie('cookieCartItems', newCartItems);
 
         } else if (value === 'dec') {
             if (foundProduct.quantity > 1) {
@@ -114,7 +114,7 @@ export const StateContext = ({ children }) => {
 
                 setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
                 setTotalQuantities(prevTotalQuantities => prevTotalQuantities - 1);
-                // setCookie('cookieCartItems', newCartItems);
+                setCookie('cookieCartItems', newCartItems);
             }
         }
     }
