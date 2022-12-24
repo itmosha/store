@@ -24,11 +24,11 @@ COPY store_backend/requirements.txt /app/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
+COPY .env /
+
 COPY store_backend/docker-entrypoint.sh /app/
 RUN chmod +x /app/docker-entrypoint.sh
 COPY store_backend/. /app/
-
-COPY .env /
 
 EXPOSE 8000
 CMD ["/app/docker-entrypoint.sh"]
