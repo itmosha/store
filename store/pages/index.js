@@ -17,8 +17,8 @@ const Home = ({ products }) => {
 }
 
 export const getServerSideProps = async () => {
-    //const resQuery = await fetch(`http://${process.env.BACKEND_IP}:${process.env.BACKEND_PORT}/api/items`);
-    const resQuery = await fetch(`http://127.0.0.1:8000/api/items`);
+
+    const resQuery = await fetch(`http://${process.env.NEXT_PUBLIC_HOSTNAME}:${process.env.NEXT_PUBLIC_PORT}/api/items`);
     const products = await resQuery.json();
 
     return {

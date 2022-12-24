@@ -77,8 +77,7 @@ const ProductDetails = ({ product, products }) => {
 
 export const getStaticPaths = async () => {
 
-    // const productsQuery = await fetch(`http://${process.env.BACKEND_IP}:${process.env.BACKEND_PORT}/api/items`);
-    const productsQuery = await fetch(`http://127.0.0.1:8000/api/items`);
+    const productsQuery = await fetch(`http://${process.env.NEXT_PUBLIC_HOSTNAME}:${process.env.NEXT_PUBLIC_PORT}/api/items`);
 
     const products = await productsQuery.json();
 
@@ -95,10 +94,10 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params: { slug } }) => {
 
-    const productQuery = await fetch(`http://127.0.0.1:8000/api/items/${slug}`);
+    const productQuery = await fetch(`http://${process.env.NEXT_PUBLIC_HOSTNAME}:${process.env.NEXT_PUBLIC_PORT}/api/items/${slug}`);
     const product = await productQuery.json();
 
-    const productsQuery = await fetch(`http://127.0.0.1:8000/api/items`);
+    const productsQuery = await fetch(`http://${process.env.NEXT_PUBLIC_HOSTNAME}:${process.env.NEXT_PUBLIC_PORT}/api/items`);
     const products = await productsQuery.json();
 
     return {
