@@ -12,7 +12,7 @@ const HeroBanner = () => {
                 <img src={ headerBannerImage.src } alt="header-banner-image" className="hero-banner-image" />
 
                 <div>
-                    <Link href="/product/socks-1">
+                    <Link href="/product/present-medium-2">
                         <button type="button">Текст на кнопке</button>
                     </Link>
                     <div className="hero-banner-desc">

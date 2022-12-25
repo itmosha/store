@@ -15,7 +15,7 @@ const FooterBanner = () => {
                     <p>Маленький текст</p>
                     <h3>Средний текст</h3>
                     <p>Описание</p>
-                    <Link href="/product/socks-1">
+                    <Link href="/product/present-large-1">
                         <button type="button">Текст для кнопки</button>
                     </Link>
                 </div>

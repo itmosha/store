@@ -16,6 +16,10 @@ a {
   text-decoration: none;
 }
 
+br {
+  display: block;
+}
+
 .main-container{
 max-width: 1400px;
 margin: auto;
@@ -133,6 +137,7 @@ width: 100%;
   color: #324d67;
   margin-top: 0px;
 }
+
 .product-detail-desc .price{
   font-weight: 700 ;
   font-size: 26px;
@@ -155,6 +160,12 @@ width: 100%;
   margin-top: 10px ;
   align-items: center;
 }
+
+.product-detail-desc p {
+  white-space: pre-wrap;
+  line-height: 1.3;
+}
+
 .quantity-desc {
   border: 1px solid gray;
   padding: 3px;
@@ -184,6 +195,7 @@ width: 100%;
   display: flex;
   gap: 30px;
 }
+
 .buttons .add-to-cart{
   padding: 10px 20px;
   border: 1px solid #f02d34 ;
