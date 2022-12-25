@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DJANGO_DEBUG", 'False') == 'True'
 
-ALLOWED_HOSTS = [os.getenv('HOST_IP'), os.getenv('HOST_DOMAIN')]  # TODO: delete ip later here
+ALLOWED_HOSTS = ['localhost', os.getenv('HOST_IP'), os.getenv('HOST_DOMAIN')]  # TODO: delete ip later here
 
 
 # Application definition
