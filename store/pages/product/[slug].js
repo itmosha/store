@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { Product } from "../../components";
 import { useStateContext } from '../../context/StateContext';
-
+import DefaultPresentImage from '../../public/default_present.png';
 
 const ProductDetails = ({ product, products }) => {
     const { images, title, price, description, quantity_in_stock } = product;
@@ -14,7 +14,7 @@ const ProductDetails = ({ product, products }) => {
             <div className="product-detail-container">
                 <div>
                     <div className="image-container">
-                        <img src={ images[index]?.image ? images[index].image : images[0].image } className="product-detail-image" />
+                        <img src={ images[index]?.image ? images[index].image : (images[0]?.image ? images[0].image : DefaultPresentImage.src ) } className="product-detail-image" />
                     </div>
 
                     <div className="small-images-container">
