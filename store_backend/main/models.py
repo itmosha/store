@@ -21,7 +21,7 @@ class Item(models.Model):
     description = models.TextField()
     quantity_in_stock = models.IntegerField()
     quantity_sold = models.IntegerField(default=0)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
