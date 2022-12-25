@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-
+import DefaultPresentImage from '../public/default_present.png';
 
 const Product = ({ product: { images, title, slug, price } }) => {
     return (
@@ -8,7 +8,7 @@ const Product = ({ product: { images, title, slug, price } }) => {
             <Link href={`/product/${slug}`}>
                 <div className="product-card">
                     <img
-                        src={images[0].image}
+                        src={images[0]?.image ? images[0].image : DefaultPresentImage.src }
                         width={250}
                         height={250}
                         className="product-image"
