@@ -5,7 +5,7 @@ import { useStateContext } from '../../context/StateContext';
 
 
 const ProductDetails = ({ product, products }) => {
-    const { images, title, price, description } = product;
+    const { images, title, price, description, quantity_in_stock } = product;
     const [ index, setIndex ] = useState(0);
     const { decQty, incQty, qty, onAdd } = useStateContext();
 
@@ -43,9 +43,16 @@ const ProductDetails = ({ product, products }) => {
                             <span className="num">
                                 { qty }
                             </span>
-                            <span className="plus" onClick={ incQty }>
-                                <AiOutlinePlus />
-                            </span>
+                            { quantity_in_stock > qty ? (
+                                <span className="plus" onClick={ incQty }>
+                                    <AiOutlinePlus />
+                                </span>
+                            ) : (
+                                <span className="plus">
+                                    <AiOutlinePlus />
+                                </span>
+                            )
+                            }
                         </p>
                     </div>
                     <div className="buttons">
