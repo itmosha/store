@@ -164,6 +164,13 @@ width: 100%;
 .product-detail-desc {
   padding-left: 20px;
   padding-right: 20px;
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 800px) {
+  .product-detail-desc {
+    padding-left: 0;
+  }
 }
 
 .product-detail-desc h1 {
@@ -344,7 +351,7 @@ margin-top: 160px;
   }
 
   .product-page {
-    min-height: 120vh;
+    min-height: 220vw;
   }
 
   .product .cart-product-image{
