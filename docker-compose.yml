@@ -33,6 +33,7 @@ services:
       dockerfile: Dockerfile_backend
     volumes:
       - ./store_backend/media:/app/media
+      - ./store_backend/static:/app/static
     ports:
       - "8000:8000"
     networks:
