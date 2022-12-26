@@ -7,23 +7,23 @@ const FooterBanner = () => {
         <div className="footer-banner-container">
             <div className="banner-desc">
                 <div className="left">
-                    <p>Маленький текст</p>
-                    <h3>Большой текст</h3>
-                    <p>Ещё маленький текст</p>
-                </div>
-                <div className="right">
-                    <p>Маленький текст</p>
-                    <h3>Средний текст</h3>
-                    <p>Описание</p>
-                    <Link href="/product/present-large-1">
-                        <button type="button">Текст для кнопки</button>
-                    </Link>
+                    <p>Успейте купить!</p>
+                    <h3>Подарочный набор</h3>
+                    <p>Приятный подарок на Новый Год</p>
                 </div>
                 <img
                     src={ footerBannerImage.src }
                     className="footer-banner-image"
                     alt="footer-banner-image"
                 />
+                <div className="right">
+                    {/*<p>Маленький текст</p>*/}
+                    <h3>Новогодний</h3>
+                    <p>Ручная работа</p>
+                    <Link href="/product/present-large-1">
+                        <button type="button">Посмотреть</button>
+                    </Link>
+                </div>
             </div>
         </div>
     )

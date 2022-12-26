@@ -10,7 +10,7 @@ const ProductDetails = ({ product, products }) => {
     const { decQty, incQty, qty, onAdd } = useStateContext();
 
     return (
-        <div>
+        <div className="product-page">
             <div className="product-detail-container">
                 <div>
                     <div className="image-container">
@@ -65,19 +65,19 @@ const ProductDetails = ({ product, products }) => {
                     </div>
                 </div>
             </div>
-            <div className="maylike-products-wrapper">
-                <h2>Вам также может понравиться:</h2>
-                <div className="marquee">
-                    <div className="maylike-products-container track">
-                        { products.map((item) => (
-                            <Product
-                                key={item.slug}
-                                product={item}
-                            />
-                        ))}
-                    </div>
-                </div>
-            </div>
+            {/*<div className="maylike-products-wrapper">*/}
+            {/*    <h2>Вам также может понравиться:</h2>*/}
+            {/*    <div className="marquee">*/}
+            {/*        <div className="maylike-products-container track">*/}
+            {/*            { products.map((item) => (*/}
+            {/*                <Product*/}
+            {/*                    key={item.slug}*/}
+            {/*                    product={item}*/}
+            {/*                />*/}
+            {/*            ))}*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
         </div>
     )
 }
@@ -85,6 +85,7 @@ const ProductDetails = ({ product, products }) => {
 export const getStaticPaths = async () => {
 
     const productsQuery = await fetch(`https://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items`);
+    // const productsQuery = await  fetch('http://127.0.0.1:8000/api/items');
 
     const products = await productsQuery.json();
 
@@ -102,9 +103,11 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params: { slug } }) => {
 
     const productQuery = await fetch(`https://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items/${slug}`);
+    // const productQuery = await fetch(`http://127.0.0.1:8000/api/items/${slug}`);
     const product = await productQuery.json();
 
     const productsQuery = await fetch(`https://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items`);
+    // const productsQuery = await fetch(`http://127.0.0.1:8000/api/items`);
     const products = await productsQuery.json();
 
     return {

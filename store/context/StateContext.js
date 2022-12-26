@@ -63,7 +63,7 @@ export const StateContext = ({ children }) => {
             setCookie('cookieCartItems', [...cartItems, { ...product }]);
             //alert(`Cookie: ${ getCookie('cookieCartItems') }`);
         }
-        toast.success(`Добавлено в корзину: ${qty} ${product.title}`);
+        toast.success(`Добавлено в корзину: ${qty} ${product.title}`, { duration: 1500 });
     }
 
     const onRemove = (product) => {
