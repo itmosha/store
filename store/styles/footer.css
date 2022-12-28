@@ -34,13 +34,15 @@
 
 .footer-center {
     font-weight: 700;
+    margin-top: 16px;
+    margin-bottom: 12px;
 
     text-align: center;
     align-items: center;
 }
 
 .footer-center p {
-    margin-top: 8px;
+    margin-top: 5px;
 }
 
 .footer-info-container {
