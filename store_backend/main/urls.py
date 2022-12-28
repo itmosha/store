@@ -11,6 +11,4 @@ if settings.DEBUG:
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('', views.index, name='index'),
-    path('about', views.about, name='about'),
 ]

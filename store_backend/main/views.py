@@ -6,14 +6,6 @@ from .serializers import *
 from .models import Item
 
 
-def index(request):
-    return render(request, 'main/index.html')
-
-
-def about(request):
-    return render(request, 'main/about.html')
-
-
 class ItemsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Item.objects.all().filter(is_active=True)
     serializer_class = ItemsSerializer
