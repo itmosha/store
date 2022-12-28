@@ -69,8 +69,8 @@ const ProductDetails = ({ product, products }) => {
 
 export const getStaticPaths = async () => {
 
-    const productsQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items`);
-    // const productsQuery = await  fetch('http://127.0.0.1:8000/api/items');
+    // const productsQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items`);
+    const productsQuery = await  fetch('http://127.0.0.1:8000/api/items');
 
     const products = await productsQuery.json();
 
@@ -87,12 +87,12 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params: { slug } }) => {
 
-    const productQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items/${slug}`);
-    // const productQuery = await fetch(`http://127.0.0.1:8000/api/items/${slug}`);
+    // const productQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items/${slug}`);
+    const productQuery = await fetch(`http://127.0.0.1:8000/api/items/${slug}`);
     const product = await productQuery.json();
 
-    const productsQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items`);
-    // const productsQuery = await fetch(`http://127.0.0.1:8000/api/items`);
+    // const productsQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items`);
+    const productsQuery = await fetch(`http://127.0.0.1:8000/api/items`);
     const products = await productsQuery.json();
 
     return {
