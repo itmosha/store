@@ -11,9 +11,8 @@ const ProductDetails = ({ product, products }) => {
 
     return (
         <div className="product-page">
-            <div className="product-detail-container">
                 <div>
-                    <div className="image-container">
+                    <div>
                         <img src={ images[index]?.image ? images[index].image : (images[0]?.image ? images[0].image : DefaultPresentImage.src ) } className="product-detail-image" />
                     </div>
 
@@ -26,9 +25,9 @@ const ProductDetails = ({ product, products }) => {
                             />
                         ))}
                     </div>
-
                 </div>
-                <div className="product-detail-desc">
+
+            <div className="product-page-details">
                     <h1>{ title }</h1>
 
                     <h4>Описание: </h4>
@@ -55,7 +54,7 @@ const ProductDetails = ({ product, products }) => {
                             }
                         </p>
                     </div>
-                    <div className="buttons">
+                    <div className="add-to-cart-button">
                         <button
                             type="button"
                             className="add-to-cart"
@@ -64,20 +63,6 @@ const ProductDetails = ({ product, products }) => {
                         </button>
                     </div>
                 </div>
-            </div>
-            {/*<div className="maylike-products-wrapper">*/}
-            {/*    <h2>Вам также может понравиться:</h2>*/}
-            {/*    <div className="marquee">*/}
-            {/*        <div className="maylike-products-container track">*/}
-            {/*            { products.map((item) => (*/}
-            {/*                <Product*/}
-            {/*                    key={item.slug}*/}
-            {/*                    product={item}*/}
-            {/*                />*/}
-            {/*            ))}*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
         </div>
     )
 }
