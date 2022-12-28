@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework.views import APIView
@@ -7,14 +6,6 @@ from rest_framework import status
 from .serializers import *
 
 from .models import Item
-
-
-def index(request):
-    return render(request, 'main/index.html')
-
-
-def about(request):
-    return render(request, 'main/about.html')
 
 
 class ItemsViewSet(viewsets.ReadOnlyModelViewSet):
