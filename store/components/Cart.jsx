@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineLeft, AiOutlineShopping } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
 import { useStateContext } from "../context/StateContext";
+import DefaultPresentImage from '../public/default_present.png';
 
 
 const Cart = () => {
@@ -33,7 +34,7 @@ const Cart = () => {
                 <div className="product-container">
                     { cartItems.length >= 1 && cartItems.map((item) => (
                         <div className="product" key={item.slug}>
-                            <img src={ item.images[0].image } className="cart-product-image" />
+                            <img src={ item.images[0]?.image ? item.images[0].image : DefaultPresentImage.src } className="cart-product-image" />
                             <div className="item-desc">
                                 <div className="flex top">
                                     <h5>{ item.name }</h5>

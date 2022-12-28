@@ -5,6 +5,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import DefaultPresentImage from '../public/default_present.png';
 
 const CartPage = () => {
     const { totalPrice, totalQuantity, cartItems, toggleCartItemQuantity, onRemove, deliveryRussia, toggleDeliveryRussia, deliverySPb, toggleDeliverySPb } = useStateContext();
@@ -36,7 +37,7 @@ const CartPage = () => {
                     <h2>Список товаров</h2>
                 { cartItems.length >= 1 ? cartItems.map((item) => (
                     <div className="product" key={item.slug}>
-                        <img src={ item.images[0].image } className="cart-product-image" />
+                        <img src={ item.images[0]?.image ? item.images[0].image : DefaultPresentImage.src } className="cart-product-image" />
                         <div className="item-desc">
                             <div className="flex top">
                                 <h5>{ item.title }</h5>
