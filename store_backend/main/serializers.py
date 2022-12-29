@@ -31,7 +31,7 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
         fields = '__all__'
-        lookup_field = 'unique_id'
+        lookup_field = 'unique_uuid'
         extra_kwargs = {
             'url': {'lookup_field': 'unique_id'},
         }
