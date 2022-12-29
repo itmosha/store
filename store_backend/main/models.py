@@ -3,6 +3,7 @@ import uuid
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
+
 class Item(models.Model):
     def images(self):
         return ItemImage.objects.filter(item=self)
@@ -50,15 +51,14 @@ class Order(models.Model):
     )
     state = models.CharField(max_length=100, choices=STATES, default='pending')
     unique_uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     # TODO: field for ip (getting HTTP_X_REAL_IP)
-    items = models.ManyToManyField(Item, through='OrderItem')
     # TODO: оставить property или хранить для каждого заказа индивидуально?
-    items_count = property(lambda self: self.orderitem_set.count())
+    items = models.ManyToManyField(Item, through='OrderItem')
     items_price = property(lambda self: sum([item.price for item in self.orderitem_set.all()]))
     delivery_price = models.IntegerField(default=0)
     total_price = property(lambda self: self.items_price + self.delivery_price)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
 
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -76,6 +76,7 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
+    # TODO: add name and photos
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     price = models.IntegerField(default=0)
