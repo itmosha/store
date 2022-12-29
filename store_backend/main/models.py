@@ -49,8 +49,7 @@ class Order(models.Model):
         ('canceled', 'Отменен'),
     )
     state = models.CharField(max_length=100, choices=STATES, default='pending')
-    unique_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    unique_number = models.IntegerField(default=random.randint(1000, 99999), editable=False, unique=True)
+    unique_uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     # TODO: field for ip (getting HTTP_X_REAL_IP)
     items = models.ManyToManyField(Item, through='OrderItem')
     # TODO: оставить property или хранить для каждого заказа индивидуально?
@@ -69,7 +68,7 @@ class Order(models.Model):
     postal_code = models.CharField(max_length=6)
 
     def __str__(self):
-        return f'Заказ №{self.unique_id}'
+        return f'Заказ №{self.unique_uuid}'
 
     class Meta:
         verbose_name = 'Заказ'
