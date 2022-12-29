@@ -1,16 +1,7 @@
 import random
+import uuid
 from django.db import models
-from django.db.models.signals import pre_save
 from phonenumber_field.modelfields import PhoneNumberField
-
-
-def pre_save_create_order_id(sender, instance, *args, **kwargs):
-    if not instance.unique_id:
-        order_new_id = random.randint(1000, 9999)
-        while instance.__class__.objects.filter(unique_id=order_new_id).exists():
-            order_new_id = random.randint(1000, 9999)
-        instance.unique_id = order_new_id
-
 
 class Item(models.Model):
     def images(self):
@@ -58,7 +49,9 @@ class Order(models.Model):
         ('canceled', 'Отменен'),
     )
     state = models.CharField(max_length=100, choices=STATES, default='pending')
-    unique_id = models.IntegerField(unique=True, blank=True)
+    unique_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    unique_number = models.IntegerField(default=random.randint(1000, 99999), editable=False, unique=True)
+    # TODO: field for ip (getting HTTP_X_REAL_IP)
     items = models.ManyToManyField(Item, through='OrderItem')
     # TODO: оставить property или хранить для каждого заказа индивидуально?
     items_count = property(lambda self: self.orderitem_set.count())
@@ -81,9 +74,6 @@ class Order(models.Model):
     class Meta:
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
-
-
-pre_save.connect(pre_save_create_order_id, sender=Order)
 
 
 class OrderItem(models.Model):
