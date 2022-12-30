@@ -3,32 +3,44 @@ import Link from 'next/link';
 import { AiOutlineShopping } from "react-icons/ai";
 import { Cart } from './';
 import { useStateContext } from "../context/StateContext";
+import {
+    Text,
+    Box,
+    ButtonGroup,
+    Center,
+    HStack,
+    Flex,
+    Button,
+} from '@chakra-ui/react';
 
 const Navbar = () => {
     const { showCart, setShowCart, totalQuantities } = useStateContext();
 
     return (
-        <div>
-        <header className="header">
-            <div className="header-container">
-
-                <div className="header-logo">
-                    <p>
-                        <Link href="/">Block Store</Link>
-                    </p>
-                </div>
-
-                <div className="header-cart-icon">
-                    <button type="button" className="cart-icon" onClick={ () => setShowCart(true) }>
-                        <AiOutlineShopping />
-                        <span className="cart-item-qty">{ totalQuantities }</span>
-                    </button>
-                </div>
-            </div>
-        </header>
+        <Box boxShadow={'md'} p={'2'}>
+            <HStack>
+                <Flex justify={'space-between'} flex={'1'}>
+                    <Center ml={'3'}>
+                        <Link href={'/'}>
+                            <Text fontSize={'xl'} as={'b'}>Block Store</Text>
+                        </Link>
+                    </Center>
+                    <ButtonGroup>
+                        <Link href={'/common'}>
+                            <Button variant={'ghost'}>Помощь</Button>
+                        </Link>
+                        <Button variant={'ghost'} onClick={ () => setShowCart(true) }>
+                            <AiOutlineShopping size={'28'}/>
+                            <span className={'cart-item-qty'}>
+                                { totalQuantities }
+                            </span>
+                        </Button>
+                    </ButtonGroup>
+                </Flex>
+            </HStack>
             { showCart && <Cart /> }
-        </div>
-    )
-}
+        </Box>
+    );
+};
 
-export default Navbar
+export default Navbar;

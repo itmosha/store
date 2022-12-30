@@ -3,7 +3,6 @@ import Link from 'next/link';
 import DefaultPresentImage from '../public/default_present.png';
 import {
     Card,
-    CardHeader,
     CardBody,
     CardFooter,
     Image,
@@ -12,18 +11,20 @@ import {
     Text,
     Divider,
     Button,
-    Spacer, ButtonGroup
+    ButtonGroup
 } from '@chakra-ui/react';
 
 const Product = ({ product: { images, title, slug, price } }) => {
     return (
-        <Card maxW={'270px'} href={ `product/${slug}` } boxShadow={'dark-lg'} rounded={'xl'}>
+        <Card maxW={'270px'} boxShadow={'dark-lg'} rounded={'xl'}>
             <CardBody p={'15px'} pb={'5px'}>
-                <Image
-                    maxW={'240px'}
-                    src={ images[0]?.image ? images[0].image : DefaultPresentImage.src }
-                    alt={ title }
-                />
+                <Link href={`product/${slug}`}>
+                    <Image
+                        maxW={'240px'}
+                        src={ images[0]?.image ? images[0].image : DefaultPresentImage.src }
+                        alt={ title }
+                    />
+                </Link>
                 <Stack mt={'1'}>
                     <Heading size={'md'}>{ title }</Heading>
                     <Text fontSize={'lg'}>{ price } ₽</Text>
@@ -41,7 +42,8 @@ const Product = ({ product: { images, title, slug, price } }) => {
                 </ButtonGroup>
             </CardFooter>
         </Card>
-    )
-}
+    );
+};
 
-export default Product
+
+export default Product;
