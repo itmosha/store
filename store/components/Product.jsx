@@ -1,23 +1,46 @@
 import React from 'react';
 import Link from 'next/link';
 import DefaultPresentImage from '../public/default_present.png';
+import {
+    Card,
+    CardHeader,
+    CardBody,
+    CardFooter,
+    Image,
+    Stack,
+    Heading,
+    Text,
+    Divider,
+    Button,
+    Spacer, ButtonGroup
+} from '@chakra-ui/react';
 
 const Product = ({ product: { images, title, slug, price } }) => {
     return (
-        <div>
-            <Link href={`/product/${slug}`}>
-                <div className="product-card">
-                    <img
-                        src={images[0]?.image ? images[0].image : DefaultPresentImage.src }
-                        width={250}
-                        height={250}
-                        className="product-image"
-                    />
-                    <p className="product-name">{ title }</p>
-                    <p className="product-price">₽ { price }</p>
-                </div>
-            </Link>
-        </div>
+        <Card maxW={'270px'} href={ `product/${slug}` } boxShadow={'dark-lg'} rounded={'xl'}>
+            <CardBody p={'15px'} pb={'5px'}>
+                <Image
+                    maxW={'240px'}
+                    src={ images[0]?.image ? images[0].image : DefaultPresentImage.src }
+                    alt={ title }
+                />
+                <Stack mt={'1'}>
+                    <Heading size={'md'}>{ title }</Heading>
+                    <Text fontSize={'lg'}>{ price } ₽</Text>
+                </Stack>
+            </CardBody>
+            <Divider />
+            <CardFooter p={'3'} justify={'center'}>
+                <ButtonGroup>
+                    <Button variant={'solid'} colorScheme={'red'} size={'md'}>
+                        В корзину
+                    </Button>
+                    <Button variant={'outline'} colorScheme={'red'} size={'md'}>
+                        Посмотреть
+                    </Button>
+                </ButtonGroup>
+            </CardFooter>
+        </Card>
     )
 }
 

@@ -1,15 +1,16 @@
 import React from 'react'
 import { Product, FooterBanner, HeroBanner } from "../components";
+import { Wrap, WrapItem } from '@chakra-ui/react';
 
 const Home = ({ products }) => {
   return (
     <>
       <HeroBanner />
 
-      <div className='products-container'>
+        <Wrap justify={'center'} spacingX={'24px'} spacingY={'44px'} pt={'5rem'} pb={'3.2rem'}>
         {products?.map(
-          (product) => <Product key={product.slug} product={product}/>)}
-      </div>
+            (product) => ( product.quantity_in_stock > 0 ? <Product key={product.slug} product={product}/> : ''))}
+        </Wrap>
 
       <FooterBanner />
     </>

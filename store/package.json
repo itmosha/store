@@ -13,6 +13,7 @@
     "@chakra-ui/react": "^2.4.2",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@fontsource/alata": "^4.5.9",
     "canvas-confetti": "^1.5.1",
     "cookies-next": "^2.1.1",
     "cors": "^2.8.5",

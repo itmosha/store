@@ -3,10 +3,10 @@ body, * {
   padding: 0;
   margin: 0;
   border: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   box-sizing: border-box;
+  font-family:  'Lato','Trebuchet MS','Lucida Grande','Lucida Sans Unicode','Lucida Sans',Tahoma,sans-serif;
 }
+
 ::-webkit-scrollbar {
   width: 0;
 }
@@ -178,12 +178,11 @@ width: 100%;
   font-weight: 600;
   font-size: 28px;
 }
-.maylike-products-container{
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
+
+.out_of_stock_item {
+  display: none;
 }
+
 .max-qty{
   font-weight: 500;
   color: #f02d34;
