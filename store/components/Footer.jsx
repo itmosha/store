@@ -6,8 +6,7 @@ import { ButtonGroup, Center, Box, IconButton, Stack, Text } from "@chakra-ui/re
 
 const Footer = () => {
     return (
-        <div className="footer-box-shadow">
-            <Box as={'footer'} py={'7'} px={'3'} mt={'10'}>
+            <Box as={'footer'} py={'7'} px={'3'} mt={'10'} boxShadow={'0 7px 10px 9px rgba(0, 0, 0, 0.3)'}>
                 <Stack spacing={'4'}>
                     <Stack justify={'space-between'} direction={'row'} align={'center'} pr={'5'}>
                         <Center ml={'3'}>
@@ -16,8 +15,18 @@ const Footer = () => {
                             </Link>
                         </Center>
                         <ButtonGroup variant={'solid'}>
-                            <IconButton as={'a'} aria-label={'Telegram'} icon={<FaTelegramPlane fontSize={'1.25rem'} />} />
-                            <IconButton as={'a'} aria-label={'VK'} icon={<SlSocialVkontakte fontSize={'1.25rem'} />} />
+                            <IconButton
+                                as={'a'}
+                                aria-label={'Telegram'}
+                                icon={<FaTelegramPlane fontSize={'1.25rem'} />}
+                                cursor={'pointer'}
+                            />
+                            <IconButton
+                                as={'a'}
+                                aria-label={'VK'}
+                                icon={<SlSocialVkontakte fontSize={'1.25rem'} />}
+                                cursor={'pointer'}
+                            />
                         </ButtonGroup>
                     </Stack>
                     <Box align={'center'}>
@@ -27,7 +36,6 @@ const Footer = () => {
                     </Box>
                 </Stack>
             </Box>
-        </div>
     );
 };
 

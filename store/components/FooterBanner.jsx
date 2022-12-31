@@ -1,32 +1,19 @@
 import React from 'react';
 import Link from 'next/link';
-import footerBannerImage from '../public/footer-banner-image.png';
+import { Box, Image } from "@chakra-ui/react";
+import FooterBannerImage from "../public/FooterBannerImage.webp";
 
 const FooterBanner = () => {
     return (
-        <div className="footer-banner-container">
-            <div className="banner-desc">
-                <div className="left">
-                    <p>Успейте купить!</p>
-                    <h3>Подарочный набор</h3>
-                    <p>Приятный подарок на Новый Год</p>
-                </div>
-                <img
-                    src={ footerBannerImage.src }
-                    className="footer-banner-image"
-                    alt="footer-banner-image"
+        <Box mt={'3rem'} boxShadow={'0px 3px 10px 2px rgba(0, 0, 0, 0.5)'} borderRadius={'2rem'}>
+            <Link href={'/'}>
+                <Image
+                    border={'0.5px solid grey'}
+                    src={ FooterBannerImage.src } borderRadius={'1rem'}
                 />
-                <div className="right">
-                    {/*<p>Маленький текст</p>*/}
-                    <h3>Новогодний</h3>
-                    <p>Ручная работа</p>
-                    <Link href="/product/present-large-1">
-                        <button type="button">Посмотреть</button>
-                    </Link>
-                </div>
-            </div>
-        </div>
-    )
-}
+            </Link>
+        </Box>
+    );
+};
 
-export default FooterBanner
+export default FooterBanner;

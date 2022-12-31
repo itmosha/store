@@ -17,7 +17,7 @@ const Navbar = () => {
     const { showCart, setShowCart, totalQuantities } = useStateContext();
 
     return (
-        <Box boxShadow={'md'} p={'2'}>
+        <Box p={'2'} boxShadow={'1px 2px 10px 2px rgba(0, 0, 0, 0.3)'}>
             <HStack>
                 <Flex justify={'space-between'} flex={'1'}>
                     <Center ml={'3'}>
