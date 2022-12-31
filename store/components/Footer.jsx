@@ -2,38 +2,33 @@ import React from 'react';
 import { SlSocialVkontakte } from "react-icons/sl";
 import { FaTelegramPlane } from "react-icons/fa";
 import Link from "next/link";
+import { ButtonGroup, Center, Box, IconButton, Stack, Text } from "@chakra-ui/react";
 
 const Footer = () => {
     return (
-        <div className="footer-container">
-            <div className="footer-info-container">
-                <h4>
-                    <Link href="/common/contacts">Контакты</Link>
-                </h4>
-                <h4>
-                    <Link href="/common/delivery">Доставка</Link>
-                </h4>
-                <h4>
-                    <Link href="/common/return">Возврат</Link>
-                </h4>
-            </div>
-
-            <div className="footer-center">
-                <p>2022 Block Store</p>
-                <p>Все права защищены</p>
-            </div>
-                {/*<p className="icons">*/}
-                {/*    <Link href="/">*/}
-                {/*        <SlSocialVkontakte />*/}
-                {/*    </Link>*/}
-                {/*    <Link href="/">*/}
-                {/*        <FaTelegramPlane />*/}
-                {/*    </Link>*/}
-                {/*</p>*/}
-            <span className="footer-bottom-info">ИНН: 600402090145</span>
-            <span className="footer-bottom-info">ИП Балкунов С.И.</span>
+        <div className="footer-box-shadow">
+            <Box as={'footer'} py={'7'} px={'3'} mt={'10'}>
+                <Stack spacing={'4'}>
+                    <Stack justify={'space-between'} direction={'row'} align={'center'} pr={'5'}>
+                        <Center ml={'3'}>
+                            <Link href={'/'}>
+                                <Text fontSize={'xl'} as={'b'}>Block Store</Text>
+                            </Link>
+                        </Center>
+                        <ButtonGroup variant={'solid'}>
+                            <IconButton as={'a'} aria-label={'Telegram'} icon={<FaTelegramPlane fontSize={'1.25rem'} />} />
+                            <IconButton as={'a'} aria-label={'VK'} icon={<SlSocialVkontakte fontSize={'1.25rem'} />} />
+                        </ButtonGroup>
+                    </Stack>
+                    <Box align={'center'}>
+                        <Text fontSize={'sm'}>
+                            &copy; { new Date().getFullYear() } Block Store. Все права защищены.
+                        </Text>
+                    </Box>
+                </Stack>
+            </Box>
         </div>
-    )
-}
+    );
+};
 
-export default Footer
+export default Footer;

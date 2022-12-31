@@ -606,3 +606,7 @@ input[type="checkbox"] {
     overflow-x: hidden;
   }
 }
+
+.footer-box-shadow {
+  box-shadow: 0 10px 7px 9px rgba(0, 0, 0, 1);
+}
