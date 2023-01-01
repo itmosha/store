@@ -30,7 +30,7 @@ const Navbar = () => {
                             <Button variant={'ghost'}>Помощь</Button>
                         </Link>
                         <Button variant={'ghost'} onClick={ () => setShowCart(true) }>
-                            <AiOutlineShopping size={'28'}/>
+                            <AiOutlineShopping size={'26'}/>
                             <span className={'cart-item-qty'}>
                                 { totalQuantities }
                             </span>

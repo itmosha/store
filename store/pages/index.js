@@ -1,18 +1,22 @@
 import React from 'react';
-import { Product, FooterBanner, HeaderBanner } from "../components";
+import { Product, FooterBanner, Navbar, HeaderBanner, Footer } from "../components";
 import { Wrap, Box } from '@chakra-ui/react';
 
 const Home = ({ products }) => {
   return (
     <Box align={'center'}>
+        <Navbar />
         <HeaderBanner />
 
-        <Wrap justify={'center'} spacingX={'24px'} spacingY={'44px'} p={'4rem 2rem 3rem 2rem'}>
+        <Wrap justify={'center'} spacingX={'24px'} spacingY={'44px'} p={'4rem 2rem 3rem 2rem'} mx={'5rem'}>
         {products?.map(
             (product) => ( product.quantity_in_stock > 0 ? <Product key={product.slug} product={product}/> : ''))}
         </Wrap>
 
       <FooterBanner />
+        <footer>
+            <Footer />
+        </footer>
     </Box>
   )
 }
