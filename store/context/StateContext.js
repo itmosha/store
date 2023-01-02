@@ -55,13 +55,11 @@ export const StateContext = ({ children }) => {
             setCartItems(updatedCartItems);
 
             setCookie('cookieCartItems', updatedCartItems);
-            //alert(`Cookie: ${ getCookie('cookieCartItems') }`);
         } else {
             product.quantity = quantity;
             setCartItems([...cartItems, { ...product }]);
 
             setCookie('cookieCartItems', [...cartItems, { ...product }]);
-            //alert(`Cookie: ${ getCookie('cookieCartItems') }`);
         }
         toast.success(`Добавлено в корзину: ${qty} ${product.title}`, { duration: 1500 });
     }
@@ -96,15 +94,6 @@ export const StateContext = ({ children }) => {
 
         } else if (value === 'dec') {
             if (foundProduct.quantity > 1) {
-                // setCartItems( prevCartItems =>
-                //     prevCartItems.map( item => {
-                //         if (item._id === id){
-                //             return {...item, quantity: foundProduct.quantity - 1}
-                //         }
-                //         return item
-                //     })
-                // );
-
                 const newCartItems = cartItems.map(item => {
                     if (item.slug === id) {
                         return {...item, quantity: foundProduct.quantity - 1}

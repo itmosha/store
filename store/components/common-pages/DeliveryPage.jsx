@@ -5,7 +5,6 @@ import {
     Heading,
     UnorderedList,
     ListItem,
-    List,
     Highlight
 } from '@chakra-ui/react';
 
