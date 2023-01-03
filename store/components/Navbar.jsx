@@ -31,9 +31,16 @@ const Navbar = () => {
                         </Link>
                         <Button variant={'ghost'} onClick={ () => setShowCart(true) }>
                             <AiOutlineShopping size={'26'}/>
-                            <span className={'cart-item-qty'}>
+                            <Text fontSize={'0.75rem'}
+                                  bgColor={'red.200'}
+                                  p={'0.1rem 0.3rem'}
+                                  borderRadius={'full'}
+                                  position={'absolute'}
+                                  left={'2rem'}
+                                  top={'0.25rem'}
+                            >
                                 { totalQuantities }
-                            </span>
+                            </Text>
                         </Button>
                     </ButtonGroup>
                 </Flex>

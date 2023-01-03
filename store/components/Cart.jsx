@@ -21,7 +21,7 @@ const Cart = () => {
 
     return (
         <Box w={'100vw'} bg={'rgba(0, 0, 0, 0.5)'} position={'fixed'} top={'0'} left={'0'} zIndex={'100'}>
-            <VStack h={'100vh'} width={'32rem'} float={'right'} p={'1.5rem'} bgColor={'white'} justify={'space-between'}>
+            <VStack h={'100vh'} width={'32rem'} float={'right'} p={'1.5rem'} bgColor={'white'} justify={'space-between'} align={'start'}>
                 <Box>
                     <Flex>
                         <Button onClick={ () => setShowCart(false) }>
@@ -37,17 +37,16 @@ const Cart = () => {
                         </Center>
                     </Flex>
                     { cartItems.length < 1 && (
-                        <Center mt={'5rem'} display={'block'}>
+                        <Box mt={'5rem'} mx={'6.5rem'}>
                             <AiOutlineShopping size={'6rem'} />
                             <Heading fontSize={'1.25rem'} pt={'0.5rem'}>Ваша корзина пуста</Heading>
                             <Link href={'/'}>
-                                <Button varitan={'solid'} colorScheme={'red'} size={'lg'} mt={'1rem'} onClick={ () => setShowCart(false) }>
+                                <Button varitan={'solid'} colorScheme={'red'} size={'lg'} w={'16rem'} mt={'1rem'} onClick={ () => setShowCart(false) }>
                                     Посмотреть товары
                                 </Button>
                             </Link>
-                        </Center>
+                        </Box>
                     )}
-                    <Divider borderWidth={'2px'} borderColor={'gray.300'} mb={'1rem'} mt={'0.5rem'}/>
                 <Box mt={'1rem'} maxH={'68vh'} overflowY={'auto'}>
                     { cartItems.length >= 1 && cartItems.map((item) => (
                         <Flex p={'0.5rem'} key={item.slug} w={'29rem'} h={'10rem'}>
@@ -117,7 +116,7 @@ const Cart = () => {
                 { cartItems.length >= 1 && (
                     <Box bgColor={'gray.100'} w={'29rem'} h={'7rem'} mt={'0.5rem'} p={'0.5rem 1rem'} align={'start'} borderRadius={'1rem'}>
                         <Flex>
-                            <Heading fontSize={'2rem'}>Сумма заказа: </Heading>
+                            <Heading fontSize={'1.75rem'}>Сумма заказа: </Heading>
                             <Heading fontSize={'1.5rem'} fontWeight={'400'} bgColor={'red.100'} m={'0.25rem 0.5rem 0 0.5rem'} borderRadius={'full'} py={'0.25rem'} px={'0.5rem'}>{ totalPrice } ₽</Heading>
                         </Flex>
                         <Box>

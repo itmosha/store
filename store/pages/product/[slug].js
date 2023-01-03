@@ -1,7 +1,19 @@
 import React, { useState } from 'react';
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { useStateContext } from '../../context/StateContext';
 import DefaultPresentImage from '../../public/default_present.png';
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import {
+    Box,
+    Flex,
+    Img,
+    VStack,
+    Heading,
+    Text,
+    Button,
+    Center,
+    Divider
+} from '@chakra-ui/react';
 
 const ProductDetails = ({ product }) => {
     const { images, title, price, description, quantity_in_stock } = product;
@@ -9,62 +21,98 @@ const ProductDetails = ({ product }) => {
     const { decQty, incQty, qty, onAdd } = useStateContext();
 
     return (
-        <div className="product-page">
-                <div>
-                    <div>
-                        <img src={ images[index]?.image ? images[index].image : (images[0]?.image ? images[0].image : DefaultPresentImage.src ) } className="product-detail-image" />
-                    </div>
+        <Box minH={'100vh'}>
+            <Navbar />
 
-                    <div className="small-images-container">
-                        {images?.map((item, i) => (
-                            <img
+            <Box minH={'85vh'} p={'2rem 4rem'}>
+                <Flex>
+                    <Box borderWidth={'2px'} borderColor={'red.200'} borderRadius={'1rem'} p={'0.5rem'}>
+                        { images?.map((item, i) => (
+                            <Img
                                 src={ images[i].image }
-                                className={ i === index ? 'small-image selected-image' : 'small-image' }
-                                onMouseEnter={() => setIndex(i)}
+                                onMouseEnter={ () => setIndex(i) }
+                                w={'4rem'}
+                                h={'4rem'}
+                                borderRadius={'1rem'}
+                                _hover={{ bgColor: 'red.200', padding: '2px' }}
                             />
                         ))}
-                    </div>
-                </div>
+                    </Box>
+                    <Box ml={'0.5rem'}>
+                        <Img
+                            src={ images[index]?.image ? images[index].image : (images[0]?.image ? images[0].image : DefaultPresentImage.src ) }
+                            w={'20rem'}
+                            h={'20rem'}
+                            border={'2px'}
+                            borderRadius={'1rem'}
+                            borderColor={'red.200'}
+                        />
+                    </Box>
+                    <Box maxW={'40rem'}>
+                        <VStack ml={'1rem'} p={'1rem'} align={'start'} bgColor={'gray.200'} borderRadius={'1.5rem'}>
+                            <Box>
+                                <Heading fontSize={'1.75rem'}>{ title }</Heading>
+                            </Box>
+                            <Box>
+                                <Heading fontSize={'1.5rem'} fontWeight={'400'}>
+                                    { price } ₽
+                                </Heading>
+                            </Box>
+                            <Box py={'0.5rem'}>
+                                <Heading fontSize={'1rem'} mb={'1rem'}>Описание:</Heading>
+                                <Text css={'white-space: pre-wrap'}>{ description }</Text>
+                            </Box>
+                            <Divider borderColor={'gray.500'}/>
+                            <Box pt={'0.5rem'}>
+                                <Flex>
+                                    <Text fontSize={'0.9rem'} textColor={'red'} mr={'0.5rem'}>(Доступно {quantity_in_stock})</Text>
+                                    <Heading fontSize={'1rem'}>Количество:</Heading>
+                                </Flex>
+                            </Box>
+                            <Flex justify={'space-between'}>
+                                <Box ml={'2rem'}>
+                                   <Flex>
+                                       <Button w={'2.5rem'} h={'2.5rem'} onClick={ decQty }>
+                                           <Heading fontSize={'0.75rem'}>
+                                               —
+                                           </Heading>
+                                       </Button>
+                                       <Center w={'2.5rem'} h={'2.5rem'} borderRadius={'0.35rem'} borderWidth={'2px'} borderColor={'red.200'}>
+                                           <Heading fontSize={'1rem'}>
+                                               { qty }
+                                           </Heading>
+                                       </Center>
+                                           { quantity_in_stock > qty ? (
+                                               <Button w={'2.5rem'} h={'2.5rem'} onClick={ incQty }>
+                                                   <Heading fontSize={'1.25rem'}>
+                                                       +
+                                                   </Heading>
+                                               </Button>
 
-            <div className="product-page-details">
-                    <h1>{ title }</h1>
+                                           ) : (
+                                               <Button w={'2.5rem'} h={'2.5rem'}>
+                                                   <Heading fontSize={'1.25rem'}>
+                                                       +
+                                                   </Heading>
+                                               </Button>
+                                           )}
+                                   </Flex>
+                                </Box>
+                                <Button ml={'5rem'} h={'2.5rem'} variant={'solid'} colorScheme={'red'} onClick={ () => onAdd(product, qty) }>
+                                    Добавить в корзину
+                                </Button>
+                            </Flex>
+                        </VStack>
+                    </Box>
+                </Flex>
+            </Box>
 
-                    <h4>Описание: </h4>
-                    <p>{ description }</p>
-                    <p className="price">₽ { price }</p>
-                    <div className="quantity">
-                        <h3>Количество: </h3>
-                        <p className="quantity-desc">
-                            <span className="minus" onClick={ decQty }>
-                                <AiOutlineMinus />
-                            </span>
-                            <span className="num">
-                                { qty }
-                            </span>
-                            { quantity_in_stock > qty ? (
-                                <span className="plus" onClick={ incQty }>
-                                    <AiOutlinePlus />
-                                </span>
-                            ) : (
-                                <span className="plus">
-                                    <AiOutlinePlus />
-                                </span>
-                            )
-                            }
-                        </p>
-                    </div>
-                    <div className="add-to-cart-button">
-                        <button
-                            type="button"
-                            className="add-to-cart"
-                            onClick={ () => onAdd(product, qty) }>
-                            Добавить в корзину
-                        </button>
-                    </div>
-                </div>
-        </div>
-    )
-}
+            <footer>
+                <Footer />
+            </footer>
+        </Box>
+    );
+};
 
 export const getStaticPaths = async () => {
 
