@@ -19,6 +19,7 @@
     "cookies-next": "^2.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
+    "formik": "^2.2.9",
     "framer-motion": "^6.5.1",
     "next": "^13.1.1",
     "next-sanity-image": "^3.2.1",
