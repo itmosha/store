@@ -17,7 +17,7 @@ const Cart = () => {
     const { totalPrice, totalQuantities, cartItems, setShowCart } = useStateContext();
 
     return (
-        <Box w={'100vw'} bg={'rgba(0, 0, 0, 0.5)'} position={'fixed'} top={'0'} left={'0'} zIndex={'100'}>
+        <Box w={'100vw'} bg={'rgba(0, 0, 0, 0.5)'} position={'fixed'} top={'0'} left={'0'} zIndex={'100'} align={'center'}>
             <VStack h={'100vh'} width={'32rem'} float={'right'} p={'1.5rem'} bgColor={'white'} justify={'space-between'} align={'start'}>
                 <Box>
                     <Flex>

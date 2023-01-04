@@ -26,6 +26,7 @@ const ProductDetails = ({ product }) => {
 
             <Box minH={'85vh'} p={'2rem 4rem'}>
                 <Flex>
+                    { images.length > 0 && (
                     <Box borderWidth={'2px'} borderColor={'red.200'} borderRadius={'1rem'} p={'0.5rem'}>
                         { images?.map((item, i) => (
                             <Img
@@ -38,6 +39,7 @@ const ProductDetails = ({ product }) => {
                             />
                         ))}
                     </Box>
+                    )}
                     <Box ml={'0.5rem'}>
                         <Img
                             src={ images[index]?.image ? images[index].image : (images[0]?.image ? images[0].image : DefaultPresentImage.src ) }

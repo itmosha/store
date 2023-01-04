@@ -48,8 +48,8 @@ const CartPage = () => {
                         <Box align={'center'}>
                             <Heading fontSize={'2rem'} pb={'1.5rem'}>Оформление заказа</Heading>
                         </Box>
-                        <Flex mx={'22vw'}>
-                            <Box p={'1rem'} borderRadius={'1rem'} h={'fit-content'} w={'30vw'} boxShadow={'0px 3px 10px 2px rgba(0, 0, 0, 0.5)'}>
+                        <Flex mx={'20rem'}>
+                            <Box p={'1rem'} borderRadius={'1rem'} h={'fit-content'} w={'30rem'} boxShadow={'0px 3px 10px 2px rgba(0, 0, 0, 0.5)'}>
                                 <Heading fontSize={'1.5rem'}>Список товаров</Heading>
                                 <Box>
                                     { cartItems.length >= 1 && cartItems.map((item) => (
@@ -57,7 +57,7 @@ const CartPage = () => {
                                     ))}
                                 </Box>
                             </Box>
-                            <Box ml={'1rem'} width={'21vw'}>
+                            <Box ml={'1rem'} width={'30rem'}>
                                 <Box p={'1rem'} borderRadius={'1rem'} boxShadow={'0px 3px 10px 2px rgba(0, 0, 0, 0.5)'}>
                                     <Heading fontSize={'1.5rem'} mb={'0.5rem'}>Способ доставки: </Heading>
                                     <Stack spacing={'0.25rem'}>

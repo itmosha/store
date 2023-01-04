@@ -38,30 +38,40 @@ export const StateContext = ({ children }) => {
     const onAdd = (product, quantity) => {
 
         const checkProductInCart = cartItems.find((item) => item.slug === product.slug);
-        setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
-        setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
+        let wasAdded = false;
 
         if (checkProductInCart) {
+
             const updatedCartItems = cartItems.map((cartProduct) => {
-                if (cartProduct.slug === product.slug) return {
-                    ...cartProduct,
-                    quantity: cartProduct.quantity + quantity
-                };
-                else return {
+                if (cartProduct.slug === product.slug && product.quantity_in_stock >= cartProduct.quantity + quantity) {
+                    wasAdded = true;
+                    return {
+                        ...cartProduct,
+                        quantity: cartProduct.quantity + quantity
+                    };
+                } else return {
                     ...cartProduct
                 };
-            })
+            });
 
-            setCartItems(updatedCartItems);
+            if (wasAdded) {
+                setCartItems(updatedCartItems);
 
-            setCookie('cookieCartItems', updatedCartItems);
+                setCookie('cookieCartItems', updatedCartItems);
+            }
         } else {
             product.quantity = quantity;
             setCartItems([...cartItems, { ...product }]);
 
             setCookie('cookieCartItems', [...cartItems, { ...product }]);
         }
-        toast.success(`Добавлено в корзину: ${qty} ${product.title}`, { duration: 1500 });
+
+        if (wasAdded || !checkProductInCart) {
+            setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
+            setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
+
+            toast.success(`Добавлено в корзину: ${qty} ${product.title}`, {duration: 1500});
+        }
     }
 
     const onRemove = (product) => {
@@ -80,18 +90,23 @@ export const StateContext = ({ children }) => {
         index = cartItems.findIndex((product) => product.slug === id);
 
         if (value === 'inc') {
+            let wasIncremented = true;
 
             const newCartItems = cartItems.map(item => {
                 if (item.slug === id) {
-                    return {...item, quantity: foundProduct.quantity + 1}
+                    if (foundProduct.quantity_in_stock > item.quantity) {
+                        return {...item, quantity: foundProduct.quantity + 1}
+                    } else wasIncremented = false;
                 } return item
             });
-            setCartItems(newCartItems);
 
-            setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
-            setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1);
-            setCookie('cookieCartItems', newCartItems);
+            if (wasIncremented) {
+                setCartItems(newCartItems);
 
+                setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
+                setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1);
+                setCookie('cookieCartItems', newCartItems);
+            }
         } else if (value === 'dec') {
             if (foundProduct.quantity > 1) {
                 const newCartItems = cartItems.map(item => {
