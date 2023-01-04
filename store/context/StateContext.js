@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { setCookie, getCookie } from "cookies-next";
+import React, { createContext, useContext, useState } from 'react';
 
 const Context = createContext();
 

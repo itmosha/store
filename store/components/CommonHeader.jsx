@@ -1,12 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import {
-    Box,
-    Center,
-    HStack,
-    Text,
-    Flex
-} from '@chakra-ui/react';
+import { Box, Center, HStack, Text, Flex } from '@chakra-ui/react';
 
 const CommonHeader = () => {
     return (

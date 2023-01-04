@@ -1,9 +1,17 @@
 import React from 'react';
-import {Box, Flex, Text, Tabs, TabList, Tab, TabPanels, TabPanel} from '@chakra-ui/react';
 import CommonHeader from "../components/CommonHeader";
 import DeliveryPage from "../components/common-pages/DeliveryPage";
 import ReturnPage from "../components/common-pages/ReturnPage";
 import ContactsPage from "../components/common-pages/ContactsPage";
+import {
+    Box,
+    Flex,
+    Tabs,
+    TabList,
+    Tab,
+    TabPanels,
+    TabPanel
+} from '@chakra-ui/react';
 
 const CommonPage = () => {
     return (

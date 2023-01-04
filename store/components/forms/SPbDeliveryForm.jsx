@@ -1,44 +1,26 @@
 import React from 'react';
-import { Field, Form, Formik } from "formik";
-import {Button, Box, Divider, FormControl, FormErrorMessage, FormLabel, Input} from "@chakra-ui/react";
+import {
+    Field,
+    Form,
+    Formik
+} from 'formik';
+import {
+    Button,
+    Box,
+    FormControl,
+    FormErrorMessage,
+    Input
+} from '@chakra-ui/react';
 
 const SPbDeliveryForm = () => {
 
-    function validateInitials(value) {
-        let error;
-        if (!value) {
-            error = 'Обязательное поле';
-        }
-        return error;
-    }
+    const validateInitials = (value) => { return ( !value ? 'Обязательное поле' : null ) };
+    const validatePhoneNumber = (value) => { return ( !value ? 'Обязательное поле' : (
+        value.trim().startsWith('+7') || value.trim().startsWith('8') ? null : 'Номер должен начинаться с +7 или 8' ) ) };
+   const validateEmail = (value) => { return ( !value ? 'Обязательное поле' : (
+       value.indexOf('@') <= -1 ? 'Некорректный email' : null ) ) };
+   const validateAddress = (value) => { return ( !value ? 'Обязательное поле' : null) };
 
-    function validatePhoneNumber(value) {
-        let error;
-        if (!value) {
-            error = 'Обязательное поле';
-        } else if (!value.trim().startsWith('+7')) {
-            error = 'Номер должен начинаться с +7 или 8'
-        }
-        return error;
-    }
-
-    function validateEmail(value) {
-        let error;
-        if (!value) {
-            error = 'Обязательное поле';
-        } else if (value.indexOf('@') <= -1) {
-            error = 'Некорректный email';
-        }
-        return error;
-    }
-
-    function validateAddress(value) {
-        let error;
-        if (!value) {
-            error = 'Обязательное поле'
-        }
-        return error;
-    }
 
     return (
         <Formik

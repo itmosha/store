@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Box, Image } from '@chakra-ui/react';
-import HeaderBannerImage from '../public/HeaderBannerImage.webp';
+import HeaderBannerImage from '../../public/HeaderBannerImage.webp';
 
 const HeaderBanner = () => {
     return (

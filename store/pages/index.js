@@ -1,6 +1,6 @@
 import React from 'react';
-import { Product, FooterBanner, Navbar, HeaderBanner, Footer } from "../components";
 import { Wrap, Box } from '@chakra-ui/react';
+import { Product, FooterBanner, Navbar, HeaderBanner, Footer } from "../components";
 
 const Home = ({ products }) => {
   return (

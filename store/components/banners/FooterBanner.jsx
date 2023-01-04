@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Box, Image } from "@chakra-ui/react";
-import FooterBannerImage from "../public/FooterBannerImage.webp";
+import FooterBannerImage from "../../public/FooterBannerImage.webp";
 
 const FooterBanner = () => {
     return (
