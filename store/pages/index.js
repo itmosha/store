@@ -8,7 +8,13 @@ const Home = ({ products }) => {
         <Navbar />
         <HeaderBanner />
 
-        <Wrap justify={'center'} spacingX={'24px'} spacingY={'44px'} p={'4rem 2rem 3rem 2rem'} mx={'5rem'}>
+        <Wrap
+            justify={'center'}
+            spacingX={['10px', '16px', '24px']}
+            spacingY={['16px', '24px', '44px']}
+            p={['2rem 0rem 1.5rem 0rem', '3rem 1.5rem 2rem 1.5rem', '4rem 2rem 3rem 2rem']}
+            mx={['0', '1rem', '2rem']}
+        >
         {products?.map(
             (product) => ( product.quantity_in_stock > 0 ? <Product key={product.slug} product={product}/> : ''))}
         </Wrap>
