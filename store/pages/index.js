@@ -16,7 +16,7 @@ const Home = ({ products }) => {
             mx={['0', '1rem', '2rem']}
         >
         {products?.map(
-            (product) => ( product.quantity_in_stock > 0 ? <Product key={product.slug} product={product}/> : ''))}
+            (product) => ( product.quantity_in_stock > 0 ? <Product key={ product.slug } product={ product }/> : ''))}
         </Wrap>
 
       <FooterBanner />

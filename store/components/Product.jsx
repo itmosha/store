@@ -23,7 +23,7 @@ const Product = ({ product }) => {
               boxShadow={{ base: '0px 1px 7px 2px rgba(0, 0, 0, 0.5)', lg: '0px 3px 10px 2px rgba(0, 0, 0, 0.45)'}}
               rounded={'1rem'}
         >
-            <CardBody p={['2vw', '1.5vw', '1vw', '0.8vw']} pb={'5px'}>
+            <CardBody p={['2vw', '1.5vw', '1vw', '0.8vw']}>
                 <Link href={`product/${product.slug}`}>
                     <Image
                         w={['36vw', '27vw', '18vw', '16.4vw']}

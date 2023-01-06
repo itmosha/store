@@ -8,64 +8,62 @@ import Link from "next/link";
 const ItemInCart = ({ item }) => {
     const { toggleCartItemQuantity, onRemove, setShowCart } = useStateContext();
     return (
-        <Flex p={'0.5rem'} key={item.slug} w={'29rem'} h={'10rem'}>
+        <Flex p={{ base: '0', sm: '0.5vw'}} key={item.slug} w={{ base: '92vw', sm: '29rem'}} h={{ base: '28vw', sm: '10rem' }}>
             <Link href={`/product/${item.slug}`}>
-                <Box borderWidth={'2px'} borderColor={'red'} borderRadius={'1rem'}
+                <Box borderWidth={'2px'} borderColor={'red'} borderRadius={'1rem'} w={{ base: '27vw', sm: '9rem' }}
                     onClick={ () => setShowCart(false) }>
                     <Image
                         src={ item.images[0]?.image ? item.images[0].image : DefaultPresentImage.src }
-                        w={'9rem'}
-                        h={'9rem'}
+                        w={{ base: '26vw', sm: '9rem' }}
+                        h={{ base: '26vw', sm: '9rem' }}
                     />
                 </Box>
             </Link>
-            <VStack ml={'0.5rem'}>
+            <VStack ml={['2vw', '0.5rem']} h={['28vw', '10rem']}>
                 <Box
-                    w={'18.5rem'}
-                    h={'5.5rem'}
+                    w={{ base: '62vw', sm: '18.5rem' }}
+                    h={{ base: '18vw', sm: '5.5rem' }}
                     align={'start'}
-                    p={'0.25rem'}
+                    p={{ base: '0vw', sm: '0.25rem' }}
                 >
-                    <Heading fontSize={'1.5rem'}>{ item.title }</Heading>
-                    <Text fontSize={'1.15rem'}>{ item.price } ₽</Text>
+                    <Heading fontSize={['1.15rem', '1.5rem']}>{ item.title }</Heading>
+                    <Text fontSize={['1rem', '1.15rem']}>{ item.price } ₽</Text>
                 </Box>
                 <Box
-                    w={'18.5rem'}
-                    h={'3.5rem'}
+                    w={{ base: '62vw', sm: '18.5rem' }}
+                    h={{ base: '10vw', sm: '3.5rem' }}
                 >
-                    <Flex w={'18.5rem'}>
-                        <Box w={'10rem'}
-                             h={'3rem'}
-                             px={'1.25rem'}
-                             py={'0.25rem'}
+                    <Flex
+                        w={{ base: '62vw', sm: '18.5rem' }}
+                        h={['10vw', '3.5rem']}
+                    >
+                        <Box
+                             w={{ base: '40vw', sm: '10rem' }}
+                             h={{ base: '10vw', sm: '3rem' }}
+                             px={{ sm: '1.25rem' }}
+                             py={{ sm: '0.25rem' }}
                         >
-                            <Flex>
-                                <Button w={'2.5rem'} h={'2.5rem'} onClick={ () => toggleCartItemQuantity(item.slug, 'dec') }>
-                                    <Heading fontSize={'0.75rem'}>
-                                        —
+                            <Flex h={['10vw', '3rem']}>
+                                <Button
+                                    w={['8vw', '2.5rem']} h={['8vw', '2.5rem']} onClick={ () => toggleCartItemQuantity(item.slug, 'dec') }>
+                                    <Heading pb={'5px'} fontSize={'1.25rem'}>
+                                        -
                                     </Heading>
                                 </Button>
-                                <Center w={'2.5rem'} h={'2.5rem'} borderRadius={'0.35rem'} borderWidth={'2px'} borderColor={'red.200'}>
+                                <Center minW={['8vw', '2.5rem']} h={['8vw', '2.5rem']} borderRadius={'0.35rem'} borderWidth={'2px'} borderColor={'red.200'}>
                                     <Heading fontSize={'1rem'}>
                                         { item.quantity }
                                     </Heading>
                                 </Center>
-                                <Button w={'2.5rem'} h={'2.5rem'} onClick={ () => toggleCartItemQuantity(item.slug, 'inc') }>
-                                    <Heading fontSize={'1.25rem'}>
+                                <Button w={['8vw', '2.5rem']} h={['8vw', '2.5rem']} onClick={ () => toggleCartItemQuantity(item.slug, 'inc') }>
+                                    <Heading pb={'5px'} fontSize={'1.25rem'}>
                                         +
                                     </Heading>
                                 </Button>
+                                <Button ml={['15vw', '']} w={['8vw', '2.5rem']} h={['8vw', '2.5rem']} p={'0'} onClick={ () => onRemove(item) }>
+                                    <TiDeleteOutline size={'1.5rem'}/>
+                                </Button>
                             </Flex>
-                        </Box>
-                        <Box w={'8rem'}
-                             h={'3rem'}
-                             ml={'0.5rem'}
-                             px={'2.75rem'}
-                             py={'0.25rem'}
-                        >
-                            <Button w={'2.5rem'} h={'2.5rem'} p={'0'} onClick={ () => onRemove(item) }>
-                                <TiDeleteOutline size={'1.5rem'}/>
-                            </Button>
                         </Box>
                     </Flex>
                 </Box>
