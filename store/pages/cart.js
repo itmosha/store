@@ -5,6 +5,8 @@ import Footer from "../components/Footer";
 import ItemInCart from "../components/ItemInCart";
 import SPbDeliveryForm from "../components/forms/SPbDeliveryForm";
 import { useStateContext } from "../context/StateContext";
+import SDEKForm from "../components/forms/SDEKForm";
+import PochtaForm from "../components/forms/PochtaForm";
 import {
     Box,
     Flex,
@@ -78,11 +80,7 @@ const CartPage = () => {
                                 </Box>
                                 <Box p={'1rem'} mt={'1rem'} borderRadius={'1rem'} boxShadow={'0px 3px 10px 2px rgba(0, 0, 0, 0.5)'}>
                                     <Heading fontSize={'1.5rem'} mb={'1rem'}>Информация клиента</Heading>
-                                    { checkedCheckbox === 1 ? (
-                                        <SPbDeliveryForm />
-                                        ) : (
-                                        <Heading fontSize={'1.5rem'}>Данные</Heading>
-                                    )}
+                                    { checkedCheckbox === 1 ? ( <SPbDeliveryForm /> ) : ( checkedCheckbox === 2 ? ( <SDEKForm /> ) : ( <PochtaForm /> ) ) }
                                 </Box>
                             </Box>
                         </Flex>
