@@ -10,12 +10,12 @@ import {
 
 const ReturnPage = () => {
     return (
-        <Box>
-            <Heading fontSize={'30px'}>Политика возврата</Heading>
-            <Heading fontSize={'18px'} mt={'2rem'}>
+        <Box p={['0', '0.5rem']}>
+            <Heading fontSize={['1.5rem', '1.75rem']}>Политика возврата</Heading>
+            <Heading fontSize={['1rem', '1.25rem']} mt={['20px', '2rem']}>
                 Возврат товара возможен при соблюдении следующих условий:
             </Heading>
-            <Text mt={'1.5rem'}>
+            <Text fontSize={['0.90rem', '1rem']} mt={['10px', '1.5rem']}>
                 <Highlight
                     query={'надлежащего'}
                     styles={{ px: '2', py: '1', rounded: 'full', bg: 'red.100' }}
@@ -23,8 +23,8 @@ const ReturnPage = () => {
                     1. Возврат товара надлежащего качества:
                 </Highlight>
             </Text>
-            <Box ml={'1.25rem'} mt={'0.5rem'}>
-                <UnorderedList lineHeight={'1.45'} pr={'10rem'}>
+            <Box ml={['20px', '1.25rem']} mt={['5px', '0.5rem']} fontSize={['0.90rem', '1rem']}>
+                <UnorderedList lineHeight={['1.3', '1.45']} pr={['2vw', '10rem']}>
                     <ListItem>
                         Клиент вправе отказаться от заказанного Товара в любое время до его получения,
                          а после получения Товара - в течение 7 (семи) дней, не считая дня покупки.
@@ -44,7 +44,7 @@ const ReturnPage = () => {
                     </ListItem>
                 </UnorderedList>
             </Box>
-            <Text mt={'1.5rem'}>
+            <Text fontSize={['0.90rem', '1rem']} mt={['20px', '1.5rem']}>
                 <Highlight
                     query={'ненадлежащего'}
                     styles={{ px: '2', py: '1', rounded: 'full', bg: 'red.100' }}
@@ -52,16 +52,16 @@ const ReturnPage = () => {
                     2. Возврат товара ненадлежащего качества:
                 </Highlight>
             </Text>
-            <Text pr={'10rem'} mt={'0.7rem'}>
+            <Text pr={['2vw', '10rem']} mt={['5px', '0.75rem']} fontSize={['0.9rem', '1rem']}>
                 Под товаром ненадлежащего качества подразумевается товар, не способный обеспечить свои функциональные
                 качества из-за существенного недостатка (с наличием дефектов/брака).
             </Text>
-            <Text pr={'10rem'}>
+            <Text pr={['2vw', '10rem']} fontSize={['0.9rem', '1rem']}>
                 Покупатель, которому продан товар ненадлежащего качества, если это не было оговорено продавцом,
                 вправе по своему выбору заявить любое из нижеперечисленных требований:
             </Text>
-            <Box ml={'1.25rem'} mt={'0.5rem'}>
-                <UnorderedList lineHeight={'1.45'} pr={'15rem'}>
+            <Box ml={['20px', '1.25rem']} mt={['5px', '0.5rem']} fontSize={['0.90rem', '1rem']}>
+                <UnorderedList lineHeight={['1.4', '1.45']} pr={['2vw', '15rem']}>
                     <ListItem>
                         замена на аналогичный товар с соответствующим перерасчётом покупной цены;
                     </ListItem>
@@ -77,7 +77,7 @@ const ReturnPage = () => {
                     </ListItem>
                 </UnorderedList>
             </Box>
-            <Text mt={'1rem'} mr={'10rem'}>
+            <Text mt={['10px', '1rem']} mr={['2vw', '10rem']} fontSize={['0.90rem', '1rem']}>
                 Интернет-магазин вправе отказать в обмене или возврате товара, если сочтет, что обнаруженный
                 существенный недостаток является следствием неправильной эксплуатации товара.
             </Text>

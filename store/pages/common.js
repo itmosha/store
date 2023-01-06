@@ -19,27 +19,25 @@ const CommonPage = () => {
             <CommonHeader />
             <Flex>
                 <Box>
-                    <Tabs orientation={'vertical'} colorScheme={'red'} width={'100rem'}>
+                    <Tabs orientation={'horizontal'} colorScheme={'red'} width={'100vw'}>
                         <TabList
                             alignItems={'start'}
-                            borderRight={'2px'}
-                            borderRightColor={'gray.200'}
-                            h={'100vh'}
-                            width={'15rem'}
+                            h={['fit-content']}
+                            width={['100vw']}
                         >
-                            <Tab w={'15rem'}>Доставка</Tab>
-                            <Tab w={'15rem'}>Политика возврата</Tab>
-                            <Tab w={'15rem'}>Контакты</Tab>
+                            <Tab w={['33.33vw']} fontSize={['0.80rem', '1rem']}>Доставка</Tab>
+                            <Tab w={['33.33vw']} fontSize={['0.80rem', '1rem']}>Возврат</Tab>
+                            <Tab w={['33.33vw']} fontSize={['0.80rem', '1rem']}>Контакты</Tab>
                         </TabList>
 
                         <TabPanels>
-                            <TabPanel pl={'2rem'}>
+                            <TabPanel>
                                 <DeliveryPage />
                             </TabPanel>
-                            <TabPanel pl={'2rem'}>
+                            <TabPanel>
                                 <ReturnPage />
                             </TabPanel>
-                            <TabPanel pl={'2rem'}>
+                            <TabPanel>
                                 <ContactsPage />
                             </TabPanel>
                         </TabPanels>

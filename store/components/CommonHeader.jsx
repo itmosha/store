@@ -4,7 +4,7 @@ import { Box, Center, HStack, Text, Flex } from '@chakra-ui/react';
 
 const CommonHeader = () => {
     return (
-        <Box p={'2.5'} borderBottom={'2px'} borderBottomColor={'gray.200'}>
+        <Box p={'2.5'} borderBottom={'2px'} borderBottomColor={'gray.200'} w={'100vw'}>
             <HStack>
                 <Flex justify={'space-between'} flex={'1'}>
                     <Center ml={'3'}>

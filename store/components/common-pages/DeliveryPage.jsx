@@ -10,12 +10,12 @@ import {
 
 const DeliveryPage = () => {
     return (
-        <Box>
-            <Heading fontSize={'30px'}>Доставка</Heading>
-            <Heading fontSize={'18px'} mt={'2rem'}>Доставка по Санкт-Петербургу</Heading>
-            <Text mt={'0.5rem'}>По Санкт-Петербургу возможна доставка курьером</Text>
-            <Box ml={'1.25rem'} mt={'0.5rem'}>
-                <UnorderedList lineHeight={'1.65'}>
+        <Box p={['0', '0.5rem']}>
+            <Heading fontSize={['1.5rem', '1.75rem']}>Доставка</Heading>
+            <Heading fontSize={['1rem', '1.25rem']} mt={['20px', '2rem']}>Доставка по Санкт-Петербургу</Heading>
+            <Text fontSize={['0.90rem', '1rem']} mt={['5px', '0.5rem']}>По Санкт-Петербургу возможна доставка курьером</Text>
+            <Box ml={['20px', '1.25rem']} mt={['5px', '0.5rem']}>
+                <UnorderedList fontSize={['0.90rem', '1rem']} lineHeight={['1.5', '1.65']}>
                     <ListItem>
                         <Highlight
                             query={'100 рублей'}
@@ -27,10 +27,10 @@ const DeliveryPage = () => {
                     <ListItem>Время доставки - в течение трёх дней</ListItem>
                 </UnorderedList>
             </Box>
-            <Heading fontSize={'18px'} mt={'2rem'}>Доставка курьерской службой "СДЭК"</Heading>
-            <Text mt={'0.5rem'}>Доставка осуществлется по всей территории РФ</Text>
-            <Box ml={'1.25rem'} mt={'0.5rem'}>
-                <UnorderedList lineHeight={'1.65'}>
+            <Heading fontSize={['1rem', '1.25rem']} mt={['20px', '2rem']}>Доставка курьерской службой "СДЭК"</Heading>
+            <Text fontSize={['0.90rem', '1rem']} mt={['5px', '0.5rem']}>Доставка осуществлется по всей территории РФ</Text>
+            <Box ml={['20px', '1.25rem']} mt={['5px', '0.5rem']}>
+                <UnorderedList fontSize={['0.90rem', '1rem']} lineHeight={['1.5', '1.65']}>
                     <ListItem>
                         <Highlight
                             query={'исходя из тарифов'}
@@ -42,10 +42,10 @@ const DeliveryPage = () => {
                     <ListItem>Время доставки - от двух до пяти дней с момента отправки</ListItem>
                 </UnorderedList>
             </Box>
-            <Heading fontSize={'18px'} mt={'2rem'}>Доставка Почтой России</Heading>
-            <Text mt={'0.5rem'}>Доставка осуществлется по всей территории РФ</Text>
-            <Box ml={'1.25rem'} mt={'0.5rem'}>
-                <UnorderedList lineHeight={'1.65'}>
+            <Heading fontSize={['1rem', '1.25rem']} mt={['20px', '2rem']}>Доставка Почтой России</Heading>
+            <Text fontSize={['0.90rem', '1rem']} mt={['5px', '0.5rem']}>Доставка осуществлется по всей территории РФ</Text>
+            <Box ml={['20px', '1.25rem']} mt={['5px', '0.5rem']}>
+                <UnorderedList fontSize={['0.90rem', '1rem']} lineHeight={['1.5', '1.65']}>
                     <ListItem>
                         <Highlight
                             query={'исходя из тарифов'}
