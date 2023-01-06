@@ -49,7 +49,7 @@ const ItemInCart = ({ item }) => {
                         <Box
                              w={['40vw', '10rem']}
                              h={['10vw', '3rem']}
-                             px={['1vw', '1.25rem']}
+                             px={['1vw', '0.5vw', '0', '1.25rem']}
                              py={['0', '0.25rem']}
                         >
                             <Flex h={['10vw', '3rem']}>
@@ -69,7 +69,7 @@ const ItemInCart = ({ item }) => {
                                         +
                                     </Heading>
                                 </Button>
-                                <Button ml={['15vw', '6rem']} w={['8vw', '2.5rem']} h={['8vw', '2.5rem']} p={'0'} onClick={ () => onRemove(item) }>
+                                <Button ml={['15vw', '5vw', '0', '5vw']} w={['8vw', '2.5rem']} h={['8vw', '2.5rem']} p={'0'} onClick={ () => onRemove(item) }>
                                     <TiDeleteOutline size={'1.5rem'}/>
                                 </Button>
                             </Flex>
