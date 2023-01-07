@@ -141,8 +141,8 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params: { slug } }) => {
 
-    // const productQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items/${slug}`);
-    const productQuery = await fetch(`http://127.0.0.1:8000/api/items/${slug}`);
+    const productQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items/${slug}`);
+    // const productQuery = await fetch(`http://127.0.0.1:8000/api/items/${slug}`);
     const product = await productQuery.json();
 
     return {
