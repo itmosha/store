@@ -70,6 +70,9 @@ export const StateContext = ({ children }) => {
             setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
             setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
 
+            setCookie('totalCartQuantities', Number(totalQuantities) + Number(quantity));
+            setCookie('totalCartPrice', Number(totalPrice) + Number(product.price * quantity))
+
             toast.success(`Добавлено в корзину: ${qty} ${product.title}`, {duration: 1500});
         }
     }
@@ -83,6 +86,8 @@ export const StateContext = ({ children }) => {
         setCartItems(newCartItems);
 
         setCookie('cookieCartItems', newCartItems);
+        setCookie('totalCartQuantities', Number(totalQuantities) - Number(foundProduct.quantity));
+        setCookie('totalCartPrice', Number(totalPrice) - Number(foundProduct.price * foundProduct.quantity));
     }
 
     const toggleCartItemQuantity = (id, value) => {
@@ -105,7 +110,10 @@ export const StateContext = ({ children }) => {
 
                 setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
                 setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1);
+
                 setCookie('cookieCartItems', newCartItems);
+                setCookie('totalCartPrice', totalPrice + foundProduct.price);
+                setCookie('totalCartQuantities', totalQuantities + 1);
             }
         } else if (value === 'dec') {
             if (foundProduct.quantity > 1) {
@@ -118,7 +126,10 @@ export const StateContext = ({ children }) => {
 
                 setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
                 setTotalQuantities(prevTotalQuantities => prevTotalQuantities - 1);
+
                 setCookie('cookieCartItems', newCartItems);
+                setCookie('totalCartPrice', Number(totalPrice) - Number(foundProduct.price));
+                setCookie('totalCartQuantities', Number(totalQuantities) - 1);
             }
         }
     }
@@ -139,6 +150,9 @@ export const StateContext = ({ children }) => {
             value={{
                 showCart,
                 setShowCart,
+                setCartItems,
+                setTotalQuantities,
+                setTotalPrice,
                 cartItems,
                 totalPrice,
                 totalQuantities,
