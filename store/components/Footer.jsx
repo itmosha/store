@@ -15,18 +15,20 @@ const Footer = () => {
                             </Link>
                         </Center>
                         <ButtonGroup variant={'solid'}>
-                            <IconButton
-                                as={'a'}
-                                aria-label={'Telegram'}
-                                icon={<FaTelegramPlane fontSize={'1.25rem'} />}
-                                cursor={'pointer'}
-                            />
-                            <IconButton
-                                as={'a'}
-                                aria-label={'VK'}
-                                icon={<SlSocialVkontakte fontSize={'1.25rem'} />}
-                                cursor={'pointer'}
-                            />
+                            <Link href={'https://t.me/blockstore1'}>
+                                <IconButton
+                                    aria-label={'Telegram'}
+                                    icon={<FaTelegramPlane fontSize={'1.25rem'} />}
+                                    cursor={'pointer'}
+                                />
+                            </Link>
+                            <Link href={'https://vk.com/public217881786'}>
+                                <IconButton
+                                    aria-label={'VK'}
+                                    icon={<SlSocialVkontakte fontSize={'1.25rem'} />}
+                                    cursor={'pointer'}
+                                />
+                            </Link>
                         </ButtonGroup>
                     </Stack>
                     <Box align={'center'}>
