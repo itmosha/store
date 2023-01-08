@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Box, Image } from "@chakra-ui/react";
 import FooterBannerImage from "../../public/FooterBannerImage.webp";
 
-const FooterBanner = () => {
+const FooterBanner = ({ reference }) => {
     return (
         <Box
             mt={['1.5rem', '2rem', '3rem']}
@@ -11,7 +11,7 @@ const FooterBanner = () => {
             boxShadow={'0px 3px 10px 2px rgba(0, 0, 0, 0.5)'}
             borderRadius={'2rem'}
         >
-            <Link href={'/'}>
+            <Link href={ reference }>
                 <Image
                     border={'0.5px solid grey'}
                     src={ FooterBannerImage.src } borderRadius={'1rem'}

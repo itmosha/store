@@ -6,7 +6,7 @@ const Home = ({ products }) => {
   return (
     <Box align={'center'}>
         <Navbar />
-        <HeaderBanner />
+        <HeaderBanner reference={'/'}/>
 
         <Wrap
             justify={'center'}
@@ -19,7 +19,7 @@ const Home = ({ products }) => {
             (product) => ( product.quantity_in_stock > 0 ? <Product key={ product.slug } product={ product }/> : ''))}
         </Wrap>
 
-      <FooterBanner />
+      <FooterBanner reference={'/'}/>
         <footer>
             <Footer />
         </footer>
