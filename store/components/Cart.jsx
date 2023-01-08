@@ -79,6 +79,7 @@ const Cart = () => {
                                     w={['64vw', '16rem']}
                                     h={['10vw', '2.5rem']}
                                     m={['2vw 10vw', '0.5rem 6rem 0rem 6rem']}
+                                    onClick={ () => setShowCart(false) }
                                 >
                                     <Heading fontSize={'1.25rem'} fontWeight={'500'}>
                                         Оформить заказ

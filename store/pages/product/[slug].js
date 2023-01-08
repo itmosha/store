@@ -28,7 +28,7 @@ const ProductDetails = ({ product }) => {
             <Box minH={'85vh'} w={'100vw'} maxW={'100vw'} p={['3vw', '2.5vw', '2vw', '2rem 4rem']} display={['block', 'flex']}>
                 <Stack direction={['column', 'row']}>
                     <Stack direction={['row']}>
-                        { images.length > 0 && (
+                        { images?.length > 0 && (
                         <Box borderWidth={'2px'} borderColor={'red.200'} borderRadius={['10px', '1rem']} p={['5px', '0.5rem']} h={'fit-content'} w={['', '5rem']}>
                             { images?.map((item, i) => (
                                 <Img

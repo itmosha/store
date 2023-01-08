@@ -1,27 +1,32 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { getCookie } from "cookies-next";
-import {useStateContext} from "../context/StateContext";
+import { useStateContext } from "../context/StateContext";
+import {Box} from "@chakra-ui/react";
 
 const Layout = ({ children }) => {
     const { setCartItems, setTotalQuantities, setTotalPrice } = useStateContext();
 
+    const cookiesCartItems = getCookie('cookieCartItems');
+    const cookiesTotalQuantities = getCookie('totalCartQuantities');
+    const cookiesTotalPrice = getCookie('totalCartPrice')
+
     useEffect(() => {
-        const cookies = getCookie('cookieCartItems');
-        const quantities = getCookie('totalCartQuantities');
-        const price = getCookie('totalCartPrice');
+        GetCookies();
+    }, []);
 
-        if (cookies) {
-            const items = JSON.parse(cookies);
+    const GetCookies = () => {
+        if (cookiesCartItems) {
+            const cartItems = JSON.parse(cookiesCartItems);
+            setCartItems(cartItems);
 
-            setCartItems(items);
-            if (quantities) { setTotalQuantities(Number(quantities)); }
-            if (price) { setTotalPrice(Number(price)); }
+            if (cookiesTotalQuantities) { setTotalQuantities(Number(cookiesTotalQuantities)); }
+            if (cookiesTotalPrice) { setTotalPrice(Number(cookiesTotalPrice)); }
         }
-    });
+    }
 
     return (
-        <div className="layout">
+        <Box>
             <Head>
                 <title>Block Store</title>
                 <link rel="shortcut icon" href="/favicon.ico"/>
@@ -29,7 +34,7 @@ const Layout = ({ children }) => {
             <main>
                 { children }
             </main>
-        </div>
+        </Box>
     )
 }
 
