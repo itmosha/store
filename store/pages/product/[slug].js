@@ -38,7 +38,7 @@ const ProductDetails = ({ product }) => {
                 </Box>
                 <Stack direction={{ base: 'column', lg: 'row'}} mt={{ base: '10px', lg: '20px' }}ц>
                     <Stack direction={{ base: 'column', lg: 'row'}}>
-                        <Box w={{ base: '96vw', lg: '5vw' }} m={['0!important']}>
+                        <Box w={{ base: '96vw', lg: '5vw' }} m={{ base: '0!important', lg: '0 1vw 0 0!important'}}>
                             { images?.length > 0 && (
                                 <Box>
                                     <Stack direction={{ base: 'row', lg: 'column' }}>
@@ -48,7 +48,7 @@ const ProductDetails = ({ product }) => {
                                                 src={ images[i].image }
                                                 w={{ base: '15vw', lg: '5vw'}}
                                                 h={{ base: '15vw', lg: '5vw'}}
-                                                ml={{ base: '0.85vw!important'}}
+                                                ml={['0.85vw!important']}
                                                 onMouseDown={ () => setIndex(i) }
                                                 border={'2px'}
                                                 borderColor={ i === index ? 'blackAlpha.800!important' : 'blackAlpha.500'}
@@ -61,7 +61,7 @@ const ProductDetails = ({ product }) => {
                                 </Box>
                             )}
                         </Box>
-                        <Box w={{ base: '96vw', lg: '34vw'}} mx={{ base: '0', lg: '1vw'}}>
+                        <Box w={{ base: '96vw', lg: '34vw'}}>
                             <Image
                                 src={ images[index]?.image ? images[index].image : (images[0]?.image ? images[0].image : DefaultPresentImage) }
                                 w={{ base: '96vw', lg: '34vw'}}
@@ -99,8 +99,8 @@ const ProductDetails = ({ product }) => {
 
 export const getStaticPaths = async () => {
 
-    const productsQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items`);
-    // const productsQuery = await fetch('http://127.0.0.1:8000/api/items');
+    // const productsQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items`);
+    const productsQuery = await fetch('http://127.0.0.1:8000/api/items');
 
     const products = await productsQuery.json();
 
@@ -117,8 +117,8 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params: { slug } }) => {
 
-    const productQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items/${slug}`);
-    // const productQuery = await fetch(`http://127.0.0.1:8000/api/items/${slug}`);
+    // const productQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items/${slug}`);
+    const productQuery = await fetch(`http://127.0.0.1:8000/api/items/${slug}`);
     const product = await productQuery.json();
 
     return {
