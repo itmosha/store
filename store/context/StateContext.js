@@ -41,24 +41,24 @@ export const StateContext = ({ children }) => {
         let wasAdded = false;
 
         if (checkProductInCart) {
-
-            const updatedCartItems = cartItems.map((cartProduct) => {
-                if (cartProduct.slug === product.slug && product.quantity_in_stock >= cartProduct.quantity + quantity) {
-                    wasAdded = true;
-                    return {
-                        ...cartProduct,
-                        quantity: cartProduct.quantity + quantity
-                    };
-                } else return {
-                    ...cartProduct
-                };
-            });
-
-            if (wasAdded) {
-                setCartItems(updatedCartItems);
-
-                setCookie('cookieCartItems', updatedCartItems);
-            }
+            //
+            // const updatedCartItems = cartItems.map((cartProduct) => {
+            //     if (cartProduct.slug === product.slug && product.quantity_in_stock >= cartProduct.quantity + quantity) {
+            //         wasAdded = true;
+            //         return {
+            //             ...cartProduct,
+            //             quantity: cartProduct.quantity + quantity
+            //         };
+            //     } else return {
+            //         ...cartProduct
+            //     };
+            // });
+            //
+            // if (wasAdded) {
+            //     setCartItems(updatedCartItems);
+            //
+            //     setCookie('cookieCartItems', updatedCartItems);
+            // }
         } else {
             product.quantity = quantity;
             setCartItems([...cartItems, { ...product }]);
