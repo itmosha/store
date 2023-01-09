@@ -1,8 +1,7 @@
 import React from 'react';
 import { SlSocialVkontakte } from "react-icons/sl";
 import { FaTelegramPlane } from "react-icons/fa";
-import Link from "next/link";
-import { ButtonGroup, Center, Box, IconButton, Stack, Text } from "@chakra-ui/react";
+import { Link, ButtonGroup, Center, Box, IconButton, Stack, Text } from "@chakra-ui/react";
 
 const Footer = () => {
     return (
@@ -15,14 +14,14 @@ const Footer = () => {
                             </Link>
                         </Center>
                         <ButtonGroup variant={'solid'}>
-                            <Link href={'https://t.me/blockstore1'}>
+                            <Link href={'https://t.me/blockstore1'} isExternal>
                                 <IconButton
                                     aria-label={'Telegram'}
                                     icon={<FaTelegramPlane fontSize={'1.25rem'} />}
                                     cursor={'pointer'}
                                 />
                             </Link>
-                            <Link href={'https://vk.com/public217881786'}>
+                            <Link href={'https://vk.com/public217881786'} isExternal>
                                 <IconButton
                                     aria-label={'VK'}
                                     icon={<SlSocialVkontakte fontSize={'1.25rem'} />}
