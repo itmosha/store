@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import DefaultPresentImage from '../public/default_present.png';
+import DefaultPresentImage from '../public/DefaultLegoSetImage.png';
 import { useStateContext } from "../context/StateContext";
 import {
     Card,

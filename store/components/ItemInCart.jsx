@@ -1,5 +1,5 @@
 import React from 'react';
-import DefaultPresentImage from "../public/default_present.png";
+import DefaultPresentImage from "../public/DefaultLegoSetImage.png";
 import Link from "next/link";
 import { TiDeleteOutline } from "react-icons/ti";
 import { useStateContext } from "../context/StateContext";

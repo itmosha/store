@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useStateContext } from '../../context/StateContext';
-import DefaultPresentImage from '../../public/default_present.png';
+import DefaultPresentImage from '../../public/DefaultLegoSetImage.png';
+import PartsCountIcon from '../../public/PartsCountIcon.png';
+import MinifiguresCountImage from '../../public/MinifiguresCountIcon.png';
+import BoxDimensionsIcon from '../../public/BoxDimensionsIcon.png';
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import {
@@ -9,6 +12,7 @@ import {
     Image,
     Flex,
     Img,
+    HStack,
     VStack,
     Heading,
     Text,
@@ -33,10 +37,11 @@ const ProductDetails = ({ product }) => {
             >
                 <Box p={{ base: '10px 20px', lg: '0'}} >
                     <Heading fontSize={['1.5rem', '2rem']} fontWeight={['500']}>{ title }</Heading>
+                    <Text fontSize={['0.8rem', '1rem']} pl={'3px'} textColor={'blackAlpha.800'}>LEGO Speed Champions</Text>
                     <Text fontSize={['0.8rem', '1.25rem']} fontWeight={['200']}
-                          textColor={['blackAlpha.700']} pl={['3px']}>{ slug }</Text>
+                          textColor={['blackAlpha.800']} pl={['3px']}>{ slug }</Text>
                 </Box>
-                <Stack direction={{ base: 'column', lg: 'row'}} mt={{ base: '10px', lg: '20px' }}ц>
+                <Stack direction={{ base: 'column', lg: 'row'}} mt={{ base: '10px', lg: '20px' }}>
                     <Stack direction={{ base: 'column', lg: 'row'}}>
                         <Box w={{ base: '96vw', lg: '5vw' }} m={{ base: '0!important', lg: '0 1vw 0 0!important'}}>
                             { images?.length > 0 && (
@@ -63,20 +68,20 @@ const ProductDetails = ({ product }) => {
                         </Box>
                         <Box w={{ base: '96vw', lg: '34vw'}}>
                             <Image
-                                src={ images[index]?.image ? images[index].image : (images[0]?.image ? images[0].image : DefaultPresentImage) }
+                                src={ images[index]?.image ? images[index].image : (images[0]?.image ? images[0].image : DefaultPresentImage.src ) }
                                 w={{ base: '96vw', lg: '34vw'}}
                             />
                         </Box>
                     </Stack>
                     <Box
-                        w={{ base: '96vw', lg:'35vw' }} ml={{ base: '0', lg: '1rem'}}
+                        w={{ base: '96vw', lg: '35vw' }} ml={{ base: '0', lg: '1rem'}}
                         h={'fit-content'}
                         p={{ base: '5vw', lg: '1.5vw'}}
                         boxShadow={'0px 7px 10px 1px rgba(0, 0, 0, 0.5)'}
                         borderRadius={'15px'}
                     >
                         <Heading fontWeight={'500'} fontSize={['1.5rem', '2rem']}>{ price } ₽</Heading>
-                        <Flex mt={'15px'} mb={'40px'}>
+                        <Flex mt={'15px'} mb={{ base: '20px', lg: '40px'}}>
                             <Button h={['5vh']} onClick={ () => onAdd(product, 1) } colorScheme={'red'} borderRadius={'10px'}>
                                 Добавить в корзину
                             </Button>
@@ -86,7 +91,25 @@ const ProductDetails = ({ product }) => {
                                 </Text>
                             </Center>
                         </Flex>
-                        <Text css={'white-space: pre-wrap'} mt={'15px'} fontSize={['0.9rem', '1rem']} textColor={'blackAlpha.800'}>{ description }</Text>
+                        <Flex align={'center'} px={{ base: '2vw', lg: '1vw'}}>
+                            <VStack w={'9vw'} h={'5vw'} mx={{ base: '9vw', lg: '1vw' }}>
+                                <Image src={ PartsCountIcon.src } w={{ base: '20vw', lg: '3vw' }} h={{ base: '20vw', lg: '3vw' }} mt={['2px']}/>
+                                <Text mt={'5px!important'} fontSize={['0.70rem', '1rem', '1.25rem', '0.9rem']} fontWeight={'700'}>299</Text>
+                            </VStack>
+                            <Divider orientation={'vertical'} h={{ base: '24vw', lg: '5vw' }} borderColor={'blackAlpha.700'}/>
+                            <VStack w={'9vw'} h={'5vw'} mx={{ base: '9vw', lg: '1vw'}}>
+                                <Image src={ MinifiguresCountImage.src } w={{ base: '20vw', lg: '3vw' }} h={{ base: '20vw', lg: '3vw' }} mt={['2px']} />
+                                <Text mt={'5px!important'} fontSize={['0.70rem', '1rem', '1.25rem', '0.9rem']} fontWeight={'700'}>1</Text>
+                            </VStack>
+                            <Divider orientation={'vertical'} h={{ base: '24vw', lg: '5vw' }} borderColor={'blackAlpha.700'}/>
+                            <VStack w={'9vw'} h={'5vw'} mx={{ base: '9vw', lg: '1vw'}}>
+                                <Image src={ BoxDimensionsIcon.src } w={{ base: '20vw', lg: '3vw' }} h={{ base: '20vw', lg: '3vw' }} mt={['2px']} />
+                                <Text mt={'5px!important'} fontSize={['0.70rem', '1rem', '1.25rem', '0.9rem']} fontWeight={['700']} whiteSpace={'nowrap'}>14,1 - 7,2 - 26,2</Text>
+                            </VStack>
+                        </Flex>
+                        <Box mt={{ base: '', lg: '30px'}}>
+                            <Text css={'white-space: pre-wrap'} mt={'15px'} fontSize={['0.9rem', '1rem']} textColor={'blackAlpha.800'}>{ description }</Text>
+                        </Box>
                     </Box>
                 </Stack>
             </Box>
@@ -99,8 +122,8 @@ const ProductDetails = ({ product }) => {
 
 export const getStaticPaths = async () => {
 
-    // const productsQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items`);
-    const productsQuery = await fetch('http://127.0.0.1:8000/api/items');
+    const productsQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items`);
+    // const productsQuery = await fetch('http://127.0.0.1:8000/api/items');
 
     const products = await productsQuery.json();
 
@@ -117,8 +140,8 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params: { slug } }) => {
 
-    // const productQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items/${slug}`);
-    const productQuery = await fetch(`http://127.0.0.1:8000/api/items/${slug}`);
+    const productQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items/${slug}`);
+    // const productQuery = await fetch(`http://127.0.0.1:8000/api/items/${slug}`);
     const product = await productQuery.json();
 
     return {
