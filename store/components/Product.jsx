@@ -12,7 +12,7 @@ import {
     Text,
     Divider,
     Button,
-    ButtonGroup
+    ButtonGroup, Spacer
 } from '@chakra-ui/react';
 
 const Product = ({ product }) => {
@@ -29,11 +29,13 @@ const Product = ({ product }) => {
                         w={['36vw', '27vw', '18vw', '16.4vw']}
                         src={ product.images[0]?.image ? product.images[0].image : DefaultPresentImage.src }
                         alt={ product.title }
+                        rounded={'1rem'}
                     />
                 </Link>
-                <Stack mt={'5px'}>
-                    <Heading fontSize={['0.9rem', '0.95rem', '1.05rem', '1.15rem', '1.25rem']}>{ product.title }</Heading>
-                    <Text fontSize={['0.80rem', '0.85rem', '0.95rem', '1rem', '1.05rem']}>{ product.price } ₽</Text>
+                <Stack mt={'5px'} align={'center'}>
+                    <Text fontSize={['0.8rem', '0.9rem']} textColor={'blackAlpha.700'} mt={'0!important'} align={'start'}>{ product.slug }</Text>
+                    <Heading fontSize={['0.85rem', '0.90rem', '1.00rem', '1.10rem', '1.20rem']} mt={'0!important'} fontWeight={'500'}>{ product.title }</Heading>
+                    <Text fontSize={['0.90rem', '0.95rem', '1.05rem', '1.10rem', '1.15rem']} mt={['1rem!important']}>{ product.price } ₽</Text>
                 </Stack>
             </CardBody>
             <Divider />
