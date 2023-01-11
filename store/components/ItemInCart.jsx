@@ -1,5 +1,5 @@
 import React from 'react';
-import DefaultPresentImage from "../public/DefaultLegoSetImage.png";
+import DefaultLegoSetImage from "../public/DefaultLegoSetImage.png";
 import Link from "next/link";
 import { TiDeleteOutline } from "react-icons/ti";
 import { useStateContext } from "../context/StateContext";
@@ -22,7 +22,7 @@ const ItemInCart = ({ item }) => {
                 <Box borderWidth={'2px'} borderColor={'red'} borderRadius={'1rem'} w={['27vw', '9rem']}
                     onClick={ () => setShowCart(false) }>
                     <Image
-                        src={ item.images[0]?.image ? item.images[0].image : DefaultPresentImage.src }
+                        src={ item.images[0]?.image ? item.images[0].image : DefaultLegoSetImage.src }
                         w={['26vw', '9rem']}
                         h={['26vw', '9rem']}
                     />

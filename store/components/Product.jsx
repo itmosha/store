@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import DefaultPresentImage from '../public/DefaultLegoSetImage.png';
+import DefaultLegoSetImage from '../public/DefaultLegoSetImage.png';
 import { useStateContext } from "../context/StateContext";
 import {
     Card,
@@ -27,7 +27,7 @@ const Product = ({ product }) => {
                 <Link href={`product/${product.slug}`}>
                     <Image
                         w={['36vw', '27vw', '18vw', '16.4vw']}
-                        src={ product.images[0]?.image ? product.images[0].image : DefaultPresentImage.src }
+                        src={ product.images[0]?.image ? product.images[0].image : DefaultLegoSetImage.src }
                         alt={ product.title }
                         rounded={'1rem'}
                     />

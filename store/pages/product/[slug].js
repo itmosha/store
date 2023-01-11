@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useStateContext } from '../../context/StateContext';
-import DefaultPresentImage from '../../public/DefaultLegoSetImage.png';
+import DefaultLegoSetImage from '../../public/DefaultLegoSetImage.png';
 import PartsCountIcon from '../../public/PartsCountIcon.png';
 import MinifiguresCountImage from '../../public/MinifiguresCountIcon.png';
 import BoxDimensionsIcon from '../../public/BoxDimensionsIcon.png';
@@ -68,7 +68,7 @@ const ProductDetails = ({ product }) => {
                         </Box>
                         <Box w={{ base: '96vw', lg: '34vw'}}>
                             <Image
-                                src={ images[index]?.image ? images[index].image : (images[0]?.image ? images[0].image : DefaultPresentImage.src ) }
+                                src={ images[index]?.image ? images[index].image : (images[0]?.image ? images[0].image : DefaultLegoSetImage.src ) }
                                 w={{ base: '96vw', lg: '34vw'}}
                             />
                         </Box>
