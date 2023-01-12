@@ -18,13 +18,13 @@ class Item(models.Model):
     is_active = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
 
-    sku = models.CharField(max_length=100, blank=True)  # TODO: make unique and not blank
+    sku = models.CharField(max_length=100, unique=True)
 
-    parts_amount = models.IntegerField(default=0)  # TODO: delete default
-    series = models.CharField(max_length=100, default='')
-    weight = models.IntegerField(default=0)  # TODO: delete default
-    dimensions = models.CharField(max_length=100, default='')  # TODO: delete default
-    minifigures_amount = models.IntegerField(default=0)  # TODO: delete default
+    parts_amount = models.IntegerField()
+    series = models.CharField(max_length=100)
+    weight = models.IntegerField()
+    dimensions = models.CharField(max_length=100)
+    minifigures_amount = models.IntegerField()
 
     def __str__(self):
         return self.title

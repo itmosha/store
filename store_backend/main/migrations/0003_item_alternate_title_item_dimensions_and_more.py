@@ -47,12 +47,11 @@ class Migration(migrations.Migration):
             name='sku',
             field=models.CharField(blank=True, max_length=100),
         ),
-
-        migrations.RunPython(update_item_sku, reverse_code=migrations.RunPython.noop),
-
         migrations.AddField(
             model_name='item',
             name='weight',
             field=models.IntegerField(default=0),
         ),
+
+        migrations.RunPython(update_item_sku, reverse_code=migrations.RunPython.noop),
     ]
