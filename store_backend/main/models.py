@@ -1,7 +1,5 @@
-import random
 import uuid
 from django.db import models
-from django.db.models.signals import pre_save
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -9,10 +7,10 @@ class Item(models.Model):
     def images(self):
         return ItemImage.objects.filter(item=self)
     title = models.CharField(max_length=100)
-    alternate_title = models.CharField(max_length=100, default='')  # TODO: delete default
+    alternate_title = models.CharField(max_length=100, blank=True)
     slug = models.SlugField(max_length=100, unique=True)
     price = models.IntegerField()
-    description = models.TextField()
+    description = models.TextField(blank=True)
     quantity_in_stock = models.IntegerField()
     quantity_sold = models.IntegerField(default=0)
     is_active = models.BooleanField(default=False)
@@ -20,11 +18,11 @@ class Item(models.Model):
 
     sku = models.CharField(max_length=100, unique=True)
 
-    parts_amount = models.IntegerField()
-    series = models.CharField(max_length=100)
-    weight = models.IntegerField()
-    dimensions = models.CharField(max_length=100)
-    minifigures_amount = models.IntegerField()
+    parts_amount = models.IntegerField(blank=True, null=True)
+    series = models.CharField(max_length=100, blank=True)
+    weight = models.IntegerField(blank=True, null=True)
+    dimensions = models.CharField(max_length=100, blank=True)
+    minifigures_amount = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.title

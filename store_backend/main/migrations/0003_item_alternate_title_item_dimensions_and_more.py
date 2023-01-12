@@ -17,30 +17,32 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunSQL('SET CONSTRAINTS ALL IMMEDIATE'),
+
         migrations.AddField(
             model_name='item',
             name='alternate_title',
-            field=models.CharField(default='', max_length=100),
+            field=models.CharField(blank=True, max_length=100),
         ),
         migrations.AddField(
             model_name='item',
             name='dimensions',
-            field=models.CharField(default='', max_length=100),
+            field=models.CharField(blank=True, max_length=100),
         ),
         migrations.AddField(
             model_name='item',
             name='minifigures_amount',
-            field=models.IntegerField(default=0),
+            field=models.IntegerField(blank=True, null=True),
         ),
         migrations.AddField(
             model_name='item',
             name='parts_amount',
-            field=models.IntegerField(default=0),
+            field=models.IntegerField(blank=True, null=True),
         ),
         migrations.AddField(
             model_name='item',
             name='series',
-            field=models.CharField(default='', max_length=100),
+            field=models.CharField(blank=True, max_length=100),
         ),
         migrations.AddField(
             model_name='item',
@@ -50,8 +52,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='item',
             name='weight',
-            field=models.IntegerField(default=0),
+            field=models.IntegerField(blank=True, null=True),
         ),
 
         migrations.RunPython(update_item_sku, reverse_code=migrations.RunPython.noop),
+        migrations.RunSQL(migrations.RunSQL.noop, reverse_sql='SET CONSTRAINTS ALL IMMEDIATE'),
     ]
