@@ -8,6 +8,7 @@ class Item(models.Model):
     def images(self):
         return ItemImage.objects.filter(item=self)
     title = models.CharField(max_length=100)
+    alternate_title = models.CharField(max_length=100, default='')  # TODO: delete default
     slug = models.SlugField(max_length=100, unique=True)
     price = models.IntegerField()
     description = models.TextField()
@@ -15,6 +16,14 @@ class Item(models.Model):
     quantity_sold = models.IntegerField(default=0)
     is_active = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
+
+    sku = models.CharField(max_length=100, blank=True)  # TODO: make unique and not blank
+
+    parts_amount = models.IntegerField(default=0)  # TODO: delete default
+    series = models.CharField(max_length=100, default='')
+    weight = models.IntegerField(default=0)  # TODO: delete default
+    dimensions = models.CharField(max_length=100, default='')  # TODO: delete default
+    minifigures_amount = models.IntegerField(default=0)  # TODO: delete default
 
     def __str__(self):
         return self.title
