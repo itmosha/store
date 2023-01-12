@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 
 const ItemInCart = ({ item }) => {
-    const { toggleCartItemQuantity, onRemove, setShowCart } = useStateContext();
+    const { onRemove, setShowCart } = useStateContext();
     return (
         <Flex key={item.slug} w={['92vw', '29rem']} h={['28vw', '10rem']}>
             <Link href={`/product/${item.slug}`}>

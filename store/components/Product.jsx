@@ -3,6 +3,7 @@ import Link from 'next/link';
 import DefaultLegoSetImage from '../public/DefaultLegoSetImage.png';
 import { useStateContext } from "../context/StateContext";
 import {
+    Box,
     Card,
     CardBody,
     CardFooter,
@@ -12,7 +13,7 @@ import {
     Text,
     Divider,
     Button,
-    ButtonGroup, Spacer
+    ButtonGroup
 } from '@chakra-ui/react';
 
 const Product = ({ product }) => {
@@ -21,7 +22,7 @@ const Product = ({ product }) => {
     return (
         <Card w={['40vw', '30vw', '20vw', '18vw']}
               boxShadow={{ base: '0px 1px 7px 2px rgba(0, 0, 0, 0.5)', lg: '0px 3px 10px 2px rgba(0, 0, 0, 0.45)'}}
-              rounded={'1rem'}
+              rounded={['0.5rem']}
         >
             <CardBody p={['2vw', '1.5vw', '1vw', '0.8vw']}>
                 <Link href={`product/${product.slug}`}>
@@ -29,7 +30,7 @@ const Product = ({ product }) => {
                         w={['36vw', '27vw', '18vw', '16.4vw']}
                         src={ product.images[0]?.image ? product.images[0].image : DefaultLegoSetImage.src }
                         alt={ product.title }
-                        rounded={'1rem'}
+                        rounded={['0.5rem']}
                     />
                 </Link>
                 <Stack mt={'5px'} align={'center'}>
@@ -41,7 +42,7 @@ const Product = ({ product }) => {
             <Divider />
             <CardFooter p={['2vw 4vw', '2vw 3vw', '1.5vw 2.5vw', '1vw 1vw']} justify={'center'} display={'block'}>
                 <ButtonGroup>
-                    <Button variant={'solid'} colorScheme={'red'} w={['32vw', '24vw', '15vw', '16vw']} onClick={ () => onAdd(product, 1) }>
+                    <Button variant={'solid'} colorScheme={'red'} w={['32vw', '24vw', '15vw', '16vw']} rounded={['0.5rem']} onClick={ () => onAdd(product, 1) }>
                         В корзину
                     </Button>
                 </ButtonGroup>
@@ -49,6 +50,5 @@ const Product = ({ product }) => {
         </Card>
     );
 };
-
 
 export default Product;

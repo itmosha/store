@@ -167,7 +167,7 @@ export const StateContext = ({ children }) => {
                 setDeliverySPb,
                 setDeliveryRussia,
                 toggleDeliverySPb,
-                toggleDeliveryRussia,
+                toggleDeliveryRussia
             }}
         >
             { children }
