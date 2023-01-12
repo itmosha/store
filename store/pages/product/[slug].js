@@ -20,7 +20,6 @@ import {
 } from '@chakra-ui/react';
 
 const ProductDetails = ({ product }) => {
-    const { slug, images, title, price, description, quantity_in_stock } = product;
     const [ index, setIndex ] = useState(0);
     const { onAdd } = useStateContext();
 
@@ -34,21 +33,21 @@ const ProductDetails = ({ product }) => {
                 p={{ base: '2vw', lg: '2vw 12vw'}}
             >
                 <Box p={{ base: '10px 20px', lg: '0'}} >
-                    <Heading fontSize={['1.5rem', '2rem']} fontWeight={['500']}>{ title }</Heading>
-                    <Text fontSize={['0.8rem', '1rem']} pl={'3px'} textColor={'blackAlpha.800'}>LEGO Speed Champions</Text>
+                    <Heading fontSize={['1.5rem', '2rem']} fontWeight={['500']}>{ product.title }</Heading>
+                    <Text fontSize={['0.8rem', '1rem']} pl={'3px'} textColor={'blackAlpha.800'}>{ product.series }</Text>
                     <Text fontSize={['0.8rem', '1.25rem']} fontWeight={['200']}
-                          textColor={['blackAlpha.800']} pl={['3px']}>{ slug }</Text>
+                          textColor={['blackAlpha.800']} pl={['3px']}>{ product.sku }</Text>
                 </Box>
                 <Stack direction={{ base: 'column', lg: 'row'}} mt={{ base: '10px', lg: '20px' }}>
                     <Stack direction={{ base: 'column', lg: 'row'}}>
                         <Box w={{ base: '96vw', lg: '5vw' }} m={{ base: '0!important', lg: '0 1vw 0 0!important'}}>
-                            { images?.length > 0 && (
+                            { product.images?.length > 0 && (
                                 <Box>
                                     <Stack direction={{ base: 'row', lg: 'column' }}>
-                                        { images.map((item, i) => (
+                                        { product.images.map((item, i) => (
                                             <Image
                                                 cursor={'pointer'}
-                                                src={ images[i].image }
+                                                src={ product.images[i].image }
                                                 w={{ base: '15vw', lg: '5vw'}}
                                                 h={{ base: '15vw', lg: '5vw'}}
                                                 ml={['0.85vw!important']}
@@ -66,7 +65,7 @@ const ProductDetails = ({ product }) => {
                         </Box>
                         <Box w={{ base: '96vw', lg: '34vw'}}>
                             <Image
-                                src={ images[index]?.image ? images[index].image : (images[0]?.image ? images[0].image : DefaultLegoSetImage.src ) }
+                                src={ product.images[index]?.image ? product.images[index].image : (product.images[0]?.image ? product.images[0].image : DefaultLegoSetImage.src ) }
                                 w={{ base: '96vw', lg: '34vw'}}
                             />
                         </Box>
@@ -78,35 +77,35 @@ const ProductDetails = ({ product }) => {
                         boxShadow={'0px 7px 10px 1px rgba(0, 0, 0, 0.5)'}
                         borderRadius={'15px'}
                     >
-                        <Heading fontWeight={'500'} fontSize={['1.5rem', '2rem']}>{ price } ₽</Heading>
+                        <Heading fontWeight={'500'} fontSize={['1.5rem', '2rem']}>{ product.price } ₽</Heading>
                         <Flex mt={'15px'} mb={{ base: '20px', lg: '40px'}}>
                             <Button h={['5vh']} onClick={ () => onAdd(product, 1) } colorScheme={'red'} borderRadius={'10px'}>
                                 Добавить в корзину
                             </Button>
                             <Center ml={'10px'}>
                                 <Text textColor={'blackAlpha.800'}>
-                                    { quantity_in_stock > 0 ? 'Есть' : 'Нет' } в наличии
+                                    { product.quantity_in_stock > 0 ? 'Есть' : 'Нет' } в наличии
                                 </Text>
                             </Center>
                         </Flex>
                         <Flex align={'center'} px={{ base: '2vw', lg: '1vw'}}>
                             <VStack w={'9vw'} h={'5vw'} mx={{ base: '9vw', lg: '1vw' }}>
                                 <Image src={ PartsCountIcon.src } w={{ base: '20vw', lg: '3vw' }} h={{ base: '20vw', lg: '3vw' }} mt={['2px']}/>
-                                <Text mt={'5px!important'} fontSize={['0.70rem', '1rem', '1.25rem', '0.9rem']} fontWeight={'700'}>299</Text>
+                                <Text mt={'5px!important'} fontSize={['0.70rem', '1rem', '1.25rem', '0.9rem']} fontWeight={'700'}>{ product.parts_amount }</Text>
                             </VStack>
                             <Divider orientation={'vertical'} h={{ base: '24vw', lg: '5vw' }} borderColor={'blackAlpha.700'}/>
                             <VStack w={'9vw'} h={'5vw'} mx={{ base: '9vw', lg: '1vw'}}>
                                 <Image src={ MinifiguresCountImage.src } w={{ base: '20vw', lg: '3vw' }} h={{ base: '20vw', lg: '3vw' }} mt={['2px']} />
-                                <Text mt={'5px!important'} fontSize={['0.70rem', '1rem', '1.25rem', '0.9rem']} fontWeight={'700'}>1</Text>
+                                <Text mt={'5px!important'} fontSize={['0.70rem', '1rem', '1.25rem', '0.9rem']} fontWeight={'700'}>{ product.minifigures_amount }</Text>
                             </VStack>
                             <Divider orientation={'vertical'} h={{ base: '24vw', lg: '5vw' }} borderColor={'blackAlpha.700'}/>
                             <VStack w={'9vw'} h={'5vw'} mx={{ base: '9vw', lg: '1vw'}}>
                                 <Image src={ BoxDimensionsIcon.src } w={{ base: '20vw', lg: '3vw' }} h={{ base: '20vw', lg: '3vw' }} mt={['2px']} />
-                                <Text mt={'5px!important'} fontSize={['0.70rem', '1rem', '1.25rem', '0.9rem']} fontWeight={['700']} whiteSpace={'nowrap'}>14,1 - 7,2 - 26,2</Text>
+                                <Text mt={'5px!important'} fontSize={['0.70rem', '1rem', '1.25rem', '0.9rem']} fontWeight={['700']} whiteSpace={'nowrap'}>{ product.dimensions }</Text>
                             </VStack>
                         </Flex>
                         <Box mt={{ base: '20px', lg: '30px'}}>
-                            <Text css={'white-space: pre-wrap'} mt={'15px'} fontSize={['0.9rem', '1rem']} textColor={'blackAlpha.800'}>{ description }</Text>
+                            <Text css={'white-space: pre-wrap'} mt={'15px'} fontSize={['0.9rem', '1rem']} textColor={'blackAlpha.800'}>{ product.description }</Text>
                         </Box>
                     </Box>
                 </Stack>

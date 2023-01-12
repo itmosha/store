@@ -34,7 +34,7 @@ const Product = ({ product }) => {
                     />
                 </Link>
                 <Stack mt={'5px'} align={'center'}>
-                    <Text fontSize={['0.8rem', '0.9rem']} textColor={'blackAlpha.700'} mt={'0!important'} align={'start'}>{ product.slug }</Text>
+                    <Text fontSize={['0.8rem', '0.9rem']} textColor={'blackAlpha.700'} mt={'0!important'} align={'start'}>{ product.sku }</Text>
                     <Heading fontSize={['0.85rem', '0.90rem', '1.00rem', '1.10rem', '1.20rem']} mt={'0!important'} fontWeight={'500'}>{ product.title }</Heading>
                     <Text fontSize={['0.90rem', '0.95rem', '1.05rem', '1.10rem', '1.15rem']} mt={['1rem!important']}>{ product.price } ₽</Text>
                 </Stack>
