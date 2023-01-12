@@ -5,9 +5,7 @@ from django.conf import settings
 
 router = DefaultRouter()
 router.register(r'items', views.ItemsViewSet)
-# router.register(r'create_order', views.)
-if settings.DEBUG:
-    router.register(r'orders', views.OrderViewSet)
+router.register(r'orders', views.OrderViewSet)
 
 
 urlpatterns = [

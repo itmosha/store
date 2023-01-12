@@ -1,8 +1,6 @@
 from rest_framework import viewsets
 from rest_framework import permissions
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import mixins
 from .serializers import *
 
 from .models import Item
@@ -15,18 +13,8 @@ class ItemsViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [permissions.BasePermission]
 
 
-class BasicAPI(APIView):
-    def post(self, request):
-        req_data = request.data
-        data = {
-            'first_name': req_data.get('first_name'),
-            'last_name': req_data.get('last_name')
-        }
-        return Response(data, status=status.HTTP_200_OK)
-
-
-class OrderViewSet(viewsets.ModelViewSet):
+class OrderViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):  # + mixins.CreateModelMixin without state editing and all that stuff
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    lookup_field = 'unique_id'
+    lookup_field = 'unique_uuid'
     permission_classes = [permissions.BasePermission]
