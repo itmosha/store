@@ -33,10 +33,10 @@ const DeliveryPage = () => {
                 <UnorderedList fontSize={['0.90rem', '1rem']} lineHeight={['1.5', '1.65']}>
                     <ListItem>
                         <Highlight
-                            query={'исходя из тарифов'}
+                            query={'250 рублей'}
                             styles={{ px: '2', py: '1', rounded: 'full', bg: 'red.100' }}
                         >
-                            Стоимость доставки рассчитывается исходя из тарифов СДЭК
+                            Стоимость доставки - 250 рублей
                         </Highlight>
                     </ListItem>
                     <ListItem>Время доставки - от двух до пяти дней с момента отправки</ListItem>
@@ -48,10 +48,10 @@ const DeliveryPage = () => {
                 <UnorderedList fontSize={['0.90rem', '1rem']} lineHeight={['1.5', '1.65']}>
                     <ListItem>
                         <Highlight
-                            query={'исходя из тарифов'}
+                            query={'250 рублей'}
                             styles={{ px: '2', py: '1', rounded: 'full', bg: 'red.100' }}
                         >
-                            Стоимость доставки рассчитывается исходя из тарифов Почты России
+                            Стоимость доставки - 250 рублей
                         </Highlight>
                     </ListItem>
                     <ListItem>Время доставки - около двух недель</ListItem>

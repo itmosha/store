@@ -69,13 +69,13 @@ const CartPage = () => {
                                         { checkedCheckbox === 1 ? (
                                             <Text>100 ₽</Text>
                                         ) : (
-                                            <Text>0 ₽</Text>
+                                            <Text>250 ₽</Text>
                                         )}
                                     </Flex>
                                     <Divider borderColor={'gray.500'} my={'10px'}/>
                                     <Flex justify={'space-between'}>
                                         <Heading fontSize={'1rem'}>Итого</Heading>
-                                        <Heading fontSize={'1rem'}>{ totalPrice + (checkedCheckbox === 1 ? 100 : 0)} ₽</Heading>
+                                        <Heading fontSize={'1rem'}>{ totalPrice + (checkedCheckbox === 1 ? 100 : 250)} ₽</Heading>
                                     </Flex>
                                 </Box>
                                 <Box align={'center'} p={['15px', '1rem']} mt={'1rem'} borderRadius={'1rem'} boxShadow={'0px 3px 10px 2px rgba(0, 0, 0, 0.5)'}>

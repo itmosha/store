@@ -2,16 +2,8 @@ import React from 'react';
 import { Box, Wrap } from '@chakra-ui/react';
 import { FooterBanner, Navbar, HeaderBanner, Footer } from "../components";
 import Product from "../components/Product";
-import { useState } from 'react';
 
 const Home = ({ products }) => {
-    const [ currentPage, setCurrentPage ] = useState(1);
-    const pageSize = 5;
-
-    const onPageChange = (page) => {
-        setCurrentPage(page);
-    };
-
     return (
         <Box align={'center'}>
             <Navbar />
