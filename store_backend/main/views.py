@@ -1,9 +1,10 @@
 import sys
 
 from rest_framework import viewsets
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions
 from rest_framework import mixins
+from rest_framework.response import Response
 from .serializers import *
 
 from .models import Item
@@ -23,6 +24,11 @@ class OrderViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):  # + mix
     permission_classes = [permissions.BasePermission]
 
 
-@api_view(['GET', 'POST'])
+@api_view(['POST'])
+@permission_classes((permissions.AllowAny,))
 def get_items(request):
-    print(request.__dict__, file=sys.stderr)
+    headers = request.headers
+    body_unicode = request.body.decode('utf-8')
+    print(headers)
+    print(body_unicode)
+    return Response({'status': 'ok'})
