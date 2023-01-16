@@ -1,3 +1,5 @@
+import sys
+
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework import mixins
@@ -18,3 +20,7 @@ class OrderViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):  # + mix
     serializer_class = OrderSerializer
     lookup_field = 'unique_uuid'
     permission_classes = [permissions.BasePermission]
+
+
+def get_items(request):
+    print(request.__dict__, file=sys.stderr)

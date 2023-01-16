@@ -8,5 +8,6 @@ router.register(r'orders', views.OrderViewSet)
 
 
 urlpatterns = [
+    path('api/payment', views.get_items),
     path('api/', include(router.urls)),
 ]
