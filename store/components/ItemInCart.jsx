@@ -18,7 +18,7 @@ const ItemInCart = ({ item }) => {
     const { onRemove, setShowCart } = useStateContext();
     return (
         <Flex key={item.slug} w={['92vw', '29rem']} h={['28vw', '10rem']}>
-            <Link href={`/product/${item.slug}`}>
+            <Link href={`/set/${item.slug}`}>
                 <Box borderWidth={'2px'} borderColor={'red'} borderRadius={'1rem'} w={['27vw', '9rem']}
                     onClick={ () => setShowCart(false) }>
                     <Image
@@ -53,22 +53,6 @@ const ItemInCart = ({ item }) => {
                              py={['0', '0.25rem']}
                         >
                             <Flex h={['10vw', '3rem']}>
-                                {/*<Button*/}
-                                {/*    w={['8vw', '2.5rem']} h={['8vw', '2.5rem']} onClick={ () => toggleCartItemQuantity(item.slug, 'dec') }>*/}
-                                {/*    <Heading pb={'5px'} fontSize={'1.25rem'}>*/}
-                                {/*        -*/}
-                                {/*    </Heading>*/}
-                                {/*</Button>*/}
-                                {/*<Center minW={['8vw', '2.5rem']} h={['8vw', '2.5rem']} borderRadius={'0.35rem'} borderWidth={'2px'} borderColor={'red.200'}>*/}
-                                {/*    <Heading fontSize={'1rem'}>*/}
-                                {/*        { item.quantity }*/}
-                                {/*    </Heading>*/}
-                                {/*</Center>*/}
-                                {/*<Button w={['8vw', '2.5rem']} h={['8vw', '2.5rem']} onClick={ () => toggleCartItemQuantity(item.slug, 'inc') }>*/}
-                                {/*    <Heading pb={'5px'} fontSize={'1.25rem'}>*/}
-                                {/*        +*/}
-                                {/*    </Heading>*/}
-                                {/*</Button>*/}
                                 <Button ml={['1vw']} w={['8vw', '2.5rem']} h={['8vw', '2.5rem']} p={'0'} onClick={ () => onRemove(item) }>
                                     <TiDeleteOutline size={'1.5rem'}/>
                                 </Button>
