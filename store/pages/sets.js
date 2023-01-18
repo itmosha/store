@@ -1,18 +1,21 @@
 import React from 'react';
-import { Box, Wrap } from '@chakra-ui/react';
-import { FooterBanner, Navbar, HeaderBanner, Footer } from "../components";
-import Product from "../components/Product";
+import { Navbar, Footer } from "../components";
+import {
+    Box,
+    Heading
+} from "@chakra-ui/react";
 import ProductsList from "../components/ProductsList";
 
-const Home = ({ products }) => {
+const SetsPage = ({ products }) => {
+
     return (
         <Box align={'center'}>
             <Navbar />
-            <HeaderBanner reference={'/'}/>
+
+            <Heading>This is all sets page</Heading>
 
             <ProductsList products={products} />
 
-            <FooterBanner reference={'/'}/>
             <Footer />
         </Box>
     );
@@ -27,4 +30,5 @@ export const getServerSideProps = async () => {
         props: { products }
     }
 }
-export default Home;
+
+export default SetsPage;

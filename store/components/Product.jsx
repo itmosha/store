@@ -25,7 +25,7 @@ const Product = ({ product }) => {
               rounded={['0.5rem']}
         >
             <CardBody p={['2vw', '1.5vw', '1vw', '0.8vw']}>
-                <Link href={`set/${product.slug}`}>
+                <Link href={`sets/${product.slug}`}>
                     <Image
                         w={['36vw', '27vw', '18vw', '16.4vw']}
                         src={ product.images[0]?.image ? product.images[0].image : DefaultLegoSetImage.src }

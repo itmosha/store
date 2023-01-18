@@ -110,9 +110,7 @@ const ProductDetails = ({ product }) => {
                     </Box>
                 </Stack>
             </Box>
-            <footer>
-                <Footer />
-            </footer>
+            <Footer />
         </Box>
     );
 };

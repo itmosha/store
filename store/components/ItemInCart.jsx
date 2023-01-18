@@ -18,7 +18,7 @@ const ItemInCart = ({ item }) => {
     const { onRemove, setShowCart } = useStateContext();
     return (
         <Flex key={item.slug} w={['92vw', '29rem']} h={['28vw', '10rem']}>
-            <Link href={`/set/${item.slug}`}>
+            <Link href={`/sets/${item.slug}`}>
                 <Box borderWidth={'2px'} borderColor={'red'} borderRadius={'1rem'} w={['27vw', '9rem']}
                     onClick={ () => setShowCart(false) }>
                     <Image
