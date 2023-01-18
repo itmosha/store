@@ -6,7 +6,7 @@ import HeaderBannerImage from '../../public/HeaderBannerImage.webp';
 const HeaderBanner = ({ reference }) => {
     return (
         <Box
-            mt={['1.5rem', '2rem', '3rem']}
+            my={['1.5rem', '2rem', '3rem']}
             mx={['0rem','1rem','3rem']}
             boxShadow={'0px 3px 10px 2px rgba(0, 0, 0, 0.5)'}
             borderRadius={['1rem']}

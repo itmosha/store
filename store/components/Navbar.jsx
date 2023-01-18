@@ -20,11 +20,13 @@ const Navbar = () => {
         <Box p={'2'} boxShadow={'1px 2px 10px 2px rgba(0, 0, 0, 0.3)'}>
             <HStack>
                 <Flex justify={'space-between'} flex={'1'}>
-                    <Center ml={'3'}>
-                        <Link href={'/'}>
-                            <Text fontSize={'xl'} as={'b'}>Block Store</Text>
-                        </Link>
-                    </Center>
+                    <Flex>
+                        <Center mx={'15px'}>
+                            <Link href={'/'}>
+                                <Text fontSize={'1.25rem'} as={'b'}>Block Store</Text>
+                            </Link>
+                        </Center>
+                    </Flex>
                     <ButtonGroup>
                         <Link href={'/common'}>
                             <Button variant={'ghost'}>Помощь</Button>
