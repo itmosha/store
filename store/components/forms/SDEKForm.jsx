@@ -141,13 +141,6 @@ const SDEKForm = () => {
 };
 
 export const sendUserForm = async (data) => {
-    // await fetch('http://127.0.0.1:8000/api/orders', {
-    //     body: JSON.stringify(data),
-    //     headers: {
-    //         "Content-Type": "application/json; charset=utf8"
-    //     },
-    //     method: 'POST'
-    // });
     await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/orders`, {
         body: JSON.stringify(data),
         headers: {
