@@ -43,7 +43,7 @@ export const StateContext = ({ children }) => {
         if (checkProductInCart) {
             //
             // const updatedCartItems = cartItems.map((cartProduct) => {
-            //     if (cartProduct.slug === set.slug && set.quantity_in_stock >= cartProduct.quantity + quantity) {
+            //     if (cartProduct.slug === product.slug && product.quantity_in_stock >= cartProduct.quantity + quantity) {
             //         wasAdded = true;
             //         return {
             //             ...cartProduct,
