@@ -5,17 +5,17 @@ import {
     Heading
 } from "@chakra-ui/react";
 
-const SeriesPage = () => {
+const CertainSeriesPage = ({ seriesName }) => {
 
     return (
         <Box align={'center'}>
             <Navbar />
 
-            <Heading>This is all sets series page</Heading>
+            <Heading>This is a certain series page</Heading>
 
             <Footer />
         </Box>
     );
 };
 
-export default SeriesPage;
+export default CertainSeriesPage;

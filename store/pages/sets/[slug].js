@@ -5,6 +5,7 @@ import PartsCountIcon from '../../public/PartsCountIcon.png';
 import MinifiguresCountImage from '../../public/MinifiguresCountIcon.png';
 import BoxDimensionsIcon from '../../public/BoxDimensionsIcon.png';
 import Navbar from "../../components/Navbar";
+import Link from 'next/link';
 import Footer from "../../components/Footer";
 import {
     Box,
@@ -34,9 +35,10 @@ const ProductDetails = ({ product }) => {
             >
                 <Box p={{ base: '10px 20px', lg: '0'}} >
                     <Heading fontSize={['1.5rem', '2rem']} fontWeight={['500']}>{ product.title }</Heading>
-                    <Text fontSize={['0.8rem', '1rem']} pl={'3px'} textColor={'blackAlpha.800'}>{ product.series }</Text>
-                    <Text fontSize={['0.8rem', '1.25rem']} fontWeight={['200']}
-                          textColor={['blackAlpha.800']} pl={['3px']}>{ product.sku }</Text>
+                    <Link href={`/sets/series/${product.series}`}>
+                        <Text fontSize={['0.8rem', '1rem']} pl={'3px'} textColor={'blackAlpha.800'}>{ product.series }</Text>
+                    </Link>
+                    <Text fontSize={['0.8rem', '1rem']} textColor={['blackAlpha.800']} pl={['3px']}>{ product.sku }</Text>
                 </Box>
                 <Stack direction={{ base: 'column', lg: 'row'}} mt={{ base: '10px', lg: '20px' }}>
                     <Stack direction={{ base: 'column', lg: 'row'}}>

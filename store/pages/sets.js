@@ -11,11 +11,13 @@ const SetsPage = ({ products }) => {
     return (
         <Box align={'center'}>
             <Navbar />
+            <Box minH={'80vh'}>
+                <Box>
+                    <Heading my={['5vw', '2vw']} fontSize={'2rem'} fontWeight={'700'}>Все наборы LEGO</Heading>
+                </Box>
 
-            <Heading>This is all sets page</Heading>
-
-            <ProductsList products={products} />
-
+                <ProductsList products={products} />
+            </Box>
             <Footer />
         </Box>
     );

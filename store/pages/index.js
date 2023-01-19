@@ -6,7 +6,7 @@ import SetsReferenceImage from '../public/SetsReference.png';
 import PartsReferenceImage from '../public/PartsReference.png';
 import MinifiguresReferenceImage from '../public/MinifiguresReference.png';
 
-const Home = ({ products }) => {
+const Home = () => {
     return (
         <Box align={'center'}>
             <Navbar />
