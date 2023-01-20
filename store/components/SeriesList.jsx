@@ -11,7 +11,8 @@ import {
 
 const SeriesList = () => {
     const series = [
-        { title: 'Speed Champions', alt: 'sc', image: SpeedChampionsImage }
+        { title: 'Speed Champions', alt: 'speed_champions', image: SpeedChampionsImage }
+
     ]
 
     return (
