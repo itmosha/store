@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 router = DefaultRouter()
-router.register(r'items', views.ItemsViewSet)
+router.register(r'items', views.LegoSetsViewSet)
 router.register(r'orders', views.OrderViewSet)
 
 

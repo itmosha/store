@@ -3,12 +3,12 @@ from rest_framework import permissions
 from rest_framework import mixins
 from .serializers import *
 
-from .models import Item
+from .models import LegoSet
 
 
-class ItemsViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Item.objects.all().filter(is_active=True)
-    serializer_class = ItemsSerializer
+class LegoSetsViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = LegoSet.objects.all().filter(is_active=True)
+    serializer_class = LegoSetsSerializer
     lookup_field = 'slug'
     permission_classes = [permissions.BasePermission]
 

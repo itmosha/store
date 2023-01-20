@@ -2,21 +2,21 @@ from rest_framework import serializers
 from .models import *
 
 
-class ItemImageSerializer(serializers.ModelSerializer):
+class LegoSetImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ItemImage
+        model = LegoSetImage
         fields = ['ordering', 'image']
 
 
-class ItemsSerializer(serializers.HyperlinkedModelSerializer):
-    images = ItemImageSerializer(many=True, read_only=True)
+class LegoSetsSerializer(serializers.HyperlinkedModelSerializer):
+    images = LegoSetImageSerializer(many=True, read_only=True)
 
     class Meta:
-        model = Item
+        model = LegoSet
         exclude = ['quantity_sold', 'is_active']
         lookup_field = 'slug'
         extra_kwargs = {
-            'url': {'lookup_field': 'slug'},
+            'url': { 'lookup_field': 'slug' },
         }
 
 

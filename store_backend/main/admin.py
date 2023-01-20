@@ -12,13 +12,13 @@ def make_item_inactive(modeladmin, request, queryset):
     queryset.update(is_active=False)
 
 
-class ItemAdmin(admin.ModelAdmin):
+class LegoSetAdmin(admin.ModelAdmin):
     list_display = ['title', 'is_active', 'slug', 'price', 'quantity_in_stock', 'quantity_sold']
     ordering = ['date_created']
     actions = [make_item_active, make_item_inactive]
 
 
-admin.site.register(Item, ItemAdmin)
-admin.site.register(ItemImage)
+admin.site.register(LegoSet, LegoSetAdmin)
+admin.site.register(LegoSetImage)
 admin.site.register(Order)
-admin.site.register(OrderItem)
+admin.site.register(OrderLegoSet)
