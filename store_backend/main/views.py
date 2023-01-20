@@ -3,7 +3,7 @@ from rest_framework import permissions
 from rest_framework import mixins
 from .serializers import *
 
-from .models import LegoSet, Minifigure, Part
+from .models import LegoSet, Minifigure, Part, Series
 
 
 class LegoSetsViewSet(viewsets.ReadOnlyModelViewSet):
@@ -24,6 +24,11 @@ class PartsViewSet(viewsets.ReadOnlyModelViewSet):
     lookup_field = 'slug'
     permission_classes = [permissions.BasePermission]
 
+class SeriesViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Series.objects.all()
+    serializer_class = SeriesSerializer
+    lookup_field = 'slug'
+    permission_classes = [permissions.BasePermission]
 
 class OrderViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):  # + mixins.CreateModelMixin without state editing and all that stuff
     queryset = Order.objects.all()

@@ -17,6 +17,14 @@ class PartImageSerializer(serializers.ModelSerializer):
         model = PartImage
         fields = ['ordering', 'image']
 
+class SeriesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Series
+        fields = '__all__'
+        lookup_field = 'slug'
+        extra_kwargs = {
+            'url' : { 'lookup_field': 'slug' },
+        }
 
 class LegoSetsSerializer(serializers.HyperlinkedModelSerializer):
     images = LegoSetImageSerializer(many=True, read_only=True)
@@ -50,6 +58,7 @@ class PartsSerializer(serializers.HyperlinkedModelSerializer):
         extra_kwargs = {
             'url': { 'lookup_field': 'slug' },
         }
+
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     items = serializers.HyperlinkedRelatedField(

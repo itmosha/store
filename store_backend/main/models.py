@@ -83,6 +83,19 @@ class Part(models.Model):
         verbose_name = 'Деталь'
         verbose_name_plural = 'Детали'
 
+class Series(models.Model):
+    image = models.ImageField(upload_to='images/')
+    slug = models.SlugField(max_length=100, unique=True)
+    title = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Серия'
+        verbose_name_plural = 'Серии'
+
+
 
 class LegoSetImage(models.Model):
     image = models.ImageField(upload_to='images/')

@@ -27,10 +27,10 @@ class PartAdmin(admin.ModelAdmin):
     ordering = ['date_created']
     actions = [make_item_active, make_item_inactive]
 
-
 admin.site.register(LegoSet, LegoSetAdmin)
 admin.site.register(Minifigure, MinifigureAdmin)
 admin.site.register(Part, PartAdmin)
+admin.site.register(Series)
 admin.site.register(LegoSetImage)
 admin.site.register(MinifigureImage)
 admin.site.register(PartImage)

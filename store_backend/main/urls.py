@@ -6,6 +6,7 @@ router = DefaultRouter()
 router.register(r'lego_sets', views.LegoSetsViewSet)
 router.register(r'minifigures', views.MinifiguresViewSet)
 router.register(r'parts', views.PartsViewSet)
+router.register(r'series', views.SeriesViewSet)
 router.register(r'orders', views.OrderViewSet)
 
 
