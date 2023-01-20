@@ -1,20 +1,13 @@
 import React from 'react';
 import SeriesCard from "./SeriesCard";
 
-import SpeedChampionsImage from '../public/series/SpeedChampionsImage.png';
-
 import {
     Box,
     Wrap
 } from '@chakra-ui/react';
 
 
-const SeriesList = () => {
-    const series = [
-        { title: 'Speed Champions', alt: 'speed_champions', image: SpeedChampionsImage }
-
-    ]
-
+const SeriesList = ({ series }) => {
     return (
         <Box>
             <Wrap

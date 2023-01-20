@@ -6,7 +6,7 @@ import {
 } from "@chakra-ui/react";
 import ProductsList from "../components/ProductsList";
 
-const SetsPage = ({ products }) => {
+const SetsPage = ({ legoSets }) => {
 
     return (
         <Box align={'center'}>
@@ -16,7 +16,7 @@ const SetsPage = ({ products }) => {
                     <Heading my={['5vw', '2vw']} fontSize={'2rem'} fontWeight={'700'}>Все наборы LEGO</Heading>
                 </Box>
 
-                <ProductsList products={products} />
+                <ProductsList products={legoSets} />
             </Box>
             <Footer />
         </Box>
@@ -24,12 +24,12 @@ const SetsPage = ({ products }) => {
 };
 
 export const getServerSideProps = async () => {
-    const resQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items`);
+    const resQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/lego_sets`);
 
-    const products = await resQuery.json();
+    const legoSets = await resQuery.json();
 
     return {
-        props: { products }
+        props: { legoSets }
     }
 }
 

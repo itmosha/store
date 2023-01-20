@@ -6,7 +6,7 @@ import {
 } from '@chakra-ui/react';
 import SeriesList from "../../components/SeriesList";
 
-const AllSeriesPage = () => {
+const AllSeriesPage = ({ series }) => {
     return (
         <Box align={'center'}>
             <Navbar />
@@ -14,11 +14,20 @@ const AllSeriesPage = () => {
                 <Box>
                     <Heading my={['5vw', '2vw']} fontSize={'2rem'} fontWeight={'700'}>Наборы LEGO по сериям</Heading>
                 </Box>
-                <SeriesList />
+                <SeriesList series={series}/>
             </Box>
             <Footer />
         </Box>
     );
 };
 
+export const getServerSideProps = async () => {
+    const resQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/series`);
+
+    const series = await resQuery.json();
+
+    return {
+        props: { series }
+    }
+}
 export default AllSeriesPage;

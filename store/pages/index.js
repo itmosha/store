@@ -48,13 +48,4 @@ const Home = () => {
     );
 };
 
-export const getServerSideProps = async () => {
-    const resQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/items`);
-
-    const products = await resQuery.json();
-
-    return {
-        props: { products }
-    }
-}
 export default Home;

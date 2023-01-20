@@ -12,10 +12,10 @@ import {
 const SeriesCard = ({ s }) => {
     return (
         <Box w={'240px'}>
-            <Link href={`/sets/series/${s.alt}`}>
+            <Link href={`/sets/series/${s.title}`}>
                 <Card rounded={'0.5rem'}>
                     <CardHeader>
-                        <Image src={ s.image.src } rounded={'0.5rem'}/>
+                        <Image src={ s.image } rounded={'0.5rem'}/>
                     </CardHeader>
                     <CardBody>
                         <Heading fontSize={'1.25rem'}>{ s.title }</Heading>
