@@ -33,8 +33,59 @@ class LegoSet(models.Model):
         verbose_name_plural = 'Наборы'
 
 
+class Minifigure(models.Model):
+    def images(self):
+        return MinifigureImage.objects.filter(item=self)
+
+    title = models.CharField(max_length=100)
+    alternate_title = models.CharField(max_length=100, blank=True)
+    slug = models.SlugField(max_length=100, unique=True)
+    price = models.IntegerField()
+    description = models.TextField(blank=True)
+    quantity_in_stock = models.IntegerField()
+    quantity_sold = models.IntegerField(default=0)
+    is_active = models.BooleanField(default=False)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    sku = models.CharField(max_length=100, unique=True)
+    series = models.CharField(max_length=100, blank=True)
+    weight = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Минифигурка'
+        verbose_name_plural = 'Минифигурки'
+
+
+class Part(models.Model):
+    def images(self):
+        return PartImage.objects.filter(item=self)
+
+    title = models.CharField(max_length=100)
+    alternate_title = models.CharField(max_length=100, blank=True)
+    slug = models.SlugField(max_length=100, unique=True)
+    price = models.IntegerField()
+    description = models.TextField(blank=True)
+    quantity_in_stock = models.IntegerField()
+    quantity_sold = models.IntegerField(default=0)
+    is_active = models.BooleanField(default=False)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    sku = models.CharField(max_length=100, unique=True)
+    weight = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Деталь'
+        verbose_name_plural = 'Детали'
+
+
 class LegoSetImage(models.Model):
-    image = models.ImageField(upload_to='lego_sets/')
+    image = models.ImageField(upload_to='images/')
     item = models.ForeignKey(LegoSet, on_delete=models.CASCADE)
     ordering = models.IntegerField()
 
@@ -46,6 +97,34 @@ class LegoSetImage(models.Model):
         ordering = ['ordering']
         verbose_name = 'Изображение набора'
         verbose_name_plural = 'Изображения наборов'
+
+class MinifigureImage(models.Model):
+    image = models.ImageField(upload_to='images/')
+    item = models.ForeignKey(Minifigure, on_delete=models.CASCADE)
+    ordering = models.IntegerField()
+
+    def __str__(self):
+        return self.item.slug + ' image'
+
+    class Meta:
+        unique_together = ('item', 'ordering')
+        ordering = ['ordering']
+        verbose_name = 'Изображение минифигурки'
+        verbose_name_plural = 'Изображения минифигурок'
+
+class PartImage(models.Model):
+    image = models.ImageField(upload_to='images/')
+    item = models.ForeignKey(Part, on_delete=models.CASCADE)
+    ordering = models.IntegerField()
+
+    def __str__(self):
+        return self.item.slug + ' image'
+
+    class Meta:
+        unique_together = ('item', 'ordering')
+        ordering = ['ordering']
+        verbose_name = 'Изображение детали'
+        verbose_name_plural = 'Изображения деталей'
 
 
 class Order(models.Model):

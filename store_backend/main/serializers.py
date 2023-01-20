@@ -7,6 +7,16 @@ class LegoSetImageSerializer(serializers.ModelSerializer):
         model = LegoSetImage
         fields = ['ordering', 'image']
 
+class MinifigureImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MinifigureImage
+        fields = ['ordering', 'image']
+
+class PartImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PartImage
+        fields = ['ordering', 'image']
+
 
 class LegoSetsSerializer(serializers.HyperlinkedModelSerializer):
     images = LegoSetImageSerializer(many=True, read_only=True)
@@ -19,6 +29,27 @@ class LegoSetsSerializer(serializers.HyperlinkedModelSerializer):
             'url': { 'lookup_field': 'slug' },
         }
 
+class MinifiguresSerializer(serializers.HyperlinkedModelSerializer):
+    images = MinifigureImageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Minifigure
+        exclude = ['quantity_sold', 'is_active']
+        lookup_field = 'slug'
+        extra_kwargs = {
+            'url': { 'lookup_field': 'slug' },
+        }
+
+class PartsSerializer(serializers.HyperlinkedModelSerializer):
+    images = PartImageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Part
+        exclude = ['quantity_sold', 'is_active']
+        lookup_field = 'slug'
+        extra_kwargs = {
+            'url': { 'lookup_field': 'slug' },
+        }
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     items = serializers.HyperlinkedRelatedField(
