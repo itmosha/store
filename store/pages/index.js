@@ -5,6 +5,7 @@ import { FooterBanner, Navbar, HeaderBanner, Footer } from "../components";
 import SetsReferenceImage from '../public/SetsReference.png';
 import PartsReferenceImage from '../public/PartsReference.png';
 import MinifiguresReferenceImage from '../public/MinifiguresReference.png';
+import SeriesReferenceImage from '../public/SeriesReference.png';
 
 const Home = () => {
     return (
@@ -41,6 +42,14 @@ const Home = () => {
                     </Link>
                 </Box>
             </Flex>
+            <Box w={'760px'} h={'100px'}>
+                <Link href={'/sets/series'}>
+                    <Image
+                        src={ SeriesReferenceImage.src }
+                        borderRadius={'1rem'}
+                    />
+                </Link>
+            </Box>
 
             <FooterBanner reference={'/'}/>
             <Footer />

@@ -11,7 +11,9 @@ const PartsPage = () => {
         <Box align={'center'}>
             <Navbar />
 
-            <Heading>This is all parts page</Heading>
+            <Box>
+                <Heading my={['5vw', '2vw']} fontSize={'2rem'} fontWeight={'700'}>Все детали LEGO</Heading>
+            </Box>
 
             <Footer />
         </Box>

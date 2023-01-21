@@ -35,7 +35,7 @@ const ProductDetails = ({ legoSet }) => {
             >
                 <Box p={{ base: '10px 20px', lg: '0'}} >
                     <Heading fontSize={['1.5rem', '2rem']} fontWeight={['500']}>{ legoSet.title }</Heading>
-                    <Link href={`/sets/series/${legoSet.series}`}>
+                    <Link href={`/sets/series/${legoSet.series_slug}`}>
                         <Text fontSize={['0.8rem', '1rem']} pl={'3px'} textColor={'blackAlpha.800'}>{ legoSet.series }</Text>
                     </Link>
                     <Text fontSize={['0.8rem', '1rem']} textColor={['blackAlpha.800']} pl={['3px']}>{ legoSet.sku }</Text>

@@ -12,7 +12,7 @@ import {
 const SeriesCard = ({ s }) => {
     return (
         <Box w={'240px'}>
-            <Link href={`/sets/series/${s.title}`}>
+            <Link href={`/sets/series/${s.slug}`}>
                 <Card rounded={'0.5rem'}>
                     <CardHeader>
                         <Image src={ s.image } rounded={'0.5rem'}/>

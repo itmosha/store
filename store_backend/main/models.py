@@ -21,6 +21,7 @@ class LegoSet(models.Model):
 
     parts_amount = models.IntegerField(blank=True, null=True)
     series = models.CharField(max_length=100, blank=True)
+    series_slug = models.CharField(max_length=100, blank=True)
     weight = models.IntegerField(blank=True, null=True)
     dimensions = models.CharField(max_length=100, blank=True)
     minifigures_amount = models.IntegerField(blank=True, null=True)
@@ -49,6 +50,7 @@ class Minifigure(models.Model):
 
     sku = models.CharField(max_length=100, unique=True)
     series = models.CharField(max_length=100, blank=True)
+    series_slug = models.CharField(max_length=100, blank=True)
     weight = models.IntegerField(blank=True, null=True)
 
     def __str__(self):

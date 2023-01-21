@@ -16,7 +16,7 @@ import {
     ButtonGroup
 } from '@chakra-ui/react';
 
-const Product = ({ product }) => {
+const ProductSeriesCard = ({ product }) => {
     const { onAdd } = useStateContext();
 
     return (
@@ -51,4 +51,4 @@ const Product = ({ product }) => {
     );
 };
 
-export default Product;
+export default ProductSeriesCard;

@@ -24,9 +24,8 @@ const SetsPage = ({ legoSets }) => {
 };
 
 export const getServerSideProps = async () => {
-    const resQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/lego_sets`);
-
-    const legoSets = await resQuery.json();
+    const legoSetsQuery = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/lego_sets`);
+    const legoSets = await legoSetsQuery.json();
 
     return {
         props: { legoSets }
