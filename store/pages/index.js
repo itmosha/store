@@ -11,47 +11,52 @@ const Home = () => {
     return (
         <Box align={'center'}>
             <Navbar />
-            <HeaderBanner reference={'/'}/>
+            <Box minH={'80vh'}>
+                <HeaderBanner reference={'/'}/>
 
-            <Flex my={'20px'} w={'760px'} h={'320px'} gap={'20px'}>
-                <Box
-                    boxShadow={'0px 3px 10px 2px rgba(0, 0, 0, 0.5)'} borderRadius={'1rem'} w={'240px'} h={'320px'}>
-                    <Link href={'/sets/'}>
-                        <Image
-                            src={ SetsReferenceImage.src }
-                            borderRadius={'1rem'}
-                        />
-                    </Link>
+                <Box py={['10vw', '5vw', '0.5vw']}>
+                    <Flex px={['10px']} w={['98w', '760px']} maxW={'100vw'} gap={['1vw']}>
+                        <Box
+                            boxShadow={['0px 1px 5px 1px rgba(0, 0, 0, 0.5)', '0px 3px 10px 2px rgba(0, 0, 0, 0.5)']} borderRadius={'1rem'} w={['32vw']}>
+                            <Link href={'/sets/'}>
+                                <Image
+                                    src={ SetsReferenceImage.src }
+                                    borderRadius={'1rem'}
+                                />
+                            </Link>
+                        </Box>
+                        <Box
+                            boxShadow={['0px 1px 5px 1px rgba(0, 0, 0, 0.5)', '0px 3px 10px 2px rgba(0, 0, 0, 0.5)']} borderRadius={'1rem'} w={['32vw']}>
+                            <Link href={'/parts'}>
+                                <Image
+                                    src={ PartsReferenceImage.src }
+                                    borderRadius={'1rem'}
+                                />
+                            </Link>
+                        </Box>
+                        <Box
+                            boxShadow={['0px 1px 5px 1px rgba(0, 0, 0, 0.5)', '0px 3px 10px 2px rgba(0, 0, 0, 0.5)']} borderRadius={'1rem'} w={['32vw']}>
+                            <Link href={'/minifigures'}>
+                                <Image
+                                    src={ MinifiguresReferenceImage.src }
+                                    borderRadius={'1rem'}
+                                />
+                            </Link>
+                        </Box>
+                    </Flex>
+                    <Box my={['1vw']} mx={['1vw']} w={['98vw', '740px']} maxW={'100vw'}
+                         boxShadow={['0px 1px 3px 1px rgba(0, 0, 0, 0.5)', '0px 3px 10px 2px rgba(0, 0, 0, 0.5)']} borderRadius={'1rem'}>
+                        <Link href={'/sets/series'}>
+                            <Image
+                                src={ SeriesReferenceImage.src }
+                                borderRadius={'1rem'}
+                            />
+                        </Link>
+                    </Box>
                 </Box>
-                <Box
-                    boxShadow={'0px 3px 10px 2px rgba(0, 0, 0, 0.5)'} borderRadius={'1rem'} w={'240px'} h={'320px'}>
-                    <Link href={'/parts'}>
-                        <Image
-                            src={ PartsReferenceImage.src }
-                            borderRadius={'1rem'}
-                        />
-                    </Link>
-                </Box>
-                <Box
-                    boxShadow={'0px 3px 10px 2px rgba(0, 0, 0, 0.5)'} borderRadius={'1rem'} w={'240px'} h={'320px'}>
-                    <Link href={'/minifigures'}>
-                        <Image
-                            src={ MinifiguresReferenceImage.src }
-                            borderRadius={'1rem'}
-                        />
-                    </Link>
-                </Box>
-            </Flex>
-            <Box w={'760px'} h={'100px'}>
-                <Link href={'/sets/series'}>
-                    <Image
-                        src={ SeriesReferenceImage.src }
-                        borderRadius={'1rem'}
-                    />
-                </Link>
+
+                <FooterBanner reference={'/'}/>
             </Box>
-
-            <FooterBanner reference={'/'}/>
             <Footer />
         </Box>
     );

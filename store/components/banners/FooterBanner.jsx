@@ -6,14 +6,15 @@ import FooterBannerImage from "../../public/FooterBannerImage.webp";
 const FooterBanner = ({ reference }) => {
     return (
         <Box
-            mt={['1.5rem', '2rem', '3rem']}
-            mx={['0rem', '1rem', '3rem']}
+            my={['1.5rem', '2rem', '3rem']}
+            mx={['0vw', '1vw', '2vw']}
             boxShadow={'0px 3px 10px 2px rgba(0, 0, 0, 0.5)'}
-            borderRadius={'2rem'}
+            borderRadius={'1rem'}
         >
             <Link href={ reference }>
                 <Image
-                    border={'0.5px solid grey'}
+                    w={['100vw', '98vw', '96vw']}
+                    // border={'0.5px solid grey'}
                     src={ FooterBannerImage.src } borderRadius={'1rem'}
                 />
             </Link>

@@ -11,13 +11,14 @@ const CertainSeriesPage = ({ legoSets, seriesData }) => {
     return (
         <Box align={'center'}>
             <Navbar />
+            <Box minH={'80vh'}>
+                <Box>
+                    <Heading my={['5vw', '2vw']} fontSize={['1.5rem', '2rem']} fontWeight={'700'}>Все наборы серии { seriesData.title }</Heading>
+                </Box>
 
-            <Box>
-                <Heading my={['5vw', '2vw']} fontSize={'2rem'} fontWeight={'700'}>Все наборы серии { seriesData.title }</Heading>
+                <ProductSeriesList products={legoSets} seriesTitle={seriesData.title}/>
+
             </Box>
-
-            <ProductSeriesList products={legoSets} seriesTitle={seriesData.title}/>
-
             <Footer />
         </Box>
     );

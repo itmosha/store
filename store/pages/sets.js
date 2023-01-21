@@ -13,7 +13,7 @@ const SetsPage = ({ legoSets }) => {
             <Navbar />
             <Box minH={'80vh'}>
                 <Box>
-                    <Heading my={['5vw', '2vw']} fontSize={'2rem'} fontWeight={'700'}>Все наборы LEGO</Heading>
+                    <Heading my={['5vw', '2vw']} fontSize={['1.5rem', '2rem']} fontWeight={'700'}>Все наборы LEGO</Heading>
                 </Box>
 
                 <ProductsList products={legoSets} />

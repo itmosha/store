@@ -12,7 +12,7 @@ const AllSeriesPage = ({ series }) => {
             <Navbar />
             <Box minH={'80vh'}>
                 <Box>
-                    <Heading my={['5vw', '2vw']} fontSize={'2rem'} fontWeight={'700'}>Наборы LEGO по сериям</Heading>
+                    <Heading my={['5vw', '2vw']} fontSize={['1.5rem', '2rem']} fontWeight={'700'}>Наборы LEGO по сериям</Heading>
                 </Box>
                 <SeriesList series={series}/>
             </Box>

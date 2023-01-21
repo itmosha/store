@@ -21,8 +21,8 @@ const Product = ({ product }) => {
 
     return (
         <Card w={['40vw', '30vw', '20vw', '18vw']}
-              boxShadow={{ base: '0px 1px 7px 2px rgba(0, 0, 0, 0.5)', lg: '0px 3px 10px 2px rgba(0, 0, 0, 0.45)'}}
-              rounded={['0.5rem']}
+              boxShadow={{ base: '0px 1px 5px 1px rgba(0, 0, 0, 0.5)', lg: '0px 3px 10px 2px rgba(0, 0, 0, 0.45)'}}
+              rounded={['1rem']}
         >
             <CardBody p={['2vw', '1.5vw', '1vw', '0.8vw']}>
                 <Link href={`/sets/${product.slug}`}>

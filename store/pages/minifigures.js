@@ -10,11 +10,11 @@ const MinifiguresPage = () => {
     return (
         <Box align={'center'}>
             <Navbar />
-
-            <Box>
-                <Heading my={['5vw', '2vw']} fontSize={'2rem'} fontWeight={'700'}>Все минифигурки LEGO</Heading>
+            <Box minH={'80vh'}>
+                <Box>
+                    <Heading my={['5vw', '2vw']} fontSize={['1.5rem', '2rem']} fontWeight={'700'}>Все минифигурки LEGO</Heading>
+                </Box>
             </Box>
-
             <Footer />
         </Box>
     );
