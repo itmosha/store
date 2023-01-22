@@ -55,7 +55,7 @@ const Home = () => {
                     </Box>
                 </Box>
 
-                <FooterBanner reference={'/'}/>
+                {/*<FooterBanner reference={'/'}/>*/}
             </Box>
             <Footer />
         </Box>
