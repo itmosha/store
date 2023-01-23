@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Footer } from "../../../components";
-import ProductSeriesList from "../../../components/ProductSeriesList";
+import LegoSetSeriesList from "../../../components/legoSetSeries/LegoSetSeriesList";
 import {
     Box,
     Heading
@@ -16,7 +16,7 @@ const CertainSeriesPage = ({ legoSets, seriesData }) => {
                     <Heading my={['5vw', '2vw']} fontSize={['1.5rem', '2rem']} fontWeight={'700'}>Все наборы серии { seriesData.title }</Heading>
                 </Box>
 
-                <ProductSeriesList products={legoSets} seriesTitle={seriesData.title}/>
+                <LegoSetSeriesList legoSets={legoSets} seriesTitle={seriesData.title}/>
 
             </Box>
             <Footer />

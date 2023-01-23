@@ -4,7 +4,7 @@ import {
     Box,
     Heading
 } from '@chakra-ui/react';
-import SeriesList from "../../components/SeriesList";
+import SeriesList from "../../components/series/SeriesList";
 
 const AllSeriesPage = ({ series }) => {
     return (

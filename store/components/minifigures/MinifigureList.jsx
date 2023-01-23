@@ -1,8 +1,8 @@
 import React from 'react';
-import { Wrap, Box } from "@chakra-ui/react";
-import Product from "./Product";
+import {Wrap, Box, Heading} from '@chakra-ui/react';
+import MinifigureCard from './MinifigureCard';
 
-const ProductsList = ({ products }) => {
+const MinifigureList = ({ minifiguresList }) => {
     return (
         <Box>
             <Wrap
@@ -12,10 +12,10 @@ const ProductsList = ({ products }) => {
                 m={['5vw 2vw', '2vw 5vw']}
                 p={['2vw', '1vw']}
             >
-                { products?.map((product) => ( product.quantity_in_stock > 0 ? <Product product={product} key={product.slug} /> : '')) }
+                { minifiguresList?.map((minifigure) => ( minifigure.quantity_in_stock > 0 ? <MinifigureCard minifigure={minifigure} key={minifigure.slug} /> : '' )) }
             </Wrap>
         </Box>
     );
 };
 
-export default ProductsList;
+export default MinifigureList;

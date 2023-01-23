@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import DefaultLegoSetImage from '../public/DefaultLegoSetImage.png';
-import { useStateContext } from "../context/StateContext";
+import DefaultLegoSetImage from '../../public/DefaultLegoSetImage.png';
+import { useStateContext } from "../../context/StateContext";
 import {
     Box,
     Card,
@@ -16,7 +16,7 @@ import {
     ButtonGroup
 } from '@chakra-ui/react';
 
-const ProductSeriesCard = ({ product }) => {
+const LegoSetSeriesCard = ({ legoSet }) => {
     const { onAdd } = useStateContext();
 
     return (
@@ -25,24 +25,24 @@ const ProductSeriesCard = ({ product }) => {
               rounded={['0.5rem']}
         >
             <CardBody p={['2vw', '1.5vw', '1vw', '0.8vw']}>
-                <Link href={`/sets/${product.slug}`}>
+                <Link href={`/sets/${legoSet.slug}`}>
                     <Image
                         w={['36vw', '27vw', '18vw', '16.4vw']}
-                        src={ product.images[0]?.image ? product.images[0].image : DefaultLegoSetImage.src }
-                        alt={ product.title }
+                        src={ legoSet.images[0]?.image ? legoSet.images[0].image : DefaultLegoSetImage.src }
+                        alt={ legoSet.title }
                         rounded={['0.5rem']}
                     />
                 </Link>
                 <Stack mt={'5px'} align={'center'}>
-                    <Text fontSize={['0.8rem', '0.9rem']} textColor={'blackAlpha.700'} mt={'0!important'} align={'start'}>{ product.sku }</Text>
-                    <Heading fontSize={['0.85rem', '0.90rem', '1.00rem', '1.10rem', '1.20rem']} mt={'0!important'} fontWeight={'500'}>{ product.title }</Heading>
-                    <Text fontSize={['0.90rem', '0.95rem', '1.05rem', '1.10rem', '1.15rem']} mt={['1rem!important']}>{ product.price } ₽</Text>
+                    <Text fontSize={['0.8rem', '0.9rem']} textColor={'blackAlpha.700'} mt={'0!important'} align={'start'}>{ legoSet.sku }</Text>
+                    <Heading fontSize={['0.85rem', '0.90rem', '1.00rem', '1.10rem', '1.20rem']} mt={'0!important'} fontWeight={'500'}>{ legoSet.title }</Heading>
+                    <Text fontSize={['0.90rem', '0.95rem', '1.05rem', '1.10rem', '1.15rem']} mt={['1rem!important']}>{ legoSet.price } ₽</Text>
                 </Stack>
             </CardBody>
             <Divider />
             <CardFooter p={['2vw 4vw', '2vw 3vw', '1.5vw 2.5vw', '1vw 1vw']} justify={'center'} display={'block'}>
                 <ButtonGroup>
-                    <Button variant={'solid'} colorScheme={'red'} w={['32vw', '24vw', '15vw', '16vw']} rounded={['0.5rem']} onClick={ () => onAdd(product, 1) }>
+                    <Button variant={'solid'} colorScheme={'red'} w={['32vw', '24vw', '15vw', '16vw']} rounded={['0.5rem']} onClick={ () => onAdd(legoSet, 1) }>
                         В корзину
                     </Button>
                 </ButtonGroup>
@@ -51,4 +51,4 @@ const ProductSeriesCard = ({ product }) => {
     );
 };
 
-export default ProductSeriesCard;
+export default LegoSetSeriesCard;

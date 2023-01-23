@@ -129,7 +129,7 @@ const SDEKForm = () => {
                                     )}
                                 </Field>
                             </Box>
-                            <Button mt={'1rem'} colorScheme={'red'} isLoading={ props.isSubmitting } type={'submit'}>
+                            <Button mt={'1rem'} colorScheme={'blue'} isLoading={ props.isSubmitting } type={'submit'}>
                                 Оплатить
                             </Button>
                         </Form>

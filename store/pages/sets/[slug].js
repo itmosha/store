@@ -20,7 +20,7 @@ import {
     Divider
 } from '@chakra-ui/react';
 
-const ProductDetails = ({ legoSet }) => {
+const LegoSetDetails = ({ legoSet }) => {
     const [ index, setIndex ] = useState(0);
     const { onAdd } = useStateContext();
 
@@ -81,7 +81,7 @@ const ProductDetails = ({ legoSet }) => {
                     >
                         <Heading fontWeight={'500'} fontSize={['1.5rem', '2rem']}>{ legoSet.price } ₽</Heading>
                         <Flex mt={'15px'} mb={{ base: '20px', lg: '40px'}}>
-                            <Button h={['5vh']} onClick={ () => onAdd(legoSet, 1) } colorScheme={'red'} borderRadius={'10px'}>
+                            <Button h={['5vh']} onClick={ () => onAdd(legoSet, 1) } colorScheme={'blue'} borderRadius={'10px'}>
                                 Добавить в корзину
                             </Button>
                             <Center ml={'10px'}>
@@ -143,4 +143,4 @@ export const getStaticProps = async ({ params: { slug } }) => {
     }
 }
 
-export default ProductDetails
+export default LegoSetDetails;

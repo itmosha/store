@@ -44,15 +44,15 @@ const CartPage = () => {
                                 <Box p={['15px', '1rem']} borderRadius={'1rem'} boxShadow={'0px 3px 10px 2px rgba(0, 0, 0, 0.5)'}>
                                     <Heading fontSize={['1.25rem', '1.5rem']} mb={'10px'}>Способ доставки: </Heading>
                                     <Stack spacing={'3px'}>
-                                        <Checkbox colorScheme={'red'} defaultChecked
+                                        <Checkbox colorScheme={'blue'} defaultChecked
                                                   isChecked={ checkedCheckbox === 1 }
                                                   onChange={ () => setCheckedCheckbox(1) }
                                         >Курьером по Санкт-Петербургу</Checkbox>
-                                        <Checkbox colorScheme={'red'}
+                                        <Checkbox colorScheme={'blue'}
                                                   isChecked={ checkedCheckbox === 2 }
                                                   onChange={ () => setCheckedCheckbox(2) }
                                         >Курьерской службой СДЭК</Checkbox>
-                                        <Checkbox colorScheme={'red'}
+                                        <Checkbox colorScheme={'blue'}
                                                   isChecked={ checkedCheckbox === 3 }
                                                   onChange={ () => setCheckedCheckbox(3) }
                                         >Почтой России</Checkbox>
@@ -90,7 +90,7 @@ const CartPage = () => {
                         <Heading fontSize={['1rem', '1.25rem']} fontWeight={'500'}>Список товаров пуст</Heading>
                         <Heading fontSize={['0.90rem', '1.25rem']} fontWeight={'500'}>Перейдите в каталог чтобы добавить товары</Heading>
                         <Link href={'/'}>
-                            <Button variant={'solid'} colorScheme={'red'} w={['64vw', '16rem']} m={['2vw 0', '1.5rem 7rem 0.5rem 7rem']}>
+                            <Button variant={'solid'} colorScheme={'blue'} w={['64vw', '16rem']} m={['2vw 0', '1.5rem 7rem 0.5rem 7rem']}>
                                 Перейти в каталог
                              </Button>
                         </Link>

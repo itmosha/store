@@ -4,7 +4,7 @@ import {
     Box,
     Heading
 } from "@chakra-ui/react";
-import ProductsList from "../components/ProductsList";
+import LegoSetList from "../components/legoSets/LegoSetList";
 
 const SetsPage = ({ legoSets }) => {
 
@@ -16,7 +16,7 @@ const SetsPage = ({ legoSets }) => {
                     <Heading my={['5vw', '2vw']} fontSize={['1.5rem', '2rem']} fontWeight={'700'}>Все наборы LEGO</Heading>
                 </Box>
 
-                <ProductsList products={legoSets} />
+                <LegoSetList setsList={legoSets}/>
             </Box>
             <Footer />
         </Box>

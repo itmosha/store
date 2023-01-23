@@ -46,7 +46,7 @@ const Cart = () => {
                             <AiOutlineShopping size={'6rem'} />
                             <Heading fontSize={'1.25rem'} pt={'0.5rem'}>Ваша корзина пуста</Heading>
                             <Link href={'/'}>
-                                <Button varitan={'solid'} colorScheme={'red'} w={['52vw', '20rem']} mt={'1rem'} onClick={ () => setShowCart(false) }>
+                                <Button varitan={'solid'} colorScheme={'blue'} w={['52vw', '20rem']} mt={'1rem'} onClick={ () => setShowCart(false) }>
                                     Посмотреть товары
                                 </Button>
                             </Link>
@@ -75,7 +75,7 @@ const Cart = () => {
                         <Box>
                             <Link href={'/cart/'}>
                                 <Button
-                                    colorScheme={'red'}
+                                    colorScheme={'blue'}
                                     w={['64vw', '16rem']}
                                     h={['10vw', '2.5rem']}
                                     m={['2vw 10vw', '0.5rem 6rem 0rem 6rem']}

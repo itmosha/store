@@ -1,8 +1,8 @@
 import React from 'react';
-import { Wrap, Box } from "@chakra-ui/react";
-import Product from "./Product";
+import { Wrap, Box } from '@chakra-ui/react';
+import PartCard from './PartCard';
 
-const ProductSeriesList = ({ products, seriesTitle }) => {
+const PartList = ({ partsList }) => {
     return (
         <Box>
             <Wrap
@@ -12,10 +12,10 @@ const ProductSeriesList = ({ products, seriesTitle }) => {
                 m={['5vw 2vw', '2vw 5vw']}
                 p={['2vw', '1vw']}
             >
-                { products?.map((product) => ( product.quantity_in_stock > 0 && product.series === seriesTitle ? <Product product={product} key={product.slug} /> : '')) }
+                { partsList?.map((part) => ( part.quantity_in_stock > 0 ? <PartCard part={part} key={part.slug} /> : '' )) }
             </Wrap>
         </Box>
     );
 };
 
-export default ProductSeriesList;
+export default PartList;

@@ -19,7 +19,7 @@ const CommonPage = () => {
             <CommonHeader />
             <Flex>
                 <Box>
-                    <Tabs orientation={'horizontal'} colorScheme={'red'} width={'100vw'}>
+                    <Tabs orientation={'horizontal'} colorScheme={'blue'} width={'100vw'}>
                         <TabList
                             alignItems={'start'}
                             h={['fit-content']}

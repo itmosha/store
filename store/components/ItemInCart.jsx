@@ -25,6 +25,7 @@ const ItemInCart = ({ item }) => {
                         src={ item.images[0]?.image ? item.images[0].image : DefaultLegoSetImage.src }
                         w={['26vw', '9rem']}
                         h={['26vw', '9rem']}
+                        borderRadius={'1rem'}
                     />
                 </Box>
             </Link>
