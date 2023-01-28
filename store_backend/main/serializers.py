@@ -26,7 +26,7 @@ class SeriesSerializer(serializers.ModelSerializer):
             'url' : { 'lookup_field': 'slug' },
         }
 
-class LegoSetsSerializer(serializers.HyperlinkedModelSerializer):
+class LegoSetsSerializer(serializers.ModelSerializer):
     images = LegoSetImageSerializer(many=True, read_only=True)
 
     class Meta:
@@ -37,7 +37,7 @@ class LegoSetsSerializer(serializers.HyperlinkedModelSerializer):
             'url': { 'lookup_field': 'slug' },
         }
 
-class MinifiguresSerializer(serializers.HyperlinkedModelSerializer):
+class MinifiguresSerializer(serializers.ModelSerializer):
     images = MinifigureImageSerializer(many=True, read_only=True)
 
     class Meta:
@@ -48,7 +48,7 @@ class MinifiguresSerializer(serializers.HyperlinkedModelSerializer):
             'url': { 'lookup_field': 'slug' },
         }
 
-class PartsSerializer(serializers.HyperlinkedModelSerializer):
+class PartsSerializer(serializers.ModelSerializer):
     images = PartImageSerializer(many=True, read_only=True)
 
     class Meta:
@@ -60,18 +60,11 @@ class PartsSerializer(serializers.HyperlinkedModelSerializer):
         }
 
 
-class OrderSerializer(serializers.HyperlinkedModelSerializer):
-    items = serializers.HyperlinkedRelatedField(
-        view_name='item-detail',
-        lookup_field='slug',
-        many=True,
-        read_only=True
-    )
-    
+class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ('state', 'unique_uuid', 'items', 'items_price', 'delivery_price', 'total_price', 'created', 'updated',
-                  'first_name', 'last_name', 'email', 'phone', 'address', 'postal_code')
+        fields = ('state', 'unique_uuid', 'items_slugs', 'items_quantities' , 'items_price', 'delivery_price', 'delivery_type', 'total_price', 'created', 'updated',
+                  'first_name', 'last_name', 'middle_name', 'email', 'phone', 'address', 'postal_code')
         lookup_field = 'unique_uuid'
         extra_kwargs = {
             'url': {'lookup_field': 'unique_uuid'},

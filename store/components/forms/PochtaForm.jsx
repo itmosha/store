@@ -12,15 +12,19 @@ import {
     Input
 } from '@chakra-ui/react';
 import { useStateContext } from "../../context/StateContext";
+import { sha256 } from "js-sha256";
+import { setCookie } from "cookies-next";
+
 
 const PochtaForm = () => {
-    const { totalPrice, cartItems } = useStateContext();
+
+    const { totalPrice, cartItems, setCartItems, setTotalPrice, setTotalQuantities } = useStateContext();
 
     const validateInitials = (value) => { return ( !value ? 'Обязательное поле' : null ) };
-    const validatePhoneNumber = (value) => { return ( !value ? 'Обязательное поле' : (
-        value.trim().startsWith('+7') || value.trim().startsWith('8') ? null : 'Номер должен начинаться с +7 или 8' ) ) };
     const validateEmail = (value) => { return ( !value ? 'Обязательное поле' : (
         value.indexOf('@') <= -1 ? 'Некорректный email' : null ) ) };
+    const validatePhoneNumber = (value) => { return ( !value ? 'Обязательное поле' : (
+        value.trim().startsWith('+7') || value.trim().startsWith('8') ? null : 'Номер должен начинаться с +7 или 8' ) ) };
     const validateAddress = (value) => { return ( !value ? 'Обязательное поле' : null) };
     const validatePostalCode = (value) => { return ( !value ? 'Обязательное поле' : ( value.length === 6 ? null : 'Некорректный почтовый индекс' ))}
 
@@ -37,12 +41,14 @@ const PochtaForm = () => {
                     postal_code: ''
                 }}
                 onSubmit={(values, actions) => {
-                    setTimeout(() => {
+                    setTimeout(async () => {
                         let data = {
-                            items: cartItems.map((item) => (item.slug)),
-                            items_price:  totalPrice,
-                            delivery_price: 250,
-                            total_price: totalPrice + 250,
+                            items_slugs: cartItems.map((item) => (item.slug)),
+                            items_quantities: cartItems.map((item) => (item.quantity)),
+                            items_price: totalPrice,
+                            delivery_price: 100,
+                            total_price: totalPrice + 100,
+                            delivery_type: 'pochta',
                             first_name: values.imya,
                             last_name: values.familiya,
                             middle_name: values.otchestvo,
@@ -51,9 +57,94 @@ const PochtaForm = () => {
                             address: values.address,
                             postal_code: values.postal_code
                         }
-                        sendUserForm(data);
+                        const orderId = await postOrder(data);
+
+                        const response = await fetch('https://securepay.tinkoff.ru/v2/Init', {
+                            method: 'POST',
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                "TerminalKey": process.env.NEXT_PUBLIC_TERMINAL_KEY,
+                                "Amount": data.total_price * 100,
+                                "OrderId": orderId,
+                                "Description": `Заказ на ${data.total_price} рублей`,
+                                "DATA": {
+                                    "Phone": data.phone,
+                                    "Email": data.email
+                                }
+                            })
+                        });
+                        const responseJson = await response.json();
+
+                        if (responseJson.Success) {
+                            if (responseJson.Status === "NEW") {
+                                window.open(responseJson.PaymentURL, '_blank');
+                            } else {
+                                alert("Не удалось создать новый платёж");
+                                return;
+                            }
+                        } else {
+                            alert("Ошибка соединения с API платёжной системы");
+                            return;
+                        }
+
+                        const stringToEncode = `${process.env.NEXT_PUBLIC_TERMINAL_PASSWORD}${responseJson.PaymentId}${process.env.NEXT_PUBLIC_TERMINAL_KEY}`;
+                        const TOKEN = sha256(stringToEncode);
+
+
+                        let status = "NEW";
+
+                        do {
+                            const state = await fetch('https://securepay.tinkoff.ru/v2/GetState', {
+                                method: 'POST',
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    "TerminalKey": process.env.NEXT_PUBLIC_TERMINAL_KEY,
+                                    "PaymentId": responseJson.PaymentId,
+                                    "Token": TOKEN
+                                })
+                            });
+                            const stateJson = await state.json();
+                            status = stateJson.Status;
+
+                            if (status === "AUTHORIZED") {
+                                setCookie('cookieCartItems', []);
+                                setCookie('totalCartPrice', 0);
+                                setCookie('totalCartQuantities', 0);
+                                setCartItems([]);
+                                setTotalPrice(0);
+                                setTotalQuantities(0);
+
+                                await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/orders/${orderId}/`, {
+                                    method: 'PATCH',
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                    body: JSON.stringify({
+                                        "state": "paid"
+                                    })
+                                });
+                                break;
+                            } else if (status === "CANCELED") {
+                                await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/orders/${orderId}/`, {
+                                    method: 'PATCH',
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                    body: JSON.stringify({
+                                        "state": "canceled"
+                                    })
+                                });
+                                break;
+                            }
+                            await new Promise(r => setTimeout(r, 500));
+                        } while (status !== "DEADLINE_EXPIRED" && status !== "AUTH_FAIL");
+
                         actions.setSubmitting(false);
-                    }, 1);
+                    }, 500);
                 }}
             >
                 {(props) => (
@@ -113,7 +204,7 @@ const PochtaForm = () => {
                                 <Field name={'address'} validate={ validateAddress }>
                                     {({ field, form }) => (
                                         <FormControl isInvalid={ form.errors.address && form.touched.address }>
-                                            <Input {...field} placeholder={'Адрес доставки'} />
+                                            <Input {...field} placeholder={'Почтовый адрес'} />
                                             <FormErrorMessage>{ form.errors.address }</FormErrorMessage>
                                         </FormControl>
                                     )}
@@ -140,13 +231,18 @@ const PochtaForm = () => {
     );
 };
 
-export const sendUserForm = async (data) => {
-    await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/orders`, {
+export const postOrder = async (data) => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/orders/`, {
+        method: 'POST',
         body: JSON.stringify(data),
+        mode: 'cors',
         headers: {
-            "Content-Type": "application/json; charset=utf8"
-        },
-        method: 'POST'
+            "Content-Type": "application/json",
+        }
     });
+
+
+    const resposeJson = await response.json();
+    return resposeJson.unique_uuid;
 }
 export default PochtaForm;

@@ -32,7 +32,9 @@ DEBUG = os.getenv("DJANGO_DEBUG", 'False') == 'True'
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', os.getenv('HOST_DOMAIN')]
 
-CSRF_TRUSTED_ORIGINS = ['https://' + os.getenv('HOST_DOMAIN')]
+CORS_ORIGIN_ALLOW_ALL = True
+
+# CSRF_TRUSTED_ORIGINS = ['https://' + os.getenv('HOST_DOMAIN')]
 
 # Application definition
 
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'rest_framework',
     'main',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'store_backend.urls'

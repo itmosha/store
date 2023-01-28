@@ -1,15 +1,19 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
+from django.urls import path
+from rest_framework.urlpatterns import format_suffix_patterns
 from . import views
-
-router = DefaultRouter()
-router.register(r'lego_sets', views.LegoSetsViewSet)
-router.register(r'minifigures', views.MinifiguresViewSet)
-router.register(r'parts', views.PartsViewSet)
-router.register(r'series', views.SeriesViewSet)
-router.register(r'orders', views.OrderViewSet)
 
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('api/orders/', views.OrderListView.as_view()),
+    path('api/orders/<str:unique_uuid>/', views.OrderDetailView.as_view()),
+    path('api/lego_sets/', views.LegoSetListView.as_view()),
+    path('api/lego_sets/<str:slug>/', views.LegoSetDetailView.as_view()),
+    path('api/parts/', views.PartListView.as_view()),
+    path('api/parts/<str:slug>/', views.PartDetailView.as_view()),
+    path('api/minifigures/', views.MinifigureListView.as_view()),
+    path('api/minifigures/<str:slug>/', views.MinifigureDetailView.as_view()),
+    path('api/series/', views.SeriesListView.as_view()),
+    path('api/series/<str:slug>/', views.SeriesDetailView.as_view()),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)

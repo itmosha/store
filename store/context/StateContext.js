@@ -73,7 +73,7 @@ export const StateContext = ({ children }) => {
             setCookie('totalCartQuantities', Number(totalQuantities) + Number(quantity));
             setCookie('totalCartPrice', Number(totalPrice) + Number(product.price * quantity))
 
-            toast.success(`Добавлено в корзину: ${qty} ${product.title}`, {duration: 1500});
+            toast.success(`Добавлено в корзину: ${product.title}`, {duration: 1000});
         }
     }
 

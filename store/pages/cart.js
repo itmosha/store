@@ -48,10 +48,10 @@ const CartPage = () => {
                                                   isChecked={ checkedCheckbox === 1 }
                                                   onChange={ () => setCheckedCheckbox(1) }
                                         >Курьером по Санкт-Петербургу</Checkbox>
-                                        <Checkbox colorScheme={'blue'}
-                                                  isChecked={ checkedCheckbox === 2 }
-                                                  onChange={ () => setCheckedCheckbox(2) }
-                                        >Курьерской службой СДЭК</Checkbox>
+                                        {/*<Checkbox colorScheme={'blue'}*/}
+                                        {/*          isChecked={ checkedCheckbox === 2 }*/}
+                                        {/*          onChange={ () => setCheckedCheckbox(2) }*/}
+                                        {/*>Курьерской службой СДЭК</Checkbox>*/}
                                         <Checkbox colorScheme={'blue'}
                                                   isChecked={ checkedCheckbox === 3 }
                                                   onChange={ () => setCheckedCheckbox(3) }

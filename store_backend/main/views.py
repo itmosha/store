@@ -1,37 +1,79 @@
-from rest_framework import viewsets
+from rest_framework.response import Response
 from rest_framework import permissions
-from rest_framework import mixins
+from rest_framework import generics
 from .serializers import *
-
 from .models import LegoSet, Minifigure, Part, Series
 
 
-class LegoSetsViewSet(viewsets.ReadOnlyModelViewSet):
+
+class LegoSetListView(generics.ListAPIView):
     queryset = LegoSet.objects.all().filter(is_active=True)
     serializer_class = LegoSetsSerializer
     lookup_field = 'slug'
-    permission_classes = [permissions.BasePermission]
+    permission_classes = [ permissions.BasePermission ]
 
-class MinifiguresViewSet(viewsets.ReadOnlyModelViewSet):
+class LegoSetDetailView(generics.RetrieveAPIView):
+    queryset = LegoSet.objects.all()
+    serializer_class = LegoSetsSerializer
+    lookup_field = 'slug'
+    permission_classes = [ permissions.BasePermission ]
+
+
+class MinifigureListView(generics.ListAPIView):
     queryset = Minifigure.objects.all().filter(is_active=True)
     serializer_class = MinifiguresSerializer
     lookup_field = 'slug'
-    permission_classes = [permissions.BasePermission]
+    permission_classes = [ permissions.BasePermission ]
 
-class PartsViewSet(viewsets.ReadOnlyModelViewSet):
+class MinifigureDetailView(generics.RetrieveAPIView):
+    queryset = Minifigure.objects.all()
+    serializer_class = MinifiguresSerializer
+    lookup_field = 'slug'
+    permission_classes = [ permissions.BasePermission ]
+
+
+class PartListView(generics.ListAPIView):
     queryset = Part.objects.all().filter(is_active=True)
     serializer_class = PartsSerializer
     lookup_field = 'slug'
-    permission_classes = [permissions.BasePermission]
+    permission_classes = [ permissions.BasePermission ]
 
-class SeriesViewSet(viewsets.ReadOnlyModelViewSet):
+class PartDetailView(generics.RetrieveAPIView):
+    queryset = Part.objects.all()
+    serializer_class = PartsSerializer
+    lookup_field = 'slug'
+    permission_classes = [ permissions.BasePermission ]
+
+
+class SeriesListView(generics.ListAPIView):
     queryset = Series.objects.all()
     serializer_class = SeriesSerializer
     lookup_field = 'slug'
-    permission_classes = [permissions.BasePermission]
+    permission_classes = [ permissions.BasePermission ]
 
-class OrderViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):  # + mixins.CreateModelMixin without state editing and all that stuff
+class SeriesDetailView(generics.RetrieveAPIView):
+    queryset = Series.objects.all()
+    serializer_class = SeriesSerializer
+    lookup_field = 'slug'
+    permission_classes = [ permissions.BasePermission ]
+
+
+class OrderListView(generics.ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     lookup_field = 'unique_uuid'
-    permission_classes = [permissions.BasePermission]
+    permission_classes = [ permissions.BasePermission ]
+
+    def perform_create(self, serializer):
+        serializer.save()
+        return Response(serializer.data)
+
+class OrderDetailView(generics.RetrieveUpdateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    lookup_field = 'unique_uuid'
+    permission_classes = [ permissions.BasePermission ]
+
+    def perform_update(self, serializer):
+        serializer.save()
+        return Response(serializer.data)
