@@ -9,12 +9,12 @@ import {
     Box,
     FormControl,
     FormErrorMessage,
-    Input
+    Input, ButtonGroup
 } from '@chakra-ui/react';
 import { useStateContext } from "../../context/StateContext";
 import { sha256 } from "js-sha256";
 import { setCookie } from "cookies-next";
-
+import tinkoff from '@tcb-web/create-credit';
 
 const SPbDeliveryForm = () => {
 
@@ -207,9 +207,26 @@ const SPbDeliveryForm = () => {
                                     )}
                                 </Field>
                             </Box>
-                            <Button mt={'1rem'} colorScheme={'blue'} isLoading={ props.isSubmitting } type={'submit'}>
-                                Оплатить
-                            </Button>
+                            <ButtonGroup>
+                                <Button mt={'1rem'} colorScheme={'blue'} isLoading={ props.isSubmitting } type={'submit'}>
+                                    Оплатить
+                                </Button>
+                                { totalPrice >= 3000 && (
+                                    <Button
+                                        mt={'1rem'}
+                                        type="button"
+                                        onClick={ () => { tinkoff.create(
+                                            {
+                                                sum: totalPrice,
+                                                items: cartItems?.map((item) => ({ name: item.title, price: item.price, quantity: item.quantity })),
+                                                demoFlow: 'sms',
+                                                promoCode: 'installment_0_0_6_5,85',
+                                                shopId: process.env.NEXT_PUBLIC_SHOP_ID,
+                                                showcaseId: process.env.NEXT_PUBLIC_SHOWCASE_ID
+                                            }, {view: 'modal'})} }
+                                    >Купить в рассрочку</Button>
+                                )}
+                            </ButtonGroup>
                         </Form>
                     </Box>
                 )}
