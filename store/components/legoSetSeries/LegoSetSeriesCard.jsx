@@ -17,7 +17,7 @@ import {
 } from '@chakra-ui/react';
 
 const LegoSetSeriesCard = ({ legoSet }) => {
-    const { onAdd } = useStateContext();
+    const { onAddLegoSet } = useStateContext();
 
     return (
         <Card w={['40vw', '30vw', '20vw', '18vw']}
@@ -42,7 +42,7 @@ const LegoSetSeriesCard = ({ legoSet }) => {
             <Divider />
             <CardFooter p={['2vw 4vw', '2vw 3vw', '1.5vw 2.5vw', '1vw 1vw']} justify={'center'} display={'block'}>
                 <ButtonGroup>
-                    <Button variant={'solid'} colorScheme={'red'} w={['32vw', '24vw', '15vw', '16vw']} rounded={['0.5rem']} onClick={ () => onAdd(legoSet, 1) }>
+                    <Button variant={'solid'} colorScheme={'red'} w={['32vw', '24vw', '15vw', '16vw']} rounded={['0.5rem']} onClick={ () => onAddLegoSet(legoSet) }>
                         В корзину
                     </Button>
                 </ButtonGroup>

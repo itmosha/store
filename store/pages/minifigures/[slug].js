@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useStateContext } from '../../context/StateContext';
 import DefaultMinifigureImage from '../../public/DefaultLegoSetImage.png';
 import Navbar from "../../components/Navbar";
-import Link from 'next/link';
 import Footer from "../../components/Footer";
 import {
     Box,
@@ -17,7 +16,7 @@ import {
 
 const MinifigureDetails = ({ minifigure }) => {
     const [ index, setIndex ] = useState(0);
-    const { onAdd } = useStateContext();
+    const { onAddMinifigure } = useStateContext();
 
     return (
         <Box minH={'90vh'}>
@@ -77,7 +76,7 @@ const MinifigureDetails = ({ minifigure }) => {
                     >
                         <Heading fontWeight={'500'} fontSize={['1.5rem', '2rem']}>{ minifigure.price } ₽</Heading>
                         <Flex mt={'15px'} mb={{ base: '20px', lg: '40px'}}>
-                            <Button h={['5vh']} onClick={ () => onAdd(minifigure, 1) } colorScheme={'blue'} borderRadius={'10px'}>
+                            <Button h={['5vh']} onClick={ () => onAddMinifigure(minifigure) } colorScheme={'blue'} borderRadius={'10px'}>
                                 Добавить в корзину
                             </Button>
                             <Center ml={'10px'}>

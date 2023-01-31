@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 
 const PartCard = ({ part }) => {
-    const { onAdd } = useStateContext();
+    const { onAddPart } = useStateContext();
 
     return (
         <Card w={['32vw', '20vw', '15vw', '13vw']}
@@ -41,7 +41,7 @@ const PartCard = ({ part }) => {
             <Divider />
             <CardFooter p={['2vw 2vw', '2vw 2vw', '1.5vw 1.5vw', '1vw 1vw']} justify={'center'} display={'block'}>
                 <ButtonGroup>
-                    <Button variant={'solid'} colorScheme={'blue'} w={['28vw', '16vw', '12vw', '11vw']} py={'7px'} h={'fit-content'} rounded={['0.5rem']} onClick={ () => onAdd(part, 1) }>
+                    <Button variant={'solid'} colorScheme={'blue'} w={['28vw', '16vw', '12vw', '11vw']} py={'7px'} h={'fit-content'} rounded={['0.5rem']} onClick={ () => onAddPart(part, 1) }>
                         <Heading fontSize={['0.8rem', '0.9rem', '0.85rem']}>
                             В корзину
                         </Heading>

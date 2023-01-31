@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import ItemInCart from "./ItemInCart";
 import { AiOutlineRight, AiOutlineShopping } from "react-icons/ai";
 import { useStateContext } from "../context/StateContext";
 import {
@@ -12,9 +11,12 @@ import {
     Text,
     VStack
 } from '@chakra-ui/react';
+import LegoSetInCart from "./legoSets/legoSetInCart";
+import MinifigureInCart from "./minifigures/MinifigureInCart";
+import PartInCart from "./parts/PartInCart";
 
 const Cart = () => {
-    const { totalPrice, totalQuantities, cartItems, setShowCart } = useStateContext();
+    const { totalPrice, totalQuantities, cartLegoSets, cartMinifigures, cartParts, setShowCart } = useStateContext();
 
     return (
         <Box w={'100vw'} bg={'rgba(0, 0, 0, 0.5)'} position={'fixed'} top={'0'} left={'0'} zIndex={'100'} align={'center'}>
@@ -41,7 +43,7 @@ const Cart = () => {
                             </Text>
                         </Center>
                     </Flex>
-                    { cartItems.length < 1 && (
+                    { totalQuantities  < 1 && (
                         <Box w={['92vw', '20rem']} mx={['0vw', '4rem']} mt={'2rem'}>
                             <AiOutlineShopping size={'6rem'} />
                             <Heading fontSize={'1.25rem'} pt={'0.5rem'}>Ваша корзина пуста</Heading>
@@ -53,13 +55,19 @@ const Cart = () => {
                         </Box>
                     )}
                     <Box mt={'1rem'} maxH={'68vh'} overflowY={'auto'}>
-                        { cartItems.length >= 1 && cartItems.map((item) => (
-                            <ItemInCart item={item}/>
+                        { cartLegoSets.length >= 1 && cartLegoSets.map((cartLegoSet) => (
+                            <LegoSetInCart legoSet={cartLegoSet} />
+                        ))}
+                        { cartMinifigures.length >= 1 && cartMinifigures.map((cartMinifigure) => (
+                            <MinifigureInCart minifigure={cartMinifigure} />
+                        ))}
+                        { cartParts.length >= 1 && cartParts.map((cartPart) => (
+                            <PartInCart part={cartPart} />
                         ))}
                     </Box>
                 </Box>
 
-                { cartItems.length >= 1 && (
+                { totalQuantities >= 1 && (
                     <Box
                         bgColor={'gray.100'}
                         align={'start'}

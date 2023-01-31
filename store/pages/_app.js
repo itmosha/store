@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/globals.css';
 import theme from '../styles/theme';
 import { Layout } from '../components'
-import { StateContext, useStateContext } from '../context/StateContext';
+import { StateContext } from '../context/StateContext';
 import { Toaster } from "react-hot-toast";
 import { ChakraProvider } from "@chakra-ui/react";
 

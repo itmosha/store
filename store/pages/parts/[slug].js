@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useStateContext } from '../../context/StateContext';
 import DefaultPartImage from '../../public/DefaultLegoSetImage.png';
 import Navbar from "../../components/Navbar";
-import Link from 'next/link';
 import Footer from "../../components/Footer";
 import {
     Box,
@@ -17,7 +16,7 @@ import {
 
 const PartDetails = ({ part }) => {
     const [ index, setIndex ] = useState(0);
-    const { onAdd } = useStateContext();
+    const { onAddPart } = useStateContext();
 
     return (
         <Box minH={'90vh'}>
@@ -77,12 +76,12 @@ const PartDetails = ({ part }) => {
                     >
                         <Heading fontWeight={'500'} fontSize={['1.5rem', '2rem']}>{ part.price } ₽</Heading>
                         <Flex mt={'15px'} mb={{ base: '20px', lg: '40px'}}>
-                            <Button h={['5vh']} onClick={ () => onAdd(part, 1) } colorScheme={'blue'} borderRadius={'10px'}>
+                            <Button h={['5vh']} onClick={ () => onAddPart(part, 1) } colorScheme={'blue'} borderRadius={'10px'}>
                                 Добавить в корзину
                             </Button>
                             <Center ml={'10px'}>
                                 <Text textColor={'blackAlpha.800'}>
-                                    { part.quantity_in_stock > 0 ? 'Есть' : 'Нет' } в наличии
+                                    { part.quantity_in_stock } в наличии
                                 </Text>
                             </Center>
                         </Flex>

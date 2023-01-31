@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Box, Wrap, Flex, Image } from '@chakra-ui/react';
+import { Box, Flex, Image } from '@chakra-ui/react';
 import { FooterBanner, Navbar, HeaderBanner, Footer } from "../components";
 import SetsReferenceImage from '../public/SetsReference.png';
 import PartsReferenceImage from '../public/PartsReference.png';
@@ -15,7 +15,7 @@ const Home = () => {
                 <HeaderBanner reference={'/'}/>
 
                 <Box py={['10vw', '5vw', '0.5vw']}>
-                    <Flex px={['16vw', '10.5vw']} w={['94vw', '62vw']} maxW={'100vw'} gap={['2vw', '1vw']}>
+                    <Flex mx={['16vw', '10.5vw']} w={['94vw', '62vw']} maxW={'100vw'} gap={['2vw', '1vw']}>
                         <Box
                             boxShadow={['0px 1px 5px 1px rgba(0, 0, 0, 0.5)', '0px 3px 10px 2px rgba(0, 0, 0, 0.5)']} borderRadius={'1rem'} w={['30vw', '20vw']}>
                             <Link href={'/sets/'}>
@@ -25,15 +25,15 @@ const Home = () => {
                                 />
                             </Link>
                         </Box>
-                        {/*<Box*/}
-                        {/*    boxShadow={['0px 1px 5px 1px rgba(0, 0, 0, 0.5)', '0px 3px 10px 2px rgba(0, 0, 0, 0.5)']} borderRadius={'1rem'} w={['30vw', '20vw']}>*/}
-                        {/*    <Link href={'/parts'}>*/}
-                        {/*        <Image*/}
-                        {/*            src={ PartsReferenceImage.src }*/}
-                        {/*            borderRadius={'1rem'}*/}
-                        {/*        />*/}
-                        {/*    </Link>*/}
-                        {/*</Box>*/}
+                        <Box
+                            boxShadow={['0px 1px 5px 1px rgba(0, 0, 0, 0.5)', '0px 3px 10px 2px rgba(0, 0, 0, 0.5)']} borderRadius={'1rem'} w={['30vw', '20vw']}>
+                            <Link href={'/parts'}>
+                                <Image
+                                    src={ PartsReferenceImage.src }
+                                    borderRadius={'1rem'}
+                                />
+                            </Link>
+                        </Box>
                         <Box
                             boxShadow={['0px 1px 5px 1px rgba(0, 0, 0, 0.5)', '0px 3px 10px 2px rgba(0, 0, 0, 0.5)']} borderRadius={'1rem'} w={['30vw', '20vw']}>
                             <Link href={'/minifigures'}>

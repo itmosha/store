@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import CommonHeader from "../components/CommonHeader";
 import Footer from "../components/Footer";
-import ItemInCart from "../components/ItemInCart";
 import SPbDeliveryForm from "../components/forms/SPbDeliveryForm";
 import SDEKForm from "../components/forms/SDEKForm";
 import PochtaForm from "../components/forms/PochtaForm";
@@ -17,16 +16,19 @@ import {
     Text,
     Divider
 } from '@chakra-ui/react';
+import LegoSetInCart from "../components/legoSets/legoSetInCart";
+import MinifigureInCart from "../components/minifigures/MinifigureInCart";
+import PartInCart from "../components/parts/PartInCart";
 
 const CartPage = () => {
-    const { totalPrice, cartItems } = useStateContext();
+    const { totalPrice, totalQuantities, cartLegoSets, cartMinifigures, cartParts } = useStateContext();
     const [ checkedCheckbox, setCheckedCheckbox ] = React.useState(1);
 
     return (
         <Box>
             <CommonHeader />
             <Box minH={'85vh'} p={'0'}>
-                { cartItems.length >= 1 ? (
+                { totalQuantities > 0 ? (
                     <Box w={['96vw', '80vw']} mt={'15px'} mx={['2vw', '10vw']}>
                         <Box align={'center'}>
                             <Heading fontSize={['1.5rem', '2rem']} pb={['10px', '1.5rem']}>Оформление заказа</Heading>
@@ -35,8 +37,14 @@ const CartPage = () => {
                             <Box p={['15px', '1rem']} w={['96vw', '40vw']} borderRadius={'1rem'} h={'fit-content'} boxShadow={'0px 3px 10px 2px rgba(0, 0, 0, 0.5)'}>
                                 <Heading fontSize={['1.25rem', '1.5rem']} pb={'10px'}>Список товаров</Heading>
                                 <Box>
-                                    { cartItems.length >= 1 && cartItems.map((item) => (
-                                        <ItemInCart item={item} />
+                                    { cartLegoSets.length >= 1 && cartLegoSets.map((cartLegoSet) => (
+                                        <LegoSetInCart legoSet={cartLegoSet} />
+                                    ))}
+                                    { cartMinifigures.length >= 1 && cartMinifigures.map((cartMinifigure) => (
+                                        <MinifigureInCart minifigure={cartMinifigure} />
+                                    ))}
+                                    { cartParts.length >= 1 && cartParts.map((cartPart) => (
+                                        <PartInCart part={cartPart} />
                                     ))}
                                 </Box>
                             </Box>

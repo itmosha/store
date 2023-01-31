@@ -5,9 +5,11 @@ import { useStateContext } from "../context/StateContext";
 import {Box} from "@chakra-ui/react";
 
 const Layout = ({ children }) => {
-    const { setCartItems, setTotalQuantities, setTotalPrice } = useStateContext();
+    const { setCartLegoSets, setCartMinifigures, setCartParts, setTotalQuantities, setTotalPrice } = useStateContext();
 
-    const cookiesCartItems = getCookie('cookieCartItems');
+    const cookiesCartLegoSets = getCookie('cookieCartLegoSets');
+    const cookiesCartMinifigures = getCookie('cookieCartMinifigures');
+    const cookiesCartParts = getCookie('cookieCartParts');
     const cookiesTotalQuantities = getCookie('totalCartQuantities');
     const cookiesTotalPrice = getCookie('totalCartPrice')
 
@@ -16,13 +18,20 @@ const Layout = ({ children }) => {
     }, []);
 
     const GetCookies = () => {
-        if (cookiesCartItems) {
-            const cartItems = JSON.parse(cookiesCartItems);
-            setCartItems(cartItems);
-
-            if (cookiesTotalQuantities) { setTotalQuantities(Number(cookiesTotalQuantities)); }
-            if (cookiesTotalPrice) { setTotalPrice(Number(cookiesTotalPrice)); }
+        if (cookiesCartLegoSets) {
+            const cartLegoSets = JSON.parse(cookiesCartLegoSets);
+            setCartLegoSets(cartLegoSets);
         }
+        if (cookiesCartMinifigures) {
+            const cartMinifigures = JSON.parse(cookiesCartMinifigures);
+            setCartMinifigures(cartMinifigures);
+        }
+        if (cookiesCartParts) {
+            const cartParts = JSON.parse(cookiesCartParts);
+            setCartParts(cartParts);
+        }
+        if (cookiesTotalQuantities) { setTotalQuantities(Number(cookiesTotalQuantities)); }
+        if (cookiesTotalPrice) { setTotalPrice(Number(cookiesTotalPrice)); }
     }
 
     return (

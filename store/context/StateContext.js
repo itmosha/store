@@ -1,173 +1,204 @@
 import { toast } from 'react-hot-toast';
-import { setCookie, getCookie } from "cookies-next";
+import { setCookie } from "cookies-next";
 import React, { createContext, useContext, useState } from 'react';
 
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
     const [showCart, setShowCart] = useState(false);
-    const [cartItems, setCartItems] = useState([]);
+    const [cartLegoSets, setCartLegoSets] = useState([]);
+    const [cartMinifigures, setCartMinifigures] = useState([]);
+    const [cartParts, setCartParts] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalQuantities, setTotalQuantities] = useState(0);
-    const [qty, setQty] = useState(1);
-    const [deliveryRussia, setDeliveryRussia] = useState(false);
-    const [deliverySPb, setDeliverySPb] = useState(false);
 
-    let foundProduct;
-    let index;
+    const onAddLegoSet = (legoSet) => {
+        const checkLegoSetInCart = cartLegoSets.find((cartLegoSet) => cartLegoSet.slug === legoSet.slug);
 
+        if (!checkLegoSetInCart) {
+            legoSet.quantity = 1;
 
-    const toggleDeliveryRussia = () => {
-        if (deliveryRussia) {
-            setDeliveryRussia(!deliveryRussia);
-        } else {
-            setDeliverySPb((deliverySPb) => { deliverySPb = false; });
-            setDeliveryRussia(!deliveryRussia);
+            setCartLegoSets([...cartLegoSets, { ...legoSet }]);
+            setTotalPrice((prevTotalPrice) => prevTotalPrice + legoSet.price);
+            setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1);
+
+            toast.success(`Добавлено в корзину: ${legoSet.title}`);
+
+            setCookie('cookieCartLegoSets', [...cartLegoSets, { ...legoSet }]);
+            setCookie('totalCartQuantities', totalQuantities + 1);
+            setCookie('totalCartPrice', totalPrice + Number(legoSet.price));
         }
     }
 
-    const toggleDeliverySPb = () => {
-        if (deliverySPb) {
-            setDeliverySPb(!deliverySPb);
-        } else {
-            setDeliveryRussia((deliveryRussia) => { deliveryRussia = false; });
-            setDeliverySPb(!deliverySPb);
+    const onAddMinifigure = (minifigure) => {
+        const checkMinifigureInCart = cartMinifigures.find((cartMinifigure) => cartMinifigure.slug === minifigure.slug);
+
+        if (!checkMinifigureInCart) {
+            minifigure.quantity = 1;
+
+            setCartMinifigures([...cartMinifigures, { ...minifigure }]);
+            setTotalPrice((prevTotalPrice) => prevTotalPrice + minifigure.price);
+            setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1);
+
+            toast.success(`Добавлено в корзину: ${minifigure.title}`);
+
+            setCookie('cookieCartMinifigures', [...cartMinifigures, { ...minifigure }]);
+            setCookie('totalCartQuantities', totalQuantities + 1);
+            setCookie('totalCartPrice', totalPrice + Number(minifigure.price));
         }
     }
 
-    const onAdd = (product, quantity) => {
+    const onAddPart = (part, quantity) => {
+        const checkPartInCart = cartParts.find((cartPart) => cartPart.slug === part.slug);
+        let partWasAdded = false;
 
-        const checkProductInCart = cartItems.find((item) => item.slug === product.slug);
-        let wasAdded = false;
+        if (checkPartInCart) {
+            const updatedCartParts = cartParts.map((cartPart) => {
+                if (cartPart.slug === part.slug && part.quantity_in_stock >= cartPart.quantity + quantity) {
+                    partWasAdded = true;
+                    return {
+                        ...cartPart,
+                        quantity: cartPart.quantity + quantity
+                    };
+                } else return {
+                    ...cartPart
+                };
+            });
 
-        if (checkProductInCart) {
-            //
-            // const updatedCartItems = cartItems.map((cartProduct) => {
-            //     if (cartProduct.slug === product.slug && product.quantity_in_stock >= cartProduct.quantity + quantity) {
-            //         wasAdded = true;
-            //         return {
-            //             ...cartProduct,
-            //             quantity: cartProduct.quantity + quantity
-            //         };
-            //     } else return {
-            //         ...cartProduct
-            //     };
-            // });
-            //
-            // if (wasAdded) {
-            //     setCartItems(updatedCartItems);
-            //
-            //     setCookie('cookieCartItems', updatedCartItems);
-            // }
-        } else {
-            product.quantity = quantity;
-            setCartItems([...cartItems, { ...product }]);
+            if (partWasAdded) {
+                setCartParts(updatedCartParts);
+                setTotalPrice((prevTotalPrice) => prevTotalPrice + part.price * quantity);
+                setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
 
-            setCookie('cookieCartItems', [...cartItems, { ...product }]);
-        }
+                toast.success(`Добавлено в корзину: ${part.title}, ${quantity} шт.`);
 
-        if (wasAdded || !checkProductInCart) {
-            setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
+                setCookie('cookieCartParts', updatedCartParts);
+                setCookie('totalCartQuantities', totalQuantities + quantity);
+                setCookie('totalCartPrice', totalPrice + Number(part.price * quantity));
+            }
+        } else if (part.quantity_in_stock >= quantity) {
+            part.quantity = quantity;
+
+            setCartParts([...cartParts, { ...part }]);
+            setTotalPrice((prevTotalPrice) => prevTotalPrice + part.price * quantity);
             setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
 
-            setCookie('totalCartQuantities', Number(totalQuantities) + Number(quantity));
-            setCookie('totalCartPrice', Number(totalPrice) + Number(product.price * quantity))
+            toast.success(`Добавлено в корзину: ${part.title}, ${quantity} шт.`)
 
-            toast.success(`Добавлено в корзину: ${product.title}`, {duration: 1000});
+            setCookie('cookieCartParts', [...cartParts, { ...part }]);
+            setCookie('totalCartQuantities', totalQuantities + quantity);
+            setCookie('totalCartPrice', totalPrice + Number(part.price * quantity));
         }
     }
 
-    const onRemove = (product) => {
-        foundProduct = cartItems.find((item) => item.slug === product.slug);
-        const newCartItems = cartItems.filter((item) => item.slug !== product.slug);
+    const onRemoveLegoSet = (legoSet) => {
+        const newCartLegoSets = cartLegoSets.filter((cartLegoSet) => cartLegoSet.slug !== legoSet.slug);
 
-        setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price * foundProduct.quantity);
-        setTotalQuantities(prevTotalQuantities => prevTotalQuantities - foundProduct.quantity);
-        setCartItems(newCartItems);
+        setCartLegoSets(newCartLegoSets);
+        setTotalPrice((prevTotalPrice) => prevTotalPrice - legoSet.price);
+        setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - 1);
 
-        setCookie('cookieCartItems', newCartItems);
-        setCookie('totalCartQuantities', Number(totalQuantities) - Number(foundProduct.quantity));
-        setCookie('totalCartPrice', Number(totalPrice) - Number(foundProduct.price * foundProduct.quantity));
+        setCookie('cookieCartLegoSets', newCartLegoSets);
+        setCookie('totalCartQuantities', totalQuantities - 1);
+        setCookie('totalCartPrice', totalPrice - Number(legoSet.price));
+
+        legoSet.quantity = 0;
     }
 
-    const toggleCartItemQuantity = (id, value) => {
-        foundProduct = cartItems.find((item) => item.slug === id);
-        index = cartItems.findIndex((product) => product.slug === id);
+    const onRemoveMinifigure = (minifigure) => {
+        const newCartMinifigures = cartMinifigures.filter((cartMinifigure) => cartMinifigure.slug !== minifigure.slug);
+
+        setCartMinifigures(newCartMinifigures);
+        setTotalPrice((prevTotalPrice) => prevTotalPrice - minifigure.price);
+        setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - 1);
+
+        setCookie('cookieCartMinifigures', newCartMinifigures);
+        setCookie('totalCartQuantities', totalQuantities - 1);
+        setCookie('totalCartPrice', totalPrice - Number(minifigure.price));
+
+        minifigure.quantity = 0;
+    }
+
+    const onRemovePart = (part) => {
+        const newCartParts = cartParts.filter((cartPart) => cartPart.slug !== part.slug);
+
+        const newPrice = totalPrice - part.quantity * part.price;
+        const newQuantity = totalQuantities - part.quantity;
+
+        setCartParts(newCartParts);
+        setTotalPrice(newPrice);
+        setTotalQuantities(newQuantity);
+
+        setCookie('cookieCartParts', newCartParts);
+        setCookie('totalCartQuantities', totalQuantities - part.quantity);
+        setCookie('totalCartPrice', totalPrice - Number(part.quantity * part.price));
+
+        part.quantity = 0;
+    }
+
+    const toggleCartPartQuantity = (id, value) => {
+        const foundPart = cartParts.find((cartPart) => cartPart.slug === id);
 
         if (value === 'inc') {
-            let wasIncremented = true;
+            let wasIncremented = false;
 
-            const newCartItems = cartItems.map(item => {
-                if (item.slug === id) {
-                    if (foundProduct.quantity_in_stock > item.quantity) {
-                        return {...item, quantity: foundProduct.quantity + 1}
-                    } else wasIncremented = false;
-                } return item
+            const newCartParts = cartParts.map(cartPart => {
+                if (cartPart.slug === id) {
+                    if (foundPart.quantity_in_stock > cartPart.quantity) {
+                        wasIncremented = true;
+                        return {...cartPart, quantity: foundPart.quantity + 1}
+                    }
+                } return cartPart
             });
 
             if (wasIncremented) {
-                setCartItems(newCartItems);
-
-                setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
+                setCartParts(newCartParts);
+                setTotalPrice((prevTotalPrice) => prevTotalPrice + foundPart.price);
                 setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1);
 
-                setCookie('cookieCartItems', newCartItems);
-                setCookie('totalCartPrice', totalPrice + foundProduct.price);
+                setCookie('cookieCartParts', newCartParts);
+                setCookie('totalCartPrice', totalPrice + Number(foundPart.price));
                 setCookie('totalCartQuantities', totalQuantities + 1);
             }
-        } else if (value === 'dec') {
-            if (foundProduct.quantity > 1) {
-                const newCartItems = cartItems.map(item => {
-                    if (item.slug === id) {
-                        return {...item, quantity: foundProduct.quantity - 1}
-                    } return item
-                });
-                setCartItems(newCartItems)
+        } else if (value === 'dec' && foundPart.quantity > 1) {
+            const newCartParts = cartParts.map(cartPart => {
+                if (cartPart.slug === id) {
+                    return {...cartPart, quantity: foundPart.quantity - 1}
+                } return cartPart
+            });
 
-                setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
-                setTotalQuantities(prevTotalQuantities => prevTotalQuantities - 1);
+            setCartParts(newCartParts);
+            setTotalPrice((prevTotalPrice) => prevTotalPrice - foundPart.price);
+            setTotalQuantities(prevTotalQuantities => prevTotalQuantities - 1);
 
-                setCookie('cookieCartItems', newCartItems);
-                setCookie('totalCartPrice', Number(totalPrice) - Number(foundProduct.price));
-                setCookie('totalCartQuantities', Number(totalQuantities) - 1);
-            }
+            setCookie('cookieCartParts', newCartParts);
+            setCookie('totalCartPrice', totalPrice - Number(foundPart.price));
+            setCookie('totalCartQuantities', totalQuantities - 1);
         }
-    }
-
-    const incQty = () => {
-        setQty((prevQty) => prevQty + 1);
-    }
-
-    const decQty = () => {
-        setQty((prevQty) => {
-            if (prevQty - 1 < 1) return 1;
-            return prevQty - 1;
-        });
     }
 
     return (
         <Context.Provider
             value={{
+                onAddLegoSet,
+                onAddPart,
+                onAddMinifigure,
+                onRemoveLegoSet,
+                onRemovePart,
+                onRemoveMinifigure,
+                toggleCartPartQuantity,
+                cartLegoSets,
+                setCartLegoSets,
+                cartMinifigures,
+                setCartMinifigures,
+                cartParts,
+                setCartParts,
                 showCart,
                 setShowCart,
-                setCartItems,
-                setTotalQuantities,
-                setTotalPrice,
-                cartItems,
-                totalPrice,
                 totalQuantities,
-                qty,
-                incQty,
-                decQty,
-                onAdd,
-                toggleCartItemQuantity,
-                onRemove,
-                deliverySPb,
-                deliveryRussia,
-                setDeliverySPb,
-                setDeliveryRussia,
-                toggleDeliverySPb,
-                toggleDeliveryRussia
+                setTotalQuantities,
+                totalPrice,
+                setTotalPrice
             }}
         >
             { children }

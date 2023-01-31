@@ -22,7 +22,7 @@ import {
 
 const LegoSetDetails = ({ legoSet }) => {
     const [ index, setIndex ] = useState(0);
-    const { onAdd } = useStateContext();
+    const { onAddLegoSet } = useStateContext();
 
     return (
         <Box minH={'90vh'}>
@@ -81,7 +81,7 @@ const LegoSetDetails = ({ legoSet }) => {
                     >
                         <Heading fontWeight={'500'} fontSize={['1.5rem', '2rem']}>{ legoSet.price } ₽</Heading>
                         <Flex mt={'15px'} mb={{ base: '20px', lg: '40px'}}>
-                            <Button h={['5vh']} onClick={ () => onAdd(legoSet, 1) } colorScheme={'blue'} borderRadius={'10px'}>
+                            <Button h={['5vh']} onClick={ () => onAddLegoSet(legoSet) } colorScheme={'blue'} borderRadius={'10px'}>
                                 Добавить в корзину
                             </Button>
                             <Center ml={'10px'}>
