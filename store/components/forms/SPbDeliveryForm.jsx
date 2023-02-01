@@ -18,7 +18,7 @@ import tinkoff from '@tcb-web/create-credit';
 
 const SPbDeliveryForm = () => {
 
-    const { totalPrice, cartItems, setCartItems, setTotalPrice, setTotalQuantities } = useStateContext();
+    const { totalPrice, cartLegoSets, setCartLegoSets, cartMinifigures, setCartMinifigures, cartParts, setCartParts, setTotalPrice, setTotalQuantities } = useStateContext();
 
     const validateInitials = (value) => { return ( !value ? 'Обязательное поле' : null ) };
     const validateEmail = (value) => { return ( !value ? 'Обязательное поле' : (
@@ -40,9 +40,14 @@ const SPbDeliveryForm = () => {
                 }}
                 onSubmit={(values, actions) => {
                     setTimeout(async () => {
+                        const itemsLegoSets = cartLegoSets.map((cartLegoSet) => `${cartLegoSet.slug}-${cartLegoSet.quantity}`);
+                        const itemsMinifigures = cartMinifigures.map((cartMinifigure) => `${cartMinifigure.slug}-${cartMinifigure.quantity}`);
+                        const itemsParts = cartParts.map((cartPart) => `${cartPart.slug}-${cartPart.quantity}`);
+
                         let data = {
-                            items_slugs: cartItems.map((item) => (item.slug)),
-                            items_quantities: cartItems.map((item) => (item.quantity)),
+                            items_legoSets: itemsLegoSets,
+                            items_minifigures: itemsMinifigures,
+                            items_parts: itemsParts,
                             items_price: totalPrice,
                             delivery_price: 100,
                             total_price: totalPrice + 100,
@@ -108,10 +113,14 @@ const SPbDeliveryForm = () => {
                             status = stateJson.Status;
 
                             if (status === "AUTHORIZED") {
-                                setCookie('cookieCartItems', []);
+                                setCookie('cookieCartLegoSets', []);
+                                setCookie('cookieCartMinifigures', []);
+                                setCookie('cookieCartParts', []);
                                 setCookie('totalCartPrice', 0);
                                 setCookie('totalCartQuantities', 0);
-                                setCartItems([]);
+                                setCartLegoSets([]);
+                                setCartMinifigures([]);
+                                setCartParts([]);
                                 setTotalPrice(0);
                                 setTotalQuantities(0);
 
@@ -215,10 +224,12 @@ const SPbDeliveryForm = () => {
                                     <Button
                                         mt={'1rem'}
                                         type="button"
-                                        onClick={ () => { tinkoff.create(
-                                            {
+                                        onClick={ () => {
+                                            const allItems = cartLegoSets.concat(cartMinifigures, cartParts);
+                                            const itemsList = allItems.map((item) => ({ name: item.title, price: item.price, quantity: item.quantity }));
+                                            tinkoff.create({
                                                 sum: totalPrice,
-                                                items: cartItems?.map((item) => ({ name: item.title, price: item.price, quantity: item.quantity })),
+                                                items: itemsList,
                                                 demoFlow: 'sms',
                                                 promoCode: 'installment_0_0_6_5,85',
                                                 shopId: process.env.NEXT_PUBLIC_SHOP_ID,

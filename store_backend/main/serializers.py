@@ -63,8 +63,8 @@ class PartsSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ('state', 'unique_uuid', 'items_slugs', 'items_quantities' , 'items_price', 'delivery_price', 'delivery_type', 'total_price', 'created', 'updated',
-                  'first_name', 'last_name', 'middle_name', 'email', 'phone', 'address', 'postal_code')
+        fields = ('state', 'unique_uuid', 'items_legoSets', 'items_minifigures', 'items_parts' , 'items_price', 'delivery_price',
+        'delivery_type', 'total_price', 'created', 'updated', 'first_name', 'last_name', 'middle_name', 'email', 'phone', 'address', 'postal_code')
         lookup_field = 'unique_uuid'
         extra_kwargs = {
             'url': {'lookup_field': 'unique_uuid'},
