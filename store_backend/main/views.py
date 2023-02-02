@@ -10,13 +10,13 @@ class LegoSetListView(generics.ListAPIView):
     queryset = LegoSet.objects.all().filter(is_active=True)
     serializer_class = LegoSetsSerializer
     lookup_field = 'slug'
-    permission_classes = [ permissions.BasePermission ]
+    permission_classes = [ permissions.IsAdminUser ]
 
 class LegoSetDetailView(generics.RetrieveUpdateAPIView):
     queryset = LegoSet.objects.all()
     serializer_class = LegoSetsSerializer
     lookup_field = 'slug'
-    permission_classes = [ permissions.BasePermission ]
+    permission_classes = [ permissions.IsAdminUser ]
 
     def perform_update(self, serializer):
         serializer.save()
@@ -27,13 +27,13 @@ class MinifigureListView(generics.ListAPIView):
     queryset = Minifigure.objects.all().filter(is_active=True)
     serializer_class = MinifiguresSerializer
     lookup_field = 'slug'
-    permission_classes = [ permissions.BasePermission ]
+    permission_classes = [ permissions.IsAdminUser ]
 
 class MinifigureDetailView(generics.RetrieveUpdateAPIView):
     queryset = Minifigure.objects.all()
     serializer_class = MinifiguresSerializer
     lookup_field = 'slug'
-    permission_classes = [ permissions.BasePermission ]
+    permission_classes = [ permissions.IsAdminUser ]
 
     def perform_update(self, serializer):
         serializer.save()
@@ -44,13 +44,13 @@ class PartListView(generics.ListAPIView):
     queryset = Part.objects.all().filter(is_active=True)
     serializer_class = PartsSerializer
     lookup_field = 'slug'
-    permission_classes = [ permissions.BasePermission ]
+    permission_classes = [ permissions.IsAdminUser ]
 
 class PartDetailView(generics.RetrieveUpdateAPIView):
     queryset = Part.objects.all()
     serializer_class = PartsSerializer
     lookup_field = 'slug'
-    permission_classes = [ permissions.BasePermission ]
+    permission_classes = [ permissions.IsAdminUser ]
 
     def perform_update(self, serializer):
         serializer.save()
@@ -61,20 +61,20 @@ class SeriesListView(generics.ListAPIView):
     queryset = Series.objects.all()
     serializer_class = SeriesSerializer
     lookup_field = 'slug'
-    permission_classes = [ permissions.BasePermission ]
+    permission_classes = [ permissions.IsAdminUser ]
 
 class SeriesDetailView(generics.RetrieveAPIView):
     queryset = Series.objects.all()
     serializer_class = SeriesSerializer
     lookup_field = 'slug'
-    permission_classes = [ permissions.BasePermission ]
+    permission_classes = [ permissions.IsAdminUser ]
 
 
 class OrderListView(generics.ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     lookup_field = 'unique_uuid'
-    permission_classes = [ permissions.BasePermission ]
+    permission_classes = [ permissions.IsAdminUser ]
 
     def perform_create(self, serializer):
         serializer.save()
@@ -84,7 +84,7 @@ class OrderDetailView(generics.RetrieveUpdateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     lookup_field = 'unique_uuid'
-    permission_classes = [ permissions.BasePermission ]
+    permission_classes = [ permissions.IsAdminUser ]
 
     def perform_update(self, serializer):
         serializer.save()
