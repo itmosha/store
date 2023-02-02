@@ -16,7 +16,8 @@ import {
 
 const PartDetails = ({ part }) => {
     const [ index, setIndex ] = useState(0);
-    const { onAddPart } = useStateContext();
+    const [ qty, setQty ] = useState(1);
+    const { onAddPart, toggleCartPartQuantity } = useStateContext();
 
     return (
         <Box minH={'90vh'}>
@@ -75,8 +76,20 @@ const PartDetails = ({ part }) => {
                         borderRadius={'15px'}
                     >
                         <Heading fontWeight={'500'} fontSize={['1.5rem', '2rem']}>{ part.price } ₽</Heading>
-                        <Flex mt={'15px'} mb={{ base: '20px', lg: '40px'}}>
-                            <Button h={['5vh']} onClick={ () => onAddPart(part, 1) } colorScheme={'blue'} borderRadius={'10px'}>
+                        <Flex h={['5vh']} mr={'10px'} mt={'20px'}>
+                            <Button w={['5vh']} h={['5vh']} rounded={'0.5rem'} onClick={ () => { qty >= 2 ? setQty(qty - 1) : qty } }>
+                                -
+                            </Button>
+                            <Center w={['5vh']} h={['5vh']} rounded={'0.5rem'} bgColor={'#3182CE'} textColor={'white'}>
+                                { qty }
+                            </Center>
+                            <Button w={['5vh']} h={['5vh']} rounded={'0.5rem'} onClick={ () => { qty < part.quantity_in_stock ? setQty(qty + 1) : qty  } }>
+                                +
+                            </Button>
+                        </Flex>
+                        <Flex mt={'10px'} mb={{ base: '20px', lg: '40px'}}>
+
+                            <Button h={['5vh']} onClick={ () => onAddPart(part, qty) } colorScheme={'blue'} rounded={'0.5rem'}>
                                 Добавить в корзину
                             </Button>
                             <Center ml={'10px'}>

@@ -24,26 +24,26 @@ const Cart = () => {
                 h={'100vh'}
                 bgColor={'white'}
                 justify={'space-between'}
-                w={['100vw', '32rem']}
+                w={{ base: '100vw', sm: '50vw', lg: '32vw'}}
                 float={['none', 'right']}
-                p={['4vw', '1rem']}
-                align={['center', 'start']}
+                p={{ base: '4vw', sm: '1vw'}}
+                align={'start'}
             >
-                <Box w={['92vw', '30rem']}>
+                <Box w={{ base: '92vw', sm: '48vw', lg: '30vw'}}>
                     <Flex pb={'0.5rem'}>
                         <Button onClick={ () => setShowCart(false) }>
                             <AiOutlineRight />
                         </Button>
                         <Center ml={'15px'}>
-                            <Heading fontSize={['1.25rem', '1.5rem']} fontWeight={'600'}>Ваша корзина</Heading>
+                            <Heading fontSize={['0.9rem', '0.90rem', '1.15rem', '1.2rem', '1.25rem', '1.5rem']} fontWeight={'600'}>Ваша корзина</Heading>
                         </Center>
                         <Center ml={'10px'}>
-                            <Text bgColor={'red.100'} fontSize={['0.9rem', '0.95rem', '1.05rem', '1.10rem', '1.15rem']} mt={'0.35rem'} borderRadius={'full'} px={'7px'}>
+                            <Text bgColor={'red.100'} fontSize={['0.9rem', '0.65rem', '1.05rem', '0.70rem', '0.90rem', '1.1rem']} mt={'0.35rem'} borderRadius={'full'} px={'7px'}>
                             { totalQuantities } товаров
                             </Text>
                         </Center>
                     </Flex>
-                    { totalQuantities  < 1 && (
+                    { totalQuantities < 1 && (
                         <Box w={['92vw', '20rem']} mx={['0vw', '4rem']} mt={'2rem'}>
                             <AiOutlineShopping size={'6rem'} />
                             <Heading fontSize={'1.25rem'} pt={'0.5rem'}>Ваша корзина пуста</Heading>
@@ -71,25 +71,23 @@ const Cart = () => {
                     <Box
                         bgColor={'gray.100'}
                         align={'start'}
-                        w={['92vw', '30rem']}
-                        h={['30vw', '6.5rem']}
+                        w={{ base: '92vw', sm: '48vw', lg: '30vw'}}
                         p={['3vw 4vw', '0.5rem 1rem']}
-                        borderRadius={['0.75rem', '1rem']}
+                        rounded={['0.5rem']}
                     >
                         <Flex>
-                            <Heading fontSize={['1.20rem', '1.35rem']}>Сумма заказа: </Heading>
-                            <Heading fontSize={['1.15rem', '1.25rem']} fontWeight={'400'} bgColor={'red.100'} mx={'0.5rem'} borderRadius={'full'} py={'0.25rem'} px={'0.5rem'}>{ totalPrice } ₽</Heading>
+                            <Heading fontSize={['0.9rem', '1rem', '1.15rem', '1.2rem', '1.25rem', '1.5rem']}>Сумма заказа: </Heading>
+                            <Heading fontSize={['0.9rem', '1rem', '1.15rem', '1.2rem', '1.25rem', '1.5rem']} fontWeight={'500'} bgColor={'red.100'} mx={'0.5rem'} borderRadius={'full'} py={'0.25rem'} px={'0.5rem'}>{ totalPrice } ₽</Heading>
                         </Flex>
-                        <Box>
+                        <Box align={'center'}>
                             <Link href={'/cart/'}>
                                 <Button
+                                    my={'10px'}
                                     colorScheme={'blue'}
-                                    w={['64vw', '16rem']}
                                     h={['10vw', '2.5rem']}
-                                    m={['2vw 10vw', '0.5rem 6rem 0rem 6rem']}
                                     onClick={ () => setShowCart(false) }
                                 >
-                                    <Heading fontSize={'1.25rem'} fontWeight={'500'}>
+                                    <Heading fontSize={{ sm: '1rem', lg: '1.15rem' }} fontWeight={'500'}>
                                         Оформить заказ
                                     </Heading>
                                 </Button>
