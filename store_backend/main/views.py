@@ -12,11 +12,15 @@ class LegoSetListView(generics.ListAPIView):
     lookup_field = 'slug'
     permission_classes = [ permissions.BasePermission ]
 
-class LegoSetDetailView(generics.RetrieveAPIView):
+class LegoSetDetailView(generics.RetrieveUpdateAPIView):
     queryset = LegoSet.objects.all()
     serializer_class = LegoSetsSerializer
     lookup_field = 'slug'
     permission_classes = [ permissions.BasePermission ]
+
+    def perform_update(self, serializer):
+        serializer.save()
+        return Response(serializer.data)
 
 
 class MinifigureListView(generics.ListAPIView):
@@ -25,11 +29,15 @@ class MinifigureListView(generics.ListAPIView):
     lookup_field = 'slug'
     permission_classes = [ permissions.BasePermission ]
 
-class MinifigureDetailView(generics.RetrieveAPIView):
+class MinifigureDetailView(generics.RetrieveUpdateAPIView):
     queryset = Minifigure.objects.all()
     serializer_class = MinifiguresSerializer
     lookup_field = 'slug'
     permission_classes = [ permissions.BasePermission ]
+
+    def perform_update(self, serializer):
+        serializer.save()
+        return Response(serializer.data)
 
 
 class PartListView(generics.ListAPIView):
@@ -38,11 +46,15 @@ class PartListView(generics.ListAPIView):
     lookup_field = 'slug'
     permission_classes = [ permissions.BasePermission ]
 
-class PartDetailView(generics.RetrieveAPIView):
+class PartDetailView(generics.RetrieveUpdateAPIView):
     queryset = Part.objects.all()
     serializer_class = PartsSerializer
     lookup_field = 'slug'
     permission_classes = [ permissions.BasePermission ]
+
+    def perform_update(self, serializer):
+        serializer.save()
+        return Response(serializer.data)
 
 
 class SeriesListView(generics.ListAPIView):

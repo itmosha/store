@@ -117,6 +117,39 @@ const PochtaForm = () => {
                             status = stateJson.Status;
 
                             if (status === "AUTHORIZED") {
+                                for (let i = 0; i < cartLegoSets.length; i++) {
+                                    await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/lego_sets/${cartLegoSets[i].slug}/`, {
+                                        method: 'PATCH',
+                                        headers: {
+                                            "Content-Type": "application/json"
+                                        },
+                                        body: JSON.stringify({
+                                            "quantity_in_stock": cartLegoSets[i].quantity_in_stock - cartLegoSets[i].quantity
+                                        })
+                                    });
+                                }
+                                for (let i = 0; i < cartMinifigures.length; i++) {
+                                    await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/minifigures/${cartMinifigures[i].slug}/`, {
+                                        method: 'PATCH',
+                                        headers: {
+                                            "Content-Type": "application/json"
+                                        },
+                                        body: JSON.stringify({
+                                            "quantity_in_stock": cartMinifigures[i].quantity_in_stock - cartMinifigures[i].quantity
+                                        })
+                                    });
+                                }
+                                for (let i = 0; i < cartParts.length; i++) {
+                                    await fetch(`${process.env.NEXT_PUBLIC_PROTOCOL}://${process.env.NEXT_PUBLIC_HOSTNAME}/api/parts/${cartParts[i].slug}/`, {
+                                        method: 'PATCH',
+                                        headers: {
+                                            "Content-Type": "application/json"
+                                        },
+                                        body: JSON.stringify({
+                                            "quantity_in_stock": cartParts[i].quantity_in_stock - cartParts[i].quantity
+                                        })
+                                    });
+                                }
                                 setCookie('cookieCartLegoSets', []);
                                 setCookie('cookieCartMinifigures', []);
                                 setCookie('cookieCartParts', []);
