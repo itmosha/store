@@ -23,6 +23,7 @@ ENV INSIDE_A_DOCKER Yes
 COPY store_backend/requirements.txt /app/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+RUN pip install django-cors-headers
 
 COPY .env /
 
