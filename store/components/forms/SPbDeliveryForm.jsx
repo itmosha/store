@@ -293,6 +293,7 @@ export const postOrder = async (data) => {
 
 
     const resposeJson = await response.json();
+    console.log(JSON.stringify(resposeJson));
     return resposeJson.unique_uuid;
 }
 export default SPbDeliveryForm;

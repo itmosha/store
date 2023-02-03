@@ -166,9 +166,9 @@ class Order(models.Model):
     # TODO: field for ip (getting HTTP_X_REAL_IP)
     # TODO: оставить property или хранить для каждого заказа индивидуально?
 
-    items_legoSets = ArrayField(models.CharField(max_length=100), null=True)
-    items_minifigures = ArrayField(models.CharField(max_length=100), null=True)
-    items_parts = ArrayField(models.CharField(max_length=100), null=True)
+    items_legoSets = ArrayField(models.CharField(max_length=100), null=True, blank=True)
+    items_minifigures = ArrayField(models.CharField(max_length=100), null=True, blank=True)
+    items_parts = ArrayField(models.CharField(max_length=100), null=True, blank=True)
 
     items_price = models.IntegerField(null=True, default=0)
     delivery_price = models.IntegerField(default=0)
