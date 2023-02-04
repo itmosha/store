@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { useStateContext } from "../../context/StateContext";
 import { sha256 } from "js-sha256";
-import { setCookie } from "cookies-next";
+import { setCookie, getCookie } from "cookies-next";
 import tinkoff from '@tcb-web/create-credit';
 
 const SPbDeliveryForm = () => {
@@ -286,6 +286,7 @@ export const postOrder = async (data) => {
         method: 'POST',
         body: JSON.stringify(data),
         mode: 'cors',
+        csrfmiddlewaretoken: getCookie('csrftoken'),
         headers: {
             "Content-Type": "application/json",
         }
@@ -293,7 +294,7 @@ export const postOrder = async (data) => {
 
 
     const resposeJson = await response.json();
-    console.log(JSON.stringify(resposeJson));
+
     return resposeJson.unique_uuid;
 }
 export default SPbDeliveryForm;
